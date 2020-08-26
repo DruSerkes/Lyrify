@@ -9,7 +9,9 @@
     "helmet": "^4.1.0",
     "morgan": "^1.10.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "supertest": "^4.0.2"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
