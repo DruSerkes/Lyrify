@@ -17,10 +17,11 @@ app.use(morgan('dev'));
 /*
 
 TODO 
+0. INSTALL spotify-web-api-node
+https://github.com/thelinmichael/spotify-web-api-node
 1. ADD ROUTE LOGIC FOR AUTHENTICATING A USER 
 2. ADD ROUTE LOGIC FOR SPOTIFY API
 3. ADD TESTS WHENEVER YOU WRITE A NEW ROUTE/FUNCTION 
-
 */
 
 /** 404 handler */
