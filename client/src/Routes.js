@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+// TODO import components for search, playing, home & include in their Routes
 
 const Routes = () => {
 	return (
