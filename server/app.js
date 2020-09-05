@@ -24,9 +24,9 @@ app.use(helmet);
 // Request logger
 app.use(morgan('dev'));
 
-app.get('/', (req, res, next) => {
-	return res.redirect(HOME);
-});
+// app.get('/', (req, res, next) => {
+// 	return res.redirect(HOME);
+// });
 
 app.get('/user', (req, res, next) => {
 	console.log('signed cookies == ', req.signedCookies);
@@ -35,6 +35,17 @@ app.get('/user', (req, res, next) => {
 	try {
 		const user = User.getByAccessToken(access_token);
 		return res.json({ user });
+	} catch (e) {
+		console.log(e);
+		return next(e);
+	}
+});
+
+app.get('/now-playing', async (req, res, next) => {
+	try {
+		const data = await spotifyApi.getMyCurrentPlaybackState();
+		console.log(data);
+		// TODO
 	} catch (e) {
 		console.log(e);
 		return next(e);
@@ -59,11 +70,15 @@ app.get('/callback', async (req, res, next) => {
 		spotifyApi.setAccessToken(access_token);
 		spotifyApi.setRefreshToken(refresh_token);
 		const userData = await spotifyApi.getMe();
-		const user = await User.create(userData);
-		delete user.refresh_token;
-		res.cookie('access_token', access_token, { signed: true });
-		console.log('db user == ', user);
-		return res.redirect(`${HOME}?${querystring.stringify(user)}`);
+		console.log(userData);
+		// TODO destructure data properly for db user storage
+
+		// const user = await User.create(userData);
+		// delete user.refresh_token;
+		// res.cookie('access_token', access_token, { signed: true });
+		// localStorage.setItem('access_token', access_token);
+		// console.log('db user == ', user);
+		// return res.redirect(`${HOME}?${querystring.stringify(user)}`);
 	} catch (e) {
 		console.log(e);
 		return next(e);
@@ -73,11 +88,6 @@ app.get('/callback', async (req, res, next) => {
 /*
 
 TODO 
-0. INSTALL spotify-web-api-node
-https://github.com/thelinmichael/spotify-web-api-node
-2. ADD ROUTE LOGIC FOR SPOTIFY API
-	- spotifyApi.getMe(access_token)
-	- spotifyApi.getMyCurrentPlaybackState(access_token)
 3. ADD TESTS WHENEVER YOU WRITE A NEW ROUTE/FUNCTION 
 */
 
