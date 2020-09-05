@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(cookieParser(SECRET_KEY));
 
 // Some security
-app.use(helmet);
+app.use(helmet());
 
 // Request logger
 app.use(morgan('dev'));
