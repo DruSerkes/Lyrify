@@ -1,6 +1,7 @@
 const express = require('express');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const querystring = require('querystring');
 const ExpressError = require('./helpers/ExpressError');
 const User = require('./models/user');
 const SpotifyWebApi = require('spotify-web-api-node');
