@@ -20,7 +20,14 @@ TODO
 0. INSTALL spotify-web-api-node
 https://github.com/thelinmichael/spotify-web-api-node
 1. ADD ROUTE LOGIC FOR AUTHENTICATING A USER 
+	- const spotifyApi = new SpotifyWebApi({
+	redirectUri,
+	clientId, 
+	clientSecret
+	});
 2. ADD ROUTE LOGIC FOR SPOTIFY API
+	- spotifyApi.getMe(access_token)
+	- spotifyApi.getMyCurrentPlaybackState(access_token)
 3. ADD TESTS WHENEVER YOU WRITE A NEW ROUTE/FUNCTION 
 */
 
