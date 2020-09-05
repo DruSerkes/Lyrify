@@ -5,6 +5,9 @@ require('dotenv').config();
 const SECRET_KEY = process.env.SECRET_KEY || 'test';
 const PORT = +process.env.PORT || 5000;
 const BCRYPT_WORK_FACTOR = +process.env.BCRYPT_WORK_FACTOR || 14;
+const clientId = process.env.clientId;
+const clientSecret = process.env.clientSecret;
+const redirectUri = process.env.redirectUri;
 
 // database is:
 //
@@ -24,5 +27,8 @@ module.exports = {
 	SECRET_KEY,
 	PORT,
 	DB_URI,
-	BCRYPT_WORK_FACTOR
+	BCRYPT_WORK_FACTOR,
+	clientId,
+	clientSecret,
+	redirectUri
 };
