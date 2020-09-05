@@ -3,6 +3,11 @@
 Currently under construction. 
 
 
+### Data 
+Data for this app is sourced from
+* [The Spotify API](https://developer.spotify.com/documentation)
+* [Lyrics OVH](https://lyricsovh.docs.apiary.io/)
+
 
 
 
