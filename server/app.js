@@ -39,7 +39,7 @@ app.get('/callback', async (req, res, next) => {
 		const userData = await spotifyApi.getMe();
 		const user = await User.create(userData);
 		console.log('db user == ', user);
-		res.json({ user });
+		res.redirect(`${HOME}?${querystring.stringify(user)}`);
 	} catch (e) {
 		console.log(e);
 	}
