@@ -18,6 +18,19 @@ class User {
 		const user = result.rows[0];
 		return user;
 	}
+
+	static async getByAccessToken(access_token) {
+		if (!access_token) throw new ExpressError('access_token required', 400);
+		const result = await db.query(
+			`SELECT * FROM users
+			WHERE access_token=$1
+			`,
+			[ access_token ]
+		);
+		const user = result.rows[0];
+		delete user.refresh_token;
+		return user;
+	}
 }
 
 module.exports = User;
