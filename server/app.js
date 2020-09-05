@@ -3,7 +3,7 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const ExpressError = require('./helpers/ExpressError');
 const SpotifyWebApi = require('spotify-web-api-node');
-const { clientId, clientSecret, redirectUri } = require('./config');
+const { clientId, clientSecret, redirectUri, scopes, HOME } = require('./config');
 
 const spotifyApi = new SpotifyWebApi({ clientId, clientSecret, redirectUri });
 
@@ -17,6 +17,29 @@ app.use(helmet);
 
 // Request logger
 app.use(morgan('dev'));
+
+app.get('/', (req, res, next) => {
+	res.redirect(HOME);
+});
+
+app.get('/spotify/auth', (req, res, next) => {
+	const html = spotifyApi.createAuthorizeURL(scopes);
+	res.send(html);
+});
+
+app.get('/callback', async (req, res, next) => {
+	const { code } = req.query;
+	try {
+		const data = await spotifyApi.authorizationCodeGrant(code);
+		const { access_token, refresh_token } = data.body;
+		spotifyApi.setAccessToken(access_token);
+		spotifyApi.setRefreshToken(refresh_token);
+		const userData = await spotifyApi.getMe();
+		// TODO Create User class with static method to create and save to DB
+	} catch (e) {
+		console.log(e);
+	}
+});
 
 /*
 

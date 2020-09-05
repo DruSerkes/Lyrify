@@ -9,6 +9,7 @@ const clientId = process.env.clientId;
 const clientSecret = process.env.clientSecret;
 const redirectUri = process.env.redirectUri;
 const scopes = [ 'user-read-private', 'user-read-email', 'user-read-playback-state', 'user-read-currently-playing' ];
+const HOME = process.env.HOMEPAGE_URL || 'https://localhost:3000/';
 
 // database is:
 //
@@ -32,5 +33,6 @@ module.exports = {
 	clientId,
 	clientSecret,
 	redirectUri,
-	scopes
+	scopes,
+	HOME
 };
