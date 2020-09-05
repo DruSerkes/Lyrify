@@ -19,6 +19,10 @@ class User {
 		return user;
 	}
 
+	/** Get user by access token
+	 * 
+	 * @param {*} access_token (str)
+	 */
 	static async getByAccessToken(access_token) {
 		if (!access_token) throw new ExpressError('access_token required', 400);
 		const result = await db.query(
