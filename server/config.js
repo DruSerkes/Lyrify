@@ -7,9 +7,9 @@ const PORT = +process.env.PORT || 5000;
 const BCRYPT_WORK_FACTOR = +process.env.BCRYPT_WORK_FACTOR || 14;
 const clientId = process.env.clientId;
 const clientSecret = process.env.clientSecret;
-const redirectUri = process.env.redirectUri;
+const redirectUri = process.env.redirectUri || 'http://localhost:5000/callback/';
 const scopes = [ 'user-read-private', 'user-read-email', 'user-read-playback-state', 'user-read-currently-playing' ];
-const HOME = process.env.HOMEPAGE_URL || 'https://localhost:3000/';
+const HOME = process.env.HOMEPAGE_URL || 'http://localhost:3000/';
 
 // database is:
 //

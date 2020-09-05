@@ -24,9 +24,9 @@ app.use(helmet());
 // Request logger
 app.use(morgan('dev'));
 
-// app.get('/', (req, res, next) => {
-// 	return res.redirect(HOME);
-// });
+app.get('/', (req, res, next) => {
+	return res.redirect(HOME);
+});
 
 app.get('/user', (req, res, next) => {
 	console.log('signed cookies == ', req.signedCookies);
@@ -54,8 +54,9 @@ app.get('/now-playing', async (req, res, next) => {
 
 app.get('/spotify/auth', (req, res, next) => {
 	try {
-		const html = spotifyApi.createAuthorizeURL(scopes);
-		res.send(html);
+		const authUrl = spotifyApi.createAuthorizeURL(scopes);
+		console.log('authorize url == ', authUrl);
+		res.redirect(authUrl);
 	} catch (e) {
 		console.log(e);
 		return next(e);
@@ -64,6 +65,8 @@ app.get('/spotify/auth', (req, res, next) => {
 
 app.get('/callback', async (req, res, next) => {
 	const { code } = req.query;
+	// TODO figure out what's going wrong here
+	console.log('code recieved successfully \n code == ', code);
 	try {
 		const data = await spotifyApi.authorizationCodeGrant(code);
 		const { access_token, refresh_token } = data.body;
