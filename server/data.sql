@@ -14,9 +14,10 @@ CREATE TABLE users
     display_name TEXT NOT NULL,
     email TEXT NOT NULL UNIQUE,
     product TEXT,
+    href TEXT,
     img_url TEXT,
-    accessToken TEXT,
-    refreshToken TEXT
+    access_token TEXT,
+    refresh_token TEXT
 );
 
 
@@ -25,6 +26,8 @@ CREATE TABLE songs
     id TEXT PRIMARY KEY ,
     artist TEXT NOT NULL,
     song TEXT NOT NULL,
+    album_name TEXT,
+    album_url TEXT,
     lyrics TEXT
 );
 
