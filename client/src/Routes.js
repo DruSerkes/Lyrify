@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-// TODO import components for search, playing, home & include in their Routes
+import Home from './Home';
+// TODO import components for search, playing, & include in their Routes
 
 const Routes = () => {
 	return (
@@ -12,7 +13,7 @@ const Routes = () => {
 				<h1>Playing</h1>
 			</Route>
 			<Route path="/">
-				<h1>Home</h1>
+				<Home />
 			</Route>
 			<Redirect to="/" />
 		</Switch>
