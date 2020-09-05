@@ -14,6 +14,7 @@ const app = express();
 
 // Parse JSON
 app.use(express.json());
+
 // Cookies
 app.use(cookieParser(SECRET_KEY));
 
@@ -24,12 +25,30 @@ app.use(helmet);
 app.use(morgan('dev'));
 
 app.get('/', (req, res, next) => {
-	res.redirect(HOME);
+	return res.redirect(HOME);
+});
+
+app.get('/user', (req, res, next) => {
+	console.log('signed cookies == ', req.signedCookies);
+	const { access_token } = req.signedCookies;
+	if (!access_token) return next();
+	try {
+		const user = User.getByAccessToken(access_token);
+		return res.json({ user });
+	} catch (e) {
+		console.log(e);
+		return next(e);
+	}
 });
 
 app.get('/spotify/auth', (req, res, next) => {
-	const html = spotifyApi.createAuthorizeURL(scopes);
-	res.send(html);
+	try {
+		const html = spotifyApi.createAuthorizeURL(scopes);
+		res.send(html);
+	} catch (e) {
+		console.log(e);
+		return next(e);
+	}
 });
 
 app.get('/callback', async (req, res, next) => {
@@ -41,10 +60,13 @@ app.get('/callback', async (req, res, next) => {
 		spotifyApi.setRefreshToken(refresh_token);
 		const userData = await spotifyApi.getMe();
 		const user = await User.create(userData);
+		delete user.refresh_token;
+		res.cookie('access_token', access_token, { signed: true });
 		console.log('db user == ', user);
-		res.redirect(`${HOME}?${querystring.stringify(user)}`);
+		return res.redirect(`${HOME}?${querystring.stringify(user)}`);
 	} catch (e) {
 		console.log(e);
+		return next(e);
 	}
 });
 
@@ -53,11 +75,6 @@ app.get('/callback', async (req, res, next) => {
 TODO 
 0. INSTALL spotify-web-api-node
 https://github.com/thelinmichael/spotify-web-api-node
-1. ADD ROUTE LOGIC FOR AUTHENTICATING A USER 
-	- const authorizeURL = spotifyApi.createAuthorizeURL(scopes, state)
-	- spotifyApi.authorizationCodeGrant(code)
-	spotifyApi.setAccessToken(data.body['access_token']);
-    spotifyApi.setRefreshToken(data.body['refresh_token']);
 2. ADD ROUTE LOGIC FOR SPOTIFY API
 	- spotifyApi.getMe(access_token)
 	- spotifyApi.getMyCurrentPlaybackState(access_token)
