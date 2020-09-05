@@ -2,6 +2,10 @@ const express = require('express');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const ExpressError = require('./helpers/ExpressError');
+const SpotifyWebApi = require('spotify-web-api-node');
+const { clientId, clientSecret, redirectUri } = require('./config');
+
+const spotifyApi = new SpotifyWebApi({ clientId, clientSecret, redirectUri });
 
 const app = express();
 
