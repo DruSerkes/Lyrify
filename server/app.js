@@ -2,10 +2,11 @@ const express = require('express');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const querystring = require('querystring');
+const cookieParser = require('cookie-parser');
 const ExpressError = require('./helpers/ExpressError');
 const User = require('./models/user');
 const SpotifyWebApi = require('spotify-web-api-node');
-const { clientId, clientSecret, redirectUri, scopes, HOME } = require('./config');
+const { clientId, clientSecret, redirectUri, scopes, HOME, SECRET_KEY } = require('./config');
 
 const spotifyApi = new SpotifyWebApi({ clientId, clientSecret, redirectUri });
 
@@ -13,6 +14,8 @@ const app = express();
 
 // Parse JSON
 app.use(express.json());
+// Cookies
+app.use(cookieParser(SECRET_KEY));
 
 // Some security
 app.use(helmet);
