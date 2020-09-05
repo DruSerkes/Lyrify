@@ -8,6 +8,7 @@ const BCRYPT_WORK_FACTOR = +process.env.BCRYPT_WORK_FACTOR || 14;
 const clientId = process.env.clientId;
 const clientSecret = process.env.clientSecret;
 const redirectUri = process.env.redirectUri;
+const scopes = [ 'user-read-private', 'user-read-email', 'user-read-playback-state', 'user-read-currently-playing' ];
 
 // database is:
 //
@@ -30,5 +31,6 @@ module.exports = {
 	BCRYPT_WORK_FACTOR,
 	clientId,
 	clientSecret,
-	redirectUri
+	redirectUri,
+	scopes
 };
