@@ -2,6 +2,7 @@ const express = require('express');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const ExpressError = require('./helpers/ExpressError');
+const User = require('./models/user');
 const SpotifyWebApi = require('spotify-web-api-node');
 const { clientId, clientSecret, redirectUri, scopes, HOME } = require('./config');
 
@@ -35,7 +36,7 @@ app.get('/callback', async (req, res, next) => {
 		spotifyApi.setAccessToken(access_token);
 		spotifyApi.setRefreshToken(refresh_token);
 		const userData = await spotifyApi.getMe();
-		// TODO Create User class with static method to create and save to DB
+		const user = await User.create(userData);
 	} catch (e) {
 		console.log(e);
 	}
