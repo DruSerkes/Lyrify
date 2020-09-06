@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import queryString from 'query-string';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
 const Home = () => {
-	const { access_token } = useParams();
-	const [ user, setUser ] = useState(null);
-	const [ accessToken, setAccessToken ] = useState(access_token);
-	console.log(accessToken);
+	const search = useLocation().search;
+	const parsed = queryString.parse(search);
+	const [ user, setUser ] = useState(parsed);
+	console.log(parsed);
 
 	return (
 		<div>
