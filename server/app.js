@@ -1,5 +1,6 @@
 const express = require('express');
 const helmet = require('helmet');
+const cors = require('cors');
 const morgan = require('morgan');
 const querystring = require('querystring');
 const cookieParser = require('cookie-parser');
@@ -14,6 +15,9 @@ const app = express();
 
 // Parse JSON
 app.use(express.json());
+
+// CORS
+app.use(cors());
 
 // Cookies
 app.use(cookieParser(SECRET_KEY));
@@ -67,8 +71,11 @@ app.get('/callback', async (req, res, next) => {
 	const { code } = req.query;
 	// TODO figure out what's going wrong here
 	console.log('code recieved successfully \n code == ', code);
+	const data = await spotifyApi.authorizationCodeGrant(code);
+
 	try {
 		const data = await spotifyApi.authorizationCodeGrant(code);
+		console.log('inside /callback try statement \ndata == ', data);
 		const { access_token, refresh_token } = data.body;
 		spotifyApi.setAccessToken(access_token);
 		spotifyApi.setRefreshToken(refresh_token);

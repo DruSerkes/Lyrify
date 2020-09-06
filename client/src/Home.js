@@ -14,7 +14,9 @@ const Home = () => {
 			<Typography variant="h1">Lyrify</Typography>
 
 			{user ? (
-				<Typography variane="body1">Welcome back {user.display_name}</Typography>
+				<Typography variant="body1" margin={2}>
+					Welcome back {user.display_name}
+				</Typography>
 			) : (
 				<a href="http://localhost:5000/spotify/auth">
 					<Button variant="contained" color="primary">
