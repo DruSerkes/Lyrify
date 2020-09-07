@@ -32,12 +32,12 @@ app.get('/', (req, res, next) => {
 	return res.redirect(HOME);
 });
 
-app.get('/user', (req, res, next) => {
+app.get('/user', async (req, res, next) => {
 	console.log('signed cookies == ', req.signedCookies);
 	const { access_token } = req.signedCookies;
 	if (!access_token) return next();
 	try {
-		const user = User.getByAccessToken(access_token);
+		const user = await User.getByAccessToken(access_token);
 		return res.json({ user });
 	} catch (e) {
 		console.log(e);
