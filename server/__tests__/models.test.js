@@ -7,7 +7,20 @@ const app = require('../app');
 const { expectCt } = require('helmet');
 
 describe('User Model Tests', () => {
-    afterEach(async () => {
+	beforeEach(async () => {
+		const testData = {
+			id            : '13',
+			display_name  : 'test',
+			email         : 'test@test.com',
+			product       : 'premium',
+			href          : 'http://spotify.com/test',
+			img_url       : 'http://testuser.com/picture.jpg',
+			access_token  : '123456789',
+			refresh_token : '987654321'
+		};
+		const testUser = await User.create(testData);
+	});
+	afterEach(async () => {
 		await db.query(`DELETE FROM users`);
 	});
 	afterAll(async () => {
@@ -36,4 +49,5 @@ describe('User Model Tests', () => {
 			refresh_token : '777'
 		});
 	});
+	test('can get user by access_token', async () => {});
 });
