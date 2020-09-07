@@ -100,9 +100,7 @@ app.get('/callback', async (req, res, next) => {
 });
 
 /*
-
-TODO 
-3. ADD TESTS WHENEVER YOU WRITE A NEW ROUTE/FUNCTION 
+* 
 */
 
 /** 404 handler */
