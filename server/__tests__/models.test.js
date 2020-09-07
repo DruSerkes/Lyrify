@@ -7,6 +7,12 @@ const app = require('../app');
 const { expectCt } = require('helmet');
 
 describe('User Model Tests', () => {
+    afterEach(async () => {
+		await db.query(`DELETE FROM users`);
+	});
+	afterAll(async () => {
+		await db.end();
+	});
 	test('can create a user', async () => {
 		const newUser = {
 			id            : 69,
@@ -20,7 +26,7 @@ describe('User Model Tests', () => {
 		};
 		const response = await User.create(newUser);
 		expect(response).toEqual({
-			id            : 69,
+			id            : '69',
 			display_name  : 'test',
 			email         : 'test@test.com',
 			product       : 'free',
