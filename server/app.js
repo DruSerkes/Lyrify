@@ -68,30 +68,27 @@ app.get('/spotify/auth', (req, res, next) => {
 });
 
 app.get('/callback', async (req, res, next) => {
-	// TODO figure out what's going wrong here
 	try {
 		const { code } = req.query;
-		console.log('clientSecret', clientSecret);
 		const authData = await spotifyApi.authorizationCodeGrant(code);
-		console.log('inside /callback try statement \ndata == ', authData);
 		const { access_token, refresh_token } = authData.body;
 		spotifyApi.setAccessToken(access_token);
 		spotifyApi.setRefreshToken(refresh_token);
 
 		// This could maybe be a seperate route to clean this one up a bit
 		const me = await spotifyApi.getMe();
-		console.log(me.body);
 
 		const { id, display_name, email, href, product } = me.body;
 		const img_url = me.body.images[0].url;
 		const userData = { id, display_name, email, href, product, img_url, access_token, refresh_token };
 		const user = await User.create(userData);
 
-		console.log('\nuser == ', user);
 		delete user.refresh_token;
-		// Save it in cookie and localStorage
+		
+		// Set access_token as signed cookie
 		res.cookie('access_token', access_token, { signed: true });
-		console.log('db user == ', user);
+
+		// Send back user data in querystring
 		return res.redirect(`${HOME}?${querystring.stringify(user)}`);
 	} catch (e) {
 		console.log('something went wrong', e.message);
