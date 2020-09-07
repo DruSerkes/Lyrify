@@ -5,14 +5,17 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import userReducer from './reducers/userReducer';
+import thunk from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
-// const store = createStore(//TODO CREATE userReducer)
+const store = createStore(userReducer, composeWithDevTools(applyMiddleware(thunk)));
 
 ReactDOM.render(
 	<React.StrictMode>
 		{/* // TODO add store */}
-		<Provider>
+		<Provider store={store}>
 			<BrowserRouter>
 				<App />
 			</BrowserRouter>
