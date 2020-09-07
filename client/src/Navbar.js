@@ -11,7 +11,7 @@ const Navbar = () => {
 				<Avatar>L</Avatar>
 				{user !== undefined ? (
 					<div>
-						<Button color="inherit" component={NavLink} to="/lyrics">
+						<Button color="inherit" component={NavLink} to="/playing">
 							Now Playing
 						</Button>
 						<Button color="inherit" component={NavLink} to="/search">
