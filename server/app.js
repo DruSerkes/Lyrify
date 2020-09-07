@@ -32,6 +32,16 @@ app.get('/', (req, res, next) => {
 	return res.redirect(HOME);
 });
 
+app.get('/users/:id', async (req, res, next) => {
+	try {
+		const { id } = req.params;
+		const user = await User.getById(id);
+		return res.json({ user });
+	} catch (e) {
+		return next(e);
+	}
+});
+
 app.get('/user', async (req, res, next) => {
 	console.log('signed cookies == ', req.signedCookies);
 	const { access_token } = req.signedCookies;
@@ -84,7 +94,7 @@ app.get('/callback', async (req, res, next) => {
 		const user = await User.create(userData);
 
 		delete user.refresh_token;
-		
+
 		// Set access_token as signed cookie
 		res.cookie('access_token', access_token, { signed: true });
 
