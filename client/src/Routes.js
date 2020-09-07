@@ -5,7 +5,7 @@ import Home from './Home';
 
 // TODO import components for search, playing, & include in their Routes
 const Routes = () => {
-	const user = useSelector((state) => state.user);
+	// const user = useSelector((state) => state.user);
 
 	return (
 		<Switch>
@@ -16,7 +16,7 @@ const Routes = () => {
 				<h1>Playing</h1>
 			</Route>
 			<Route path="/">
-				<Home user={user} />
+				<Home />
 			</Route>
 			<Redirect to="/" />
 		</Switch>

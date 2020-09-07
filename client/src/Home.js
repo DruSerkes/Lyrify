@@ -1,13 +1,14 @@
 import React, { useEffect, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { gotUser } from './reducers/actions';
 import queryString from 'query-string';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
-const Home = ({ user }) => {
+const Home = () => {
 	const dispatch = useDispatch();
+	const user = useSelector((state) => state.user);
 	const search = useLocation().search;
 	const parsed = useMemo(() => queryString.parse(search), [ search ]);
 
