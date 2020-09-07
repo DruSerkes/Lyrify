@@ -5,11 +5,9 @@ import Routes from './Routes';
 import Navbar from './Navbar';
 
 function App() {
-	const user = useSelector((state) => state.user);
-
 	return (
 		<div className="App">
-			<Navbar user={user} />
+			<Navbar />
 			<Routes />
 		</div>
 	);
