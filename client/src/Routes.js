@@ -1,9 +1,12 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Home from './Home';
-// TODO import components for search, playing, & include in their Routes
 
+// TODO import components for search, playing, & include in their Routes
 const Routes = () => {
+	const user = useSelector((state) => state.user);
+
 	return (
 		<Switch>
 			<Route path="/search">
@@ -13,7 +16,7 @@ const Routes = () => {
 				<h1>Playing</h1>
 			</Route>
 			<Route path="/">
-				<Home />
+				<Home user={user} />
 			</Route>
 			<Redirect to="/" />
 		</Switch>
