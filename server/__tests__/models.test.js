@@ -60,4 +60,17 @@ describe('User Model Tests', () => {
 			access_token : '123456789'
 		});
 	});
+
+	test('can get user by id', async () => {
+		const user = await User.getById('13');
+		expect(user).toEqual({
+			id           : '13',
+			display_name : 'test',
+			email        : 'test@test.com',
+			product      : 'premium',
+			href         : 'http://spotify.com/test',
+			img_url      : 'http://testuser.com/picture.jpg',
+			access_token : '123456789'
+		});
+	});
 });

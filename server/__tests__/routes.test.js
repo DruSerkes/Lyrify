@@ -26,19 +26,35 @@ describe('Routes tests', () => {
 		await db.end();
 	});
 
-	// TODO figure out how to mock signedCookies
-	test('GET /user returns user if user has logged in before', async () => {
-		const response = await request(app).get('/users');
-		console.log(response);
+	test('GET /user/:id returns user', async () => {
+		const response = await request(app).get('/users/13');
 		expect(response.status).toBe(200);
 		expect(response.body).toEqual({
-			id           : '13',
-			display_name : 'test',
-			email        : 'test@test.com',
-			product      : 'premium',
-			href         : 'http://spotify.com/test',
-			img_url      : 'http://testuser.com/picture.jpg',
-			access_token : '123456789'
+			user : {
+				id           : '13',
+				display_name : 'test',
+				email        : 'test@test.com',
+				product      : 'premium',
+				href         : 'http://spotify.com/test',
+				img_url      : 'http://testuser.com/picture.jpg',
+				access_token : '123456789'
+			}
 		});
 	});
+
+	// TODO figure out how to mock signedCookies
+	// test('GET /user returns user if user has logged in before', async () => {
+	// 	const response = await request(app).get('/users');
+	// 	console.log(response);
+	// 	expect(response.status).toBe(200);
+	// 	expect(response.body).toEqual({
+	// 		id           : '13',
+	// 		display_name : 'test',
+	// 		email        : 'test@test.com',
+	// 		product      : 'premium',
+	// 		href         : 'http://spotify.com/test',
+	// 		img_url      : 'http://testuser.com/picture.jpg',
+	// 		access_token : '123456789'
+	// 	});
+	// });
 });
