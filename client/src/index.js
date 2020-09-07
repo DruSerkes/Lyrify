@@ -14,7 +14,6 @@ const store = createStore(userReducer, composeWithDevTools(applyMiddleware(thunk
 
 ReactDOM.render(
 	<React.StrictMode>
-		{/* // TODO add store */}
 		<Provider store={store}>
 			<BrowserRouter>
 				<App />
