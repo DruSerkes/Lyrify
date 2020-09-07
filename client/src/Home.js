@@ -14,7 +14,7 @@ const Home = () => {
 		<div>
 			<Typography variant="h1">Lyrify</Typography>
 
-			{user ? (
+			{user.display_name ? (
 				<Typography variant="body1" margin={2}>
 					Welcome back {user.display_name}
 				</Typography>
