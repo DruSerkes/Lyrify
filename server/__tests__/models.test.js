@@ -4,7 +4,6 @@ const request = require('supertest');
 const User = require('../models/user');
 const db = require('../db');
 const app = require('../app');
-const { expectCt } = require('helmet');
 
 describe('User Model Tests', () => {
 	beforeEach(async () => {
