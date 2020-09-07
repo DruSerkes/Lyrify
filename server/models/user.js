@@ -35,6 +35,19 @@ class User {
 		delete user.refresh_token;
 		return user;
 	}
+
+	static async getById(id) {
+		if (!id) throw new ExpressError('id required', 400);
+		const result = await db.query(
+			`SELECT * FROM users
+			WHERE id=$1
+			`,
+			[ id ]
+		);
+		const user = result.rows[0];
+		delete user.refresh_token;
+		return user;
+	}
 }
 
 module.exports = User;
