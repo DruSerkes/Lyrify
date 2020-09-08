@@ -40,6 +40,10 @@ class User {
 		}
 	}
 
+	/** Get user by ID
+	 * 
+	 * @param {*} id (str)
+	 */
 	static async getById(id) {
 		if (!id) throw new ExpressError('id required', 400);
 		const result = await db.query(
