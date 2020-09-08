@@ -89,27 +89,21 @@ app.get('/callback', async (req, res, next) => {
 		spotifyApi.setAccessToken(access_token);
 		spotifyApi.setRefreshToken(refresh_token);
 
-		// Check if user already in DB
-		const dbUser = await User.getByRefreshToken(refresh_token);
-		if (dbUser) {
-			delete dbUser.refresh_token;
-			return res.redirect(`${HOME}?${querystring.stringify(dbUser)}`);
-		}
-
-		// Get user data from Spotify and save to DB
+		// Get user data from Spotify
 		const me = await spotifyApi.getMe();
 		const { id, display_name, email, href, product } = me.body;
 		const img_url = me.body.images[0].url;
-		const userData = { id, display_name, email, href, product, img_url, access_token, refresh_token };
-		const newUser = await User.create(userData);
-
-		delete newUser.refresh_token;
-
-		// Set access_token as signed cookie
-		res.cookie('access_token', access_token, { signed: true });
-
-		// Send back user data in querystring
-		return res.redirect(`${HOME}?${querystring.stringify(newUser)}`);
+		// Check if user already in DB
+		const dbUser = await User.getById(id);
+		if (dbUser) {
+			delete dbUser.refresh_token;
+			return res.redirect(`${HOME}?${querystring.stringify(dbUser)}`);
+		} else {
+			const userData = { id, display_name, email, href, product, img_url, access_token, refresh_token };
+			const newUser = await User.create(userData);
+			delete newUser.refresh_token;
+			return res.redirect(`${HOME}?${querystring.stringify(newUser)}`);
+		}
 	} catch (e) {
 		console.log('something went wrong', e.message);
 		return next(e);
