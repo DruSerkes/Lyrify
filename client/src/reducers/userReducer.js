@@ -5,10 +5,10 @@ const userReducer = (state = INITIAL_STATE, action) => {
 	switch (action.type) {
 		case ADD_USER:
 			localStorage.setItem('id', action.payload.id);
-			return { ...state, user: action.payload };
+			return { ...state, data: action.payload };
 		case REMOVE_USER:
 			localStorage.removeItem('id');
-			return { ...state, user: {} };
+			return { ...state, data: {} };
 		default:
 			return state;
 	}
