@@ -6,7 +6,6 @@ const userReducer = (state = INITIAL_STATE, action) => {
 		case ADD_USER:
 			localStorage.setItem('id', action.payload.id);
 			return { ...state, user: action.payload };
-		// TODO make one for logging out (remove id from localstorage, update state)
 		case REMOVE_USER:
 			localStorage.removeItem('id');
 			return { ...state, user: {} };
