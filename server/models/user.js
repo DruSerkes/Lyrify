@@ -5,7 +5,7 @@ class User {
 	/** Create a user in the DB 
      * 
      * @param {*} spotifyUserData (obj)
-     * - container id, display_name, email, product, href, img_url, access_token, refresh_token
+     * - contains id, display_name, email, product, href, img_url, access_token, refresh_token
      * @returns {user : {id, display_name, email, product, href, img_url, access_token, refresh_token}}
      */
 	static async create({ id, display_name, email, product, href, img_url, access_token, refresh_token }) {
