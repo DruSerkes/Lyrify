@@ -1,6 +1,4 @@
 import React from 'react';
-// Uninstall react-markdown
-import ReactMarkdown from 'react-markdown';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
