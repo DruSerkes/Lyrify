@@ -23,17 +23,21 @@ class User {
 	 * 
 	 * @param {*} access_token (str)
 	 */
-	static async getByAccessToken(access_token) {
-		if (!access_token) throw new ExpressError('access_token required', 400);
-		const result = await db.query(
-			`SELECT * FROM users
-			WHERE access_token=$1
-			`,
-			[ access_token ]
-		);
-		const user = result.rows[0];
-		delete user.refresh_token;
-		return user;
+	static async getByRefreshToken(refresh_token) {
+		if (!refresh_token) throw new ExpressError('refresh_token required', 400);
+		try {
+			const result = await db.query(
+				`SELECT * FROM users
+				WHERE refresh_token=$1
+				`,
+				[ refresh_token ]
+			);
+			const user = result.rows[0];
+			return user;
+		} catch (e) {
+			console.log(e);
+			return undefined;
+		}
 	}
 
 	static async getById(id) {
@@ -45,7 +49,6 @@ class User {
 			[ id ]
 		);
 		const user = result.rows[0];
-		delete user.refresh_token;
 		return user;
 	}
 }
