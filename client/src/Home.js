@@ -34,12 +34,12 @@ const Home = () => {
 					{/* TODO Add copy */}
 				</Typography>
 			) : (
-				<a href="http://localhost:5000/spotify/auth">
-					<Button variant="contained" color="primary">
-						{/* TODO Add copy */}
-						Login with Spotify
-					</Button>
-				</a>
+				// <a href="http://localhost:5000/spotify/auth">
+				<Button variant="contained" color="primary" href="http://localhost:5000/spotify/auth">
+					{/* TODO Add copy */}
+					Login with Spotify
+				</Button>
+				// </a>
 			)}
 		</div>
 	);

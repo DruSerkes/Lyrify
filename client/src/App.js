@@ -1,6 +1,4 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { getUser } from './reducers/actions';
+import React from 'react';
 import './App.css';
 import Routes from './Routes';
 import Navbar from './Navbar';
