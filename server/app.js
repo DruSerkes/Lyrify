@@ -65,6 +65,22 @@ app.get('/now-playing', async (req, res, next) => {
 	}
 });
 
+// TODO
+app.get('/search', async (req, res, next) => {
+	try {
+		const { song: track, artist } = req.body;
+		const response = await spotifyApi.searchTracks(`track:${track} artist:${artist}`);
+		// Start here tomorrow
+		console.log(response);
+		// extract the data you need
+		// get the lyrics
+		// send it all back to the client
+		// handle edge cases & errors
+	} catch (e) {
+		return next(e);
+	}
+});
+
 app.get('/spotify/auth', (req, res, next) => {
 	try {
 		const authUrl = spotifyApi.createAuthorizeURL(scopes);
