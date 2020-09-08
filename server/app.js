@@ -64,11 +64,11 @@ app.get('/now-playing', async (req, res, next) => {
 	try {
 		const data = await spotifyApi.getMyCurrentPlayingTrack();
 		console.log(data);
-		if (data.currently_playing_type !== 'track') {
+		if (data.body.currently_playing_type !== 'track') {
 			const message = 'No song currently playing';
 			return res.json({ message });
 		}
-		const songData = extractSongData(data);
+		const songData = extractSongData(data.body);
 		songData.lyrics = await getLyrics(songData);
 		// TODO - DB stuff
 		// for now just return the song data

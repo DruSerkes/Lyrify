@@ -20,9 +20,16 @@ const extractSongData = (data) => {
 };
 
 const getLyrics = async ({ artist, song }) => {
-	const response = await axios.get(`${LYRIC_BASE_URL}/${artist}/${song}`);
-	const lyrics = response.data;
-	return lyrics;
+	let lyrics;
+	try {
+		const response = await axios.get(`${LYRIC_BASE_URL}/${artist}/${song}`);
+		lyrics = response.data.lyrics;
+		return lyrics;
+	} catch (e) {
+		console.log(e);
+		lyrics = 'No lyrics found';
+		return lyrics;
+	}
 };
 
 module.exports = { extractSongData, getLyrics };
