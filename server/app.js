@@ -62,7 +62,7 @@ app.get('/users/:id', async (req, res, next) => {
 
 app.get('/now-playing', async (req, res, next) => {
 	try {
-		const data = await spotifyApi.getMyCurrentPlaybackState();
+		const data = await spotifyApi.getMyCurrentPlayingTrack();
 		console.log(data);
 		if (data.currently_playing_type !== 'track') {
 			const message = 'No song currently playing';
