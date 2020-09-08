@@ -26,7 +26,7 @@ export function logoutUser() {
 export function getNowPlaying() {
 	return async function(dispatch) {
 		const res = await axios.get(`${BASE_URL}/now-playing`);
-		dispatch(gotNowPlaying(res.data));
+		dispatch(gotNowPlaying(res.data.songData));
 	};
 }
 

@@ -5,7 +5,7 @@ const LYRIC_BASE_URL = 'https://api.lyrics.ovh/v1';
 const extractSongData = (data) => {
 	const album_name = data.item.album.name;
 	const album_url = data.item.album.external_urls.spotify;
-	const img_url = data.item.album.images[0].url;
+	const img_url = data.item.album.images[1].url;
 	const artist = data.item.artists[0].name;
 	const song = data.item.name;
 	const id = data.item.id;
