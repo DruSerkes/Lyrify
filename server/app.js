@@ -36,6 +36,9 @@ app.get('/users/:id', async (req, res, next) => {
 	try {
 		const { id } = req.params;
 		const user = await User.getById(id);
+		spotifyApi.setAccessToken(user.access_token);
+		spotifyApi.setRefreshToken(user.refresh_token);
+		delete user.refresh_token;
 		return res.json({ user });
 	} catch (e) {
 		return next(e);
