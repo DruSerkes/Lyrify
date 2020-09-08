@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactMarkdown from 'react-markdown';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
@@ -54,9 +55,7 @@ const Lyrics = ({ songData }) => {
 					</div>
 					<Divider />
 					<Box margin={1} padding={2}>
-						<Typography variant="body2" gutterBottom>
-							{lyrics}
-						</Typography>
+						<ReactMarkdown source={lyrics} className="Lyrics-Lyrics" />
 					</Box>
 				</section>
 			)}
