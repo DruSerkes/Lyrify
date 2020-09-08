@@ -1,4 +1,4 @@
-import { ADD_USER } from './actionTypes';
+import { ADD_USER, REMOVE_USER } from './actionTypes';
 const INITIAL_STATE = {};
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -7,6 +7,9 @@ const userReducer = (state = INITIAL_STATE, action) => {
 			localStorage.setItem('id', action.payload.id);
 			return { ...state, user: action.payload };
 		// TODO make one for logging out (remove id from localstorage, update state)
+		case REMOVE_USER:
+			localStorage.removeItem('id');
+			return { ...state, user: {} };
 		default:
 			return state;
 	}
