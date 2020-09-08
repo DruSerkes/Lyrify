@@ -1,4 +1,5 @@
 import React from 'react';
+// Uninstall react-markdown
 import ReactMarkdown from 'react-markdown';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -12,6 +13,8 @@ import Box from '@material-ui/core/Box';
 const Lyrics = ({ songData }) => {
 	const { artist, song, lyrics, album_url, album_name, img_url, message } = songData;
 	console.log(lyrics);
+	const createMarkup = () => ({ __html: lyrics });
+
 	return (
 		<Paper elevation={3} className="Lyrics">
 			{message ? (
@@ -55,7 +58,7 @@ const Lyrics = ({ songData }) => {
 					</div>
 					<Divider />
 					<Box margin={1} padding={2}>
-						<ReactMarkdown source={lyrics} className="Lyrics-Lyrics" />
+						<Typography style={{ whiteSpace: 'pre-wrap' }} dangerouslySetInnerHTML={createMarkup()} />
 					</Box>
 				</section>
 			)}
