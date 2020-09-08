@@ -6,9 +6,11 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
 
 const Lyrics = ({ songData }) => {
 	const { artist, song, lyrics, album_url, album_name, img_url, message } = songData;
+	console.log(lyrics);
 	return (
 		<Paper elevation={3} className="Lyrics">
 			{message ? (
@@ -51,8 +53,11 @@ const Lyrics = ({ songData }) => {
 						</div>
 					</div>
 					<Divider />
-
-					<Typography variant="body2">{lyrics}</Typography>
+					<Box margin={1} padding={2}>
+						<Typography variant="body2" gutterBottom>
+							{lyrics}
+						</Typography>
+					</Box>
 				</section>
 			)}
 		</Paper>
