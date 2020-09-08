@@ -7,13 +7,13 @@ import Playing from './Playing';
 const Routes = () => {
 	return (
 		<Switch>
-			<Route path="/search">
+			<Route exact path="/search">
 				<h1>Search</h1>
 			</Route>
-			<Route path="/playing">
+			<Route exact path="/playing">
 				<Playing />
 			</Route>
-			<Route path="/">
+			<Route exact path="/">
 				<Home />
 			</Route>
 			<Redirect to="/" />
