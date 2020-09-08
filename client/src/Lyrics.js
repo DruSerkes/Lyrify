@@ -2,7 +2,8 @@ import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
-const Lyrics = ({ artist, song, lyrics }) => {
+const Lyrics = ({ songData }) => {
+	const { artist, song, lyrics } = songData;
 	return (
 		<Paper elevation={3}>
 			<Typography variant="h3">"{song}"</Typography>
