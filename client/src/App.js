@@ -6,18 +6,18 @@ import Routes from './Routes';
 import Navbar from './Navbar';
 
 function App() {
-	const user = useSelector((state) => state.user.data);
-	const dispatch = useDispatch();
+	// const user = useSelector((state) => state.user.data);
+	// const dispatch = useDispatch();
 
-	useEffect(
-		() => {
-			if (user === {} && localStorage.getItem('id')) {
-				const id = localStorage.getItem('id');
-				dispatch(getUser(id));
-			}
-		},
-		[ dispatch, user ]
-	);
+	// useEffect(
+	// 	() => {
+	// 		if (user === {} && localStorage.getItem('id')) {
+	// 			const id = localStorage.getItem('id');
+	// 			dispatch(getUser(id));
+	// 		}
+	// 	},
+	// 	[ dispatch, user ]
+	// );
 
 	return (
 		<div className="App">
