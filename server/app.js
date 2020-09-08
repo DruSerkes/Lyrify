@@ -46,20 +46,6 @@ app.get('/users/:id', async (req, res, next) => {
 	}
 });
 
-// // THIS ROUTE MAY BE REMOVABLE
-// app.get('/user', async (req, res, next) => {
-// 	console.log('signed cookies == ', req.signedCookies);
-// 	const { access_token } = req.signedCookies;
-// 	if (!access_token) return next();
-// 	try {
-// 		const user = await User.getByAccessToken(access_token);
-// 		return res.json({ user });
-// 	} catch (e) {
-// 		console.log(e);
-// 		return next(e);
-// 	}
-// });
-
 app.get('/now-playing', async (req, res, next) => {
 	try {
 		const data = await spotifyApi.getMyCurrentPlayingTrack();

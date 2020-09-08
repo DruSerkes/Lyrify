@@ -22,7 +22,9 @@ const extractSongData = (data) => {
 const getLyrics = async ({ artist, song }) => {
 	let lyrics;
 	try {
-		const response = await axios.get(`${LYRIC_BASE_URL}/${artist}/${song}`);
+		const artistNormalized = artist.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+		const songNormalized = song.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+		const response = await axios.get(`${LYRIC_BASE_URL}/${artistNormalized}/${songNormalized}`);
 		lyrics = response.data.lyrics;
 		return lyrics;
 	} catch (e) {
