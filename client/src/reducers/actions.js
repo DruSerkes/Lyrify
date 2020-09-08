@@ -1,4 +1,4 @@
-import { ADD_USER } from './actionTypes';
+import { ADD_USER, REMOVE_USER } from './actionTypes';
 import axios from 'axios';
 
 const BASE_URL = 'http://localhost:5000';
@@ -14,5 +14,11 @@ export function gotUser(userData) {
 	return {
 		type    : ADD_USER,
 		payload : userData
+	};
+}
+
+export function logoutUser() {
+	return {
+		type : REMOVE_USER
 	};
 }
