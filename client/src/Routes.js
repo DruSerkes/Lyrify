@@ -1,8 +1,9 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Home from './Home';
+import Playing from './Playing';
 
-// TODO import components for search, playing, & include in their Routes
+// TODO import components for search & include in Route
 const Routes = () => {
 	return (
 		<Switch>
@@ -10,7 +11,7 @@ const Routes = () => {
 				<h1>Search</h1>
 			</Route>
 			<Route path="/playing">
-				<h1>Playing</h1>
+				<Playing />
 			</Route>
 			<Route path="/">
 				<Home />
