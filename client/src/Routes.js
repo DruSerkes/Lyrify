@@ -1,6 +1,5 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import Home from './Home';
 
 // TODO import components for search, playing, & include in their Routes
