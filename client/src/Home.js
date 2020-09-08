@@ -5,6 +5,7 @@ import { gotUser } from './reducers/actions';
 import queryString from 'query-string';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
 
 const Home = () => {
 	const dispatch = useDispatch();
@@ -23,11 +24,11 @@ const Home = () => {
 				history.push('/');
 			}
 		},
-		[ dispatch, parsed ]
+		[ dispatch, parsed, history ]
 	);
 
 	return (
-		<div>
+		<Box margin={1} padding={2}>
 			<Typography variant="h1">Lyrify</Typography>
 
 			{user ? (
@@ -43,7 +44,7 @@ const Home = () => {
 				</Button>
 				// </a>
 			)}
-		</div>
+		</Box>
 	);
 };
 
