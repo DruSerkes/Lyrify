@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { gotUser } from './reducers/actions';
 import queryString from 'query-string';
@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 
 const Home = () => {
 	const dispatch = useDispatch();
+	const history = useHistory();
 	const user = useSelector((state) => state.user.data);
 	const search = useLocation().search;
 	const parsed = useMemo(() => queryString.parse(search), [ search ]);
@@ -19,6 +20,7 @@ const Home = () => {
 				console.log('parsed == ', parsed);
 				localStorage.setItem('id', parsed.id);
 				dispatch(gotUser(parsed));
+				history.push('/');
 			}
 		},
 		[ dispatch, parsed ]
