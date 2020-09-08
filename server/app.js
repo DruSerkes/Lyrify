@@ -88,7 +88,10 @@ app.get('/callback', async (req, res, next) => {
 
 		// Check if user already in DB
 		const dbUser = await User.getByRefreshToken(refresh_token);
-		if (dbUser) return res.redirect(`${HOME}?${querystring.stringify(dbUser)}`);
+		if (dbUser) {
+			delete dbUser.refresh_token;
+			return res.redirect(`${HOME}?${querystring.stringify(dbUser)}`);
+		}
 
 		// Get user data from Spotify and save to DB
 		const me = await spotifyApi.getMe();
