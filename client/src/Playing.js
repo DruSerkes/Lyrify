@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -11,26 +11,19 @@ const Playing = () => {
 	const dispatch = useDispatch();
 	const songData = useSelector((state) => state.song.data, shallowEqual);
 	console.log('songData === ', songData);
-	const [ fetching, setFetching ] = useState(true);
 
 	const handleGetNowPlaying = () => {
-		setFetching(true);
+		dispatch(getNowPlaying());
 	};
 
 	useEffect(
 		() => {
-			// if (songData === {} && !fetching) {
-			// 	setFetching(true);
-			// }
-			if (fetching) {
-				dispatch(getNowPlaying());
-			}
-			return () => {
-				setFetching(false);
-			};
+			dispatch(getNowPlaying());
 		},
-		[ dispatch, fetching ]
+		[ dispatch ]
 	);
+
+	if (!songData) return <Typography variant="h5">Loading &hellip;</Typography>;
 
 	return (
 		<Box padding={1} margin={1}>
