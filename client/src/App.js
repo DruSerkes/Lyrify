@@ -1,10 +1,23 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import './App.css';
 import Routes from './Routes';
 import Navbar from './Navbar';
 
 function App() {
+	const user = useSelector((state) => state.user);
+	const dispatch = useDispatch();
+
+	useEffect(
+		() => {
+			if (user === undefined && localStorage.getItem('id')) {
+				const id = localStorage.getItem('id');
+				dispatch(getUser(id));
+			}
+		},
+		[ dispatch, user ]
+	);
+
 	return (
 		<div className="App">
 			<Navbar />

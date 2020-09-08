@@ -16,6 +16,7 @@ const Home = () => {
 		() => {
 			if (parsed.access_token) {
 				console.log('parsed == ', parsed);
+				localStorage.setItem('access_token', parsed.access_token);
 				dispatch(gotUser(parsed));
 			}
 		},
