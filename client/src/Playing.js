@@ -11,7 +11,7 @@ const Playing = () => {
 	const dispatch = useDispatch();
 	const songData = useSelector((state) => state.song.data, shallowEqual);
 	console.log('songData === ', songData);
-	const [ fetching, setFetching ] = useState(false);
+	const [ fetching, setFetching ] = useState(true);
 
 	const handleGetNowPlaying = () => {
 		setFetching(true);
