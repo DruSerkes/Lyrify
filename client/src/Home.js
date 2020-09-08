@@ -11,12 +11,13 @@ const Home = () => {
 	const user = useSelector((state) => state.user);
 	const search = useLocation().search;
 	const parsed = useMemo(() => queryString.parse(search), [ search ]);
+	console.log('user === ', user);
 
 	useEffect(
 		() => {
-			if (parsed.access_token) {
+			if (parsed.id) {
 				console.log('parsed == ', parsed);
-				localStorage.setItem('access_token', parsed.access_token);
+				localStorage.setItem('id', parsed.id);
 				dispatch(gotUser(parsed));
 			}
 		},

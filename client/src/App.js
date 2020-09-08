@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { getUser } from './reducers/actions';
 import './App.css';
 import Routes from './Routes';
 import Navbar from './Navbar';
@@ -10,7 +11,7 @@ function App() {
 
 	useEffect(
 		() => {
-			if (user === undefined && localStorage.getItem('id')) {
+			if (user === {} && localStorage.getItem('id')) {
 				const id = localStorage.getItem('id');
 				dispatch(getUser(id));
 			}
