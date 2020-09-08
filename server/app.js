@@ -8,6 +8,7 @@ const ExpressError = require('./helpers/ExpressError');
 const User = require('./models/user');
 const SpotifyWebApi = require('spotify-web-api-node');
 const { clientId, clientSecret, redirectUri, scopes, HOME, SECRET_KEY } = require('./config');
+const { extractSongData, getLyrics } = require('./helpers/DataExtractors');
 
 const spotifyApi = new SpotifyWebApi({ redirectUri, clientId, clientSecret });
 
@@ -63,7 +64,11 @@ app.get('/now-playing', async (req, res, next) => {
 	try {
 		const data = await spotifyApi.getMyCurrentPlaybackState();
 		console.log(data);
-		// TODO
+		const songData = extractSongData(data);
+		songData.lyrics = await getLyrics(songData);
+		// TODO - DB stuff
+		// for now just return the song data
+		return res.json({ songData });
 	} catch (e) {
 		console.log(e);
 		return next(e);

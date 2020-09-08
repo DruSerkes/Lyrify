@@ -1,4 +1,4 @@
-import { ADD_USER, REMOVE_USER } from './actionTypes';
+import { ADD_USER, REMOVE_USER, ADD_SONG } from './actionTypes';
 import axios from 'axios';
 
 const BASE_URL = 'http://localhost:5000';
@@ -20,5 +20,19 @@ export function gotUser(userData) {
 export function logoutUser() {
 	return {
 		type : REMOVE_USER
+	};
+}
+
+export function getNowPlaying() {
+	return async function(dispatch) {
+		const res = await axios.get(`${BASE_URL}/now-playing`);
+		dispatch(gotNowPlaying(res.data));
+	};
+}
+
+export function gotNowPlaying(songData) {
+	return {
+		type    : ADD_SONG,
+		payload : songData
 	};
 }
