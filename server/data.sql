@@ -1,4 +1,5 @@
-\c lyrify
+\c
+lyrify
 
 DROP TABLE IF EXISTS users
 CASCADE;
@@ -28,6 +29,7 @@ CREATE TABLE songs
     song TEXT NOT NULL,
     album_name TEXT,
     album_url TEXT,
+    img_url TEXT,
     lyrics TEXT
 );
 
