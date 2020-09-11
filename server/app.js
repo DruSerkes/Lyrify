@@ -50,7 +50,6 @@ app.get('/users/:id', async (req, res, next) => {
 app.get('/now-playing', async (req, res, next) => {
 	try {
 		const data = await spotifyApi.getMyCurrentPlayingTrack();
-		console.log(data);
 		if (data.body.currently_playing_type !== 'track') {
 			const message = 'No song currently playing';
 			return res.json({ message });
@@ -86,7 +85,6 @@ app.post('/search', async (req, res, next) => {
 app.get('/spotify/auth', (req, res, next) => {
 	try {
 		const authUrl = spotifyApi.createAuthorizeURL(scopes, state, (showDialog = true));
-		console.log('authorize url == ', authUrl);
 		res.redirect(authUrl);
 	} catch (e) {
 		console.log(e);
@@ -101,7 +99,6 @@ app.get('/callback', async (req, res, next) => {
 		const { access_token, refresh_token } = authData.body;
 		spotifyApi.setAccessToken(access_token);
 		spotifyApi.setRefreshToken(refresh_token);
-		console.log('INSIDE /CALLBACK ');
 
 		// Get user data from Spotify
 		const me = await spotifyApi.getMe();
