@@ -10,6 +10,7 @@ const clientSecret = process.env.clientSecret;
 const redirectUri = process.env.redirectUri || 'http://localhost:5000/callback/';
 const scopes = [ 'user-read-private', 'user-read-email', 'user-read-currently-playing' ];
 const HOME = process.env.HOMEPAGE_URL || 'http://localhost:3000/';
+const state = process.env.state || 'some state of my choice';
 
 // database is:
 //
@@ -34,5 +35,6 @@ module.exports = {
 	clientSecret,
 	redirectUri,
 	scopes,
-	HOME
+	HOME,
+	state
 };
