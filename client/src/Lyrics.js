@@ -39,7 +39,8 @@ const Lyrics = ({ songData }) => {
 									<Typography gutterBottom variant="h5" component="h2">
 										{songData.album_name}
 									</Typography>
-									<Typography variant="body2" color="textSecondary" component="p">
+									{/* <Typography variant="body2" color="textSecondary" component="p"> */}
+									{songData.album_url ? (
 										<Button
 											href={songData.album_url}
 											target="_blank"
@@ -49,7 +50,8 @@ const Lyrics = ({ songData }) => {
 										>
 											View on Spotify
 										</Button>
-									</Typography>
+									) : null}
+									{/* </Typography> */}
 								</CardContent>
 							</Card>
 						</div>
