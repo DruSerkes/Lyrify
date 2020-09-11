@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { getUser } from './reducers/actions';
+// import { getUser } from './reducers/actions';
 import Home from './Home';
 import Playing from './Playing';
 import Search from './Search';
