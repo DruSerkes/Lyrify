@@ -7,10 +7,10 @@ const cookieParser = require('cookie-parser');
 const ExpressError = require('./helpers/ExpressError');
 const User = require('./models/user');
 const SpotifyWebApi = require('spotify-web-api-node');
-const { clientId, clientSecret, redirectUri, scopes, HOME, SECRET_KEY } = require('./config');
+const { clientId, clientSecret, redirectUri, scopes, HOME, SECRET_KEY, state } = require('./config');
 const { extractSongData, getLyrics } = require('./helpers/helpers');
 
-const spotifyApi = new SpotifyWebApi({ redirectUri, clientId, clientSecret });
+const spotifyApi = new SpotifyWebApi({ redirectUri, clientId, clientSecret, state });
 
 const app = express();
 
