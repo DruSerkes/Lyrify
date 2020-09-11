@@ -66,7 +66,6 @@ app.get('/now-playing', async (req, res, next) => {
 	}
 });
 
-// TODO
 app.post('/search', async (req, res, next) => {
 	try {
 		const { song: track, artist } = req.body;
