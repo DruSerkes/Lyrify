@@ -2,7 +2,7 @@
 	"name": "server",
 	"version": "1.0.0",
 	"description": "",
-	"main": "secrets.js",
+	"main": "app.js",
 	"dependencies": {
 		"axios": "^0.20.0",
 		"cookie-parser": "^1.4.5",
@@ -18,8 +18,9 @@
 		"supertest": "^4.0.2"
 	},
 	"scripts": {
+		"test": "jest --runInBand",
 		"start": "nodemon server.js",
-		"test": "jest --runInBand"
+		"debug": "nodemon —inspect server.js"
 	},
 	"author": "",
 	"license": "ISC"
