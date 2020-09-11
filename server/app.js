@@ -68,11 +68,15 @@ app.get('/now-playing', async (req, res, next) => {
 
 app.post('/search', async (req, res, next) => {
 	try {
-		const { song: track, artist } = req.body;
-		const response = await spotifyApi.searchTracks(`track:${track} artist:${artist}`);
-		console.log(response);
-		const songData = extractSongData(data.body);
+		// const { song: track, artist } = req.body;
+		// const response = await spotifyApi.searchTracks(`track:${track} artist:${artist}`);
+		// console.log('response.body.tracks.items[0] == ', response.body.tracks.items[0]);
+		// const songData = extractSongData(response.body.tracks.items[0]);
+		// const { song, artist } = req.body;
+		const songData = req.body;
+		console.log('/search req.body == ', req.body);
 		songData.lyrics = await getLyrics(songData);
+		console.log('songData with lyrics == ', songData);
 		return res.json({ songData });
 		// TODO handle edge cases && errors && || DB stuff
 		// for now jus return songData

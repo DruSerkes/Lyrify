@@ -19,7 +19,6 @@ const SearchForm = ({ doSearch }) => {
 		resolver : yupResolver(schema)
 	});
 	const submit = (data) => {
-		console.log('data == ', data);
 		doSearch(data);
 	};
 
@@ -31,7 +30,7 @@ const SearchForm = ({ doSearch }) => {
 				name="song"
 				id="song"
 				label="Song Name"
-				variant="filled"
+				variant="outlined"
 				margin="normal"
 				required
 				autoFocus
@@ -42,13 +41,13 @@ const SearchForm = ({ doSearch }) => {
 				name="artist"
 				id="artist"
 				label="Artist Name"
-				variant="filled"
+				variant="outlined"
 				type=""
 				margin="normal"
 				required
 				autoFocus
 			/>
-			<Button color="primary" variant="contained">
+			<Button onClick={handleSubmit(submit)} color="primary" variant="contained">
 				Search
 			</Button>
 		</form>

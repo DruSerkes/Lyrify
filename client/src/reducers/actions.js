@@ -39,7 +39,8 @@ export function gotNowPlaying(songData) {
 
 export function getSong(data) {
 	return async function(dispatch) {
-		const res = await axios.post(`${BASE_URL}/search`, { data });
+		const { song, artist } = data;
+		const res = await axios.post(`${BASE_URL}/search`, { song, artist });
 		dispatch(gotSong(res.data.songData));
 	};
 }

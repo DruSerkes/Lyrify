@@ -9,39 +9,39 @@ import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 
 const Lyrics = ({ songData }) => {
-	const { artist, song, lyrics, album_url, album_name, img_url, message } = songData;
-	console.log(lyrics);
-	const createMarkup = () => ({ __html: lyrics });
+	// const { artist, song, lyrics, album_url, album_name, img_url, message } = songData;
+	console.log(songData.lyrics);
+	const createMarkup = () => ({ __html: songData.lyrics });
 
 	return (
 		<Paper elevation={3} className="Lyrics">
-			{message ? (
+			{songData.message ? (
 				<div className="Lyrics-Message">
-					<Typography>{message}</Typography>
+					<Typography>{songData.message}</Typography>
 				</div>
 			) : (
 				<section className="Lyrics-Content">
 					<div className="Lyrics-Header">
 						<div className="Lyrics-Header-Left">
-							<Typography variant="h3">"{song}"</Typography>
-							<Typography variant="h4">By: {artist}</Typography>
+							<Typography variant="h3">"{songData.song}"</Typography>
+							<Typography variant="h4">By: {songData.artist}</Typography>
 						</div>
 						<div className="Lyrics-Header-Right">
 							<Card className="Lyrics-Album">
 								{/* Set max height to 140px? */}
 								<CardMedia
 									className="Lyrics-Album-Img"
-									image={img_url}
-									title={album_name}
+									image={songData.img_url}
+									title={songData.album_name}
 									component="img"
 								/>
 								<CardContent>
 									<Typography gutterBottom variant="h5" component="h2">
-										{album_name}
+										{songData.album_name}
 									</Typography>
 									<Typography variant="body2" color="textSecondary" component="p">
 										<Button
-											href={album_url}
+											href={songData.album_url}
 											target="_blank"
 											rel="noreferrer noopener"
 											variant="outlined"
