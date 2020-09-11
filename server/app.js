@@ -56,7 +56,7 @@ app.get('/now-playing', async (req, res, next) => {
 		}
 		const songData = extractSongData(data.body);
 		songData.lyrics = await getLyrics(songData);
-		// TODO - DB stuff
+		// TODO - DB stuff && ||  handle errors
 		// for now just return the song data
 		return res.json({ songData });
 	} catch (e) {
@@ -74,7 +74,8 @@ app.post('/search', async (req, res, next) => {
 		const songData = extractSongData(data.body);
 		songData.lyrics = await getLyrics(songData);
 		return res.json({ songData });
-		// handle edge cases & errors
+		// TODO handle edge cases && errors && || DB stuff
+		// for now jus return songData
 	} catch (e) {
 		return next(e);
 	}
