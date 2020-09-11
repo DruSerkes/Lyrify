@@ -66,15 +66,14 @@ app.get('/now-playing', async (req, res, next) => {
 });
 
 // TODO
-app.get('/search', async (req, res, next) => {
+app.post('/search', async (req, res, next) => {
 	try {
 		const { song: track, artist } = req.body;
 		const response = await spotifyApi.searchTracks(`track:${track} artist:${artist}`);
-		// Start here tomorrow
 		console.log(response);
-		// extract the data you need
-		// get the lyrics
-		// send it all back to the client
+		const songData = extractSongData(data.body);
+		songData.lyrics = await getLyrics(songData);
+		return res.json({ songData });
 		// handle edge cases & errors
 	} catch (e) {
 		return next(e);

@@ -36,3 +36,17 @@ export function gotNowPlaying(songData) {
 		payload : songData
 	};
 }
+
+export function getSong(data) {
+	return async function(dispatch) {
+		const res = await axios.post(`${BASE_URL}/search`, { data });
+		dispatch(gotSong(res.data.songData));
+	};
+}
+
+export function gotSong(songData) {
+	return {
+		type    : ADD_SONG,
+		payload : songData
+	};
+}
