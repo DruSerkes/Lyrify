@@ -26,35 +26,39 @@ const Lyrics = ({ songData }) => {
 							<Typography variant="h3">"{songData.song}"</Typography>
 							<Typography variant="h4">By: {songData.artist}</Typography>
 						</div>
-						<div className="Lyrics-Header-Right">
-							<Card className="Lyrics-Album">
-								{/* Set max height to 140px? */}
-								<CardMedia
-									className="Lyrics-Album-Img"
-									image={songData.img_url}
-									title={songData.album_name}
-									component="img"
-								/>
-								<CardContent>
-									<Typography gutterBottom variant="h5" component="h2">
-										{songData.album_name}
-									</Typography>
-									{/* <Typography variant="body2" color="textSecondary" component="p"> */}
-									{songData.album_url ? (
-										<Button
-											href={songData.album_url}
-											target="_blank"
-											rel="noreferrer noopener"
-											variant="outlined"
-											color="secondary"
-										>
-											View on Spotify
-										</Button>
-									) : null}
-									{/* </Typography> */}
-								</CardContent>
-							</Card>
-						</div>
+						{songData.album_name && (
+							<div className="Lyrics-Header-Right">
+								<Card className="Lyrics-Album">
+									{/* Set max height to 140px? */}
+									{songData.img_url && (
+										<CardMedia
+											className="Lyrics-Album-Img"
+											image={songData.img_url}
+											title={songData.album_name}
+											component="img"
+										/>
+									)}
+									<CardContent>
+										{songData.album_name && (
+											<Typography gutterBottom variant="h5" component="h2">
+												{songData.album_name}
+											</Typography>
+										)}
+										{songData.album_url && (
+											<Button
+												href={songData.album_url}
+												target="_blank"
+												rel="noreferrer noopener"
+												variant="outlined"
+												color="secondary"
+											>
+												View on Spotify
+											</Button>
+										)}
+									</CardContent>
+								</Card>
+							</div>
+						)}
 					</div>
 					<Divider />
 					<Box margin={1} padding={2}>
