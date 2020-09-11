@@ -1,4 +1,4 @@
-import { ADD_USER, REMOVE_USER, ADD_SONG } from './actionTypes';
+import { ADD_USER, REMOVE_USER, ADD_SONG, REMOVE_SONG } from './actionTypes';
 import axios from 'axios';
 
 const BASE_URL = 'http://localhost:5000';
@@ -49,5 +49,11 @@ export function gotSong(songData) {
 	return {
 		type    : ADD_SONG,
 		payload : songData
+	};
+}
+
+export function removeSong() {
+	return {
+		type : REMOVE_SONG
 	};
 }
