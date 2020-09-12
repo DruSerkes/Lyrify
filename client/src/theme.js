@@ -12,7 +12,8 @@ const theme = createMuiTheme({
 	},
 	typography : {
 		fontFamily : 'circular'
-	}
+	},
+	spacing    : {}
 });
 
 export default theme;
