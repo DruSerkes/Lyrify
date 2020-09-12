@@ -1,9 +1,12 @@
 html,
-body {
+body,
+#root {
 	background-color: #282c34;
+	height: 100%;
 }
 .App {
 	text-align: center;
+	height: 100%;
 }
 
 .App-header {
