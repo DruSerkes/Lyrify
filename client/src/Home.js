@@ -34,7 +34,7 @@ const Home = () => {
 
 			{user ? (
 				<Box marginTop={19}>
-					<Typography variant="body1" color="secondary" className="Home-Login">
+					<Typography variant="body1" color="secondary" className="Home-Welcome">
 						Welcome back {user.display_name}
 					</Typography>
 				</Box>
