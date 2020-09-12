@@ -28,23 +28,26 @@ const Home = () => {
 	);
 
 	return (
-		<Box margin={1} padding={2}>
+		<Box position="relative" padding={2} height="100%">
 			<Typography variant="h1">Lyrify</Typography>
+			<Typography variant="body1">get lyrics for the songs you love</Typography>
 
 			{user ? (
-				<Typography variant="body1" margin={2}>
+				<Typography variant="body1">
 					Welcome back {user.display_name}
 					{/* TODO Add copy */}
 				</Typography>
 			) : (
-				<Button
-					className="Home-Login"
-					variant="contained"
-					color="primary"
-					href="http://localhost:5000/spotify/auth"
-				>
-					Login with Spotify
-				</Button>
+				<Box marginTop={19}>
+					<Button
+						className="Home-Login"
+						variant="contained"
+						color="primary"
+						href="http://localhost:5000/spotify/auth"
+					>
+						Login with Spotify
+					</Button>
+				</Box>
 			)}
 		</Box>
 	);
