@@ -1,9 +1,9 @@
 html,
 body,
 #root {
-	background-color: #282c34;
+	/* background-color: #282c34; */
 	height: 100%;
-	color: rgb(236, 235, 235);
+	/* color: rgb(236, 235, 235); */
 }
 .App {
 	text-align: center;

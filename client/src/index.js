@@ -10,7 +10,7 @@ import rootReducer from './reducers/rootReducer';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import theme from './theme';
-import { ThemeProvider } from '@material-ui/core';
+import { ThemeProvider, CssBaseline } from '@material-ui/core';
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
@@ -19,6 +19,7 @@ ReactDOM.render(
 		<Provider store={store}>
 			<BrowserRouter>
 				<ThemeProvider theme={theme}>
+					<CssBaseline />
 					<App />
 				</ThemeProvider>
 			</BrowserRouter>
