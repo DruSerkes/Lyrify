@@ -24,6 +24,21 @@ body,
 	color: #61dafb;
 }
 
+.Home-Login {
+	opacity: 0;
+	animation: fadeIn 3s forwards;
+	animation-delay: 500ms;
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
 @keyframes App-logo-spin {
 	from {
 		transform: rotate(0deg);

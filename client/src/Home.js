@@ -38,7 +38,12 @@ const Home = () => {
 				</Typography>
 			) : (
 				// <a href="http://localhost:5000/spotify/auth">
-				<Button variant="contained" color="primary" href="http://localhost:5000/spotify/auth">
+				<Button
+					className="Home-Login"
+					variant="contained"
+					color="primary"
+					href="http://localhost:5000/spotify/auth"
+				>
 					{/* TODO Add copy */}
 					Login with Spotify
 				</Button>
