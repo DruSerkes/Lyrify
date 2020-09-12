@@ -84,7 +84,7 @@ app.post('/search', async (req, res, next) => {
 
 app.get('/spotify/auth', (req, res, next) => {
 	try {
-		const authUrl = spotifyApi.createAuthorizeURL(scopes, state, (showDialog = true));
+		const authUrl = spotifyApi.createAuthorizeURL(scopes, state);
 		res.redirect(authUrl);
 	} catch (e) {
 		console.log(e);

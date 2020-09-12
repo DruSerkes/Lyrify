@@ -33,10 +33,11 @@ const Home = () => {
 			<Typography variant="body1">get lyrics for the songs you love</Typography>
 
 			{user ? (
-				<Typography variant="body1">
-					Welcome back {user.display_name}
-					{/* TODO Add copy */}
-				</Typography>
+				<Box marginTop={19}>
+					<Typography variant="body1" color="secondary" className="Home-Login">
+						Welcome back {user.display_name}
+					</Typography>
+				</Box>
 			) : (
 				<Box marginTop={19}>
 					<Button

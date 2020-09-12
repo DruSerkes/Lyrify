@@ -3,18 +3,15 @@ import green from '@material-ui/core/colors/green';
 
 const theme = createMuiTheme({
 	palette    : {
-		type      : 'dark',
-		primary   : {
+		type    : 'dark',
+		primary : {
 			main : green[500]
-		},
-		secondary : {
-			main : '#8C5612'
 		}
 	},
 	typography : {
 		fontFamily : 'circular'
 	},
-	spacing    : 5
+	spacing    : (factor) => `${0.5 * factor}rem`
 });
 
 export default theme;
