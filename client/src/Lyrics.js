@@ -10,7 +10,6 @@ import Box from '@material-ui/core/Box';
 
 const Lyrics = ({ songData }) => {
 	// const { artist, song, lyrics, album_url, album_name, img_url, message } = songData;
-	console.log(songData.lyrics);
 	const createMarkup = () => ({ __html: songData.lyrics });
 
 	return (
