@@ -28,9 +28,11 @@ const Home = () => {
 	);
 
 	return (
-		<Box position="relative" padding={2} height="100%">
+		<Box position="relative" padding={2} height="100%" className="Home">
 			<Typography variant="h1">Lyrify</Typography>
-			<Typography variant="body1">get lyrics for the songs you love</Typography>
+			<Typography variant="body1" color="secondary">
+				lyrics for the songs you love
+			</Typography>
 
 			{user ? (
 				<Box marginTop={19}>
