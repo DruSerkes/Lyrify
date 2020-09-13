@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Routes from './Routes';
 import Navbar from './Navbar';
+import Container from '@material-ui/core/Container';
 
 function App() {
 	// const user = useSelector((state) => state.user.data);
@@ -20,7 +21,9 @@ function App() {
 	return (
 		<div className="App">
 			<Navbar />
-			<Routes />
+			<Container component="main">
+				<Routes />
+			</Container>
 		</div>
 	);
 }
