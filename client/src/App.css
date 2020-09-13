@@ -31,6 +31,21 @@ body,
 	animation-delay: 500ms;
 }
 
+.Navbar-Logo {
+	border-right: 0.1em solid black;
+	padding: 0.6rem;
+	margin-right: 0.2rem;
+}
+
+.Navbar-Btn {
+	margin: 0 0.6rem 0 0 !important;
+	height: 100% !important;
+}
+
+.active {
+	color: white !important;
+}
+
 @keyframes fadeIn {
 	0% {
 		opacity: 0;
