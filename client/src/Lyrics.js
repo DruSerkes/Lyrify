@@ -13,7 +13,7 @@ const Lyrics = ({ songData }) => {
 	const createMarkup = () => ({ __html: songData.lyrics });
 
 	return (
-		<Paper elevation={3} className="Lyrics">
+		<Paper elevation={5} className="Lyrics">
 			{songData.message ? (
 				<div className="Lyrics-Message">
 					<Typography>{songData.message}</Typography>
@@ -49,7 +49,7 @@ const Lyrics = ({ songData }) => {
 												target="_blank"
 												rel="noreferrer noopener"
 												variant="outlined"
-												color="secondary"
+												color="primary"
 											>
 												View on Spotify
 											</Button>
@@ -59,7 +59,7 @@ const Lyrics = ({ songData }) => {
 							</div>
 						)}
 					</div>
-					<Divider />
+					<Divider variant="middle" />
 					<Box margin={1} padding={2}>
 						<Typography style={{ whiteSpace: 'pre-wrap' }} dangerouslySetInnerHTML={createMarkup()} />
 					</Box>
