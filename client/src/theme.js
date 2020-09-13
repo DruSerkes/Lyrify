@@ -13,9 +13,9 @@ const theme = createMuiTheme({
 		}
 	},
 	typography : {
-		fontFamily : 'Monserrat'
+		fontFamily : 'monserrat'
 	},
-	spacing    : (factor) => `${0.5 * factor}rem`
+	spacing    : 7
 });
 
 export default theme;
