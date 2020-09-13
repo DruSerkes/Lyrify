@@ -31,13 +31,19 @@ const Home = () => {
 		<Box position="relative" padding={2} height="100%" className="Home">
 			<Typography variant="h1">Lyrify</Typography>
 			<Typography variant="body1" color="secondary">
-				lyrics for the songs you love
+				<em>lyrics for the songs you love</em>
 			</Typography>
 
 			{user ? (
 				<Box marginTop={19}>
-					<Typography variant="body1" color="secondary" className="Home-Welcome">
-						Welcome back {user.display_name}
+					<Typography variant="h5" color="primary" className="Home-Welcome">
+						Hello {user.display_name}
+					</Typography>
+					<Typography variant="body1" color="light" className="Home-Welcome">
+						Click <b>"Now Playing"</b> to get what you're currently listening to,
+					</Typography>
+					<Typography variant="body1" color="light" className="Home-Welcome">
+						or just <b>"Search"</b> for whatever you feel like.
 					</Typography>
 				</Box>
 			) : (

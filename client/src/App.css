@@ -26,13 +26,14 @@ body,
 }
 
 .Home h1 {
-	margin-bottom: 1.2rem;
+	margin-bottom: 1.3rem;
 }
 
 .Home-Login {
 	opacity: 0;
-	animation: fadeIn 2s forwards;
+	animation: fadeIn 1.8s forwards;
 	animation-delay: 500ms;
+	color: white !important;
 }
 
 .Navbar-Logo {
