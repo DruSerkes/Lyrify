@@ -2,7 +2,6 @@ import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
-import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
@@ -22,12 +21,12 @@ const Lyrics = ({ songData }) => {
 				<section className="Lyrics-Content">
 					<div className="Lyrics-Header">
 						<div className="Lyrics-Header-Left">
-							<Typography variant="h3">"{songData.song}"</Typography>
-							<Typography variant="h4">By: {songData.artist}</Typography>
+							<Typography variant="h4">"{songData.song}"</Typography>
+							<Typography variant="h5">By: {songData.artist}</Typography>
 						</div>
 						{songData.album_name && (
 							<div className="Lyrics-Header-Right">
-								<Card className="Lyrics-Album">
+								<Box className="Lyrics-Album" raised>
 									{/* Set max height to 140px? */}
 									{songData.img_url && (
 										<CardMedia
@@ -50,12 +49,13 @@ const Lyrics = ({ songData }) => {
 												rel="noreferrer noopener"
 												variant="outlined"
 												color="primary"
+												size="small"
 											>
 												View on Spotify
 											</Button>
 										)}
 									</CardContent>
-								</Card>
+								</Box>
 							</div>
 						)}
 					</div>

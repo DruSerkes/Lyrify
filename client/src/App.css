@@ -52,10 +52,32 @@ body,
 	color: white !important;
 }
 
+.Lyrics-Content {
+	padding: 0.3rem;
+}
+
+.Lyrics-Album {
+	border: none;
+}
+
+.Lyrics-Header {
+	position: relative;
+	margin: 0.7rem auto;
+}
+
+.Lyrics-Header-Left {
+	margin-bottom: 1rem;
+}
+
+.Lyrics-Header-Right {
+	position: relative;
+}
+
 .Lyrics-Album-Img {
 	max-width: 300px;
 	border-radius: 5px;
 	height: auto;
+	margin: 0 auto;
 }
 
 @keyframes fadeIn {
