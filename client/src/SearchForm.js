@@ -6,9 +6,6 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
 
-/**
- * Form Schema
- */
 const schema = yup.object().shape({
 	song   : yup.string().required('Song name is required'),
 	artist : yup.string().required('Artist name is required')
@@ -20,10 +17,8 @@ const SearchForm = ({ doSearch }) => {
 		resolver : yupResolver(schema)
 	});
 	const submit = (data) => {
-		console.log(data);
 		doSearch(data);
 	};
-	console.log('errors ==', errors);
 
 	return (
 		<form className="SearchForm" onSubmit={handleSubmit(submit)}>

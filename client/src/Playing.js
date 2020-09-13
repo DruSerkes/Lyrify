@@ -26,14 +26,14 @@ const Playing = () => {
 	if (!songData) return <Typography variant="h5">Loading &hellip;</Typography>;
 
 	return (
-		<Box padding={1} margin={1}>
-			<Box padding={1} margin={1}>
+		<Box padding={1} margin={1} className="Playing">
+			<Box padding={1} margin={1} className="Playing-Header">
 				<Typography variant="h1">Now Playing</Typography>
 				<Button variant="contained" color="primary" onClick={handleGetNowPlaying}>
-					Get Now Playing
+					Get Current Song
 				</Button>
 			</Box>
-			<section className="Lyrics">
+			<Box component="section" className="Lyrics">
 				{!songData ? (
 					<Paper margin={3} padding={3}>
 						<Typography variant="h5">No lyrics found</Typography>
@@ -41,7 +41,7 @@ const Playing = () => {
 				) : (
 					<Lyrics songData={songData} />
 				)}
-			</section>
+			</Box>
 		</Box>
 	);
 };

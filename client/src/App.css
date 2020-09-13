@@ -52,6 +52,27 @@ body,
 	color: white !important;
 }
 
+.Playing-Header h1 {
+	margin-bottom: 1.8rem;
+}
+
+.Playing button {
+	margin-bottom: 1rem;
+}
+
+.Search-Header h1 {
+	margin-bottom: 1.8rem;
+}
+
+.SearchForm {
+	margin-bottom: 1rem;
+}
+
+.Lyrics {
+	width: 85%;
+	margin: 0 auto;
+}
+
 .Lyrics-Content {
 	padding: 0.3rem;
 }
