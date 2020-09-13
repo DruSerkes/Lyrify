@@ -1,6 +1,7 @@
 import { createMuiTheme } from '@material-ui/core';
 import green from '@material-ui/core/colors/green';
 import deepOrange from '@material-ui/core/colors/deepOrange';
+// import montserrat from 'typeface-montserrat';
 
 const theme = createMuiTheme({
 	palette    : {
@@ -13,7 +14,8 @@ const theme = createMuiTheme({
 		}
 	},
 	typography : {
-		fontFamily : 'monserrat'
+		fontFamily : [ 'montserrat', 'helvetica' ].join(','),
+		fontSize   : 16
 	},
 	spacing    : 7
 });
