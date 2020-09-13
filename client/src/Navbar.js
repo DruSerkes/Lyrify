@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector, shallowEqual } from 'react-redux';
-import { AppBar, Avatar, Button, Toolbar, Grid, Typography, Box, Divider } from '@material-ui/core';
+import { AppBar, Avatar, Button, Toolbar, Grid, Typography, Box } from '@material-ui/core';
 
 const Navbar = () => {
 	const user = useSelector((state) => state.user.data, shallowEqual);
