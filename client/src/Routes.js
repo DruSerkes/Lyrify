@@ -6,7 +6,6 @@ import Home from './Home';
 import Playing from './Playing';
 import Search from './Search';
 
-// TODO import components for search & include in Route
 const Routes = () => {
 	const user = useSelector((state) => state.user.data);
 	// const dispatch = useDispatch();

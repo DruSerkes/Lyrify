@@ -20,8 +20,10 @@ const SearchForm = ({ doSearch }) => {
 		resolver : yupResolver(schema)
 	});
 	const submit = (data) => {
+		console.log(data);
 		doSearch(data);
 	};
+	console.log('errors ==', errors);
 
 	return (
 		<form className="SearchForm" onSubmit={handleSubmit(submit)}>
@@ -36,6 +38,7 @@ const SearchForm = ({ doSearch }) => {
 					margin="normal"
 					required
 					autoFocus
+					helperText={errors.song ? errors.song.message : null}
 				/>
 				<TextField
 					inputRef={register}
@@ -47,7 +50,7 @@ const SearchForm = ({ doSearch }) => {
 					type=""
 					margin="normal"
 					required
-					autoFocus
+					helperText={errors.artist ? errors.artist.message : null}
 				/>
 				<Button onClick={handleSubmit(submit)} color="primary" variant="contained">
 					Search
