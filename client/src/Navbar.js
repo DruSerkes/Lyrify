@@ -8,7 +8,7 @@ const Navbar = () => {
 	return (
 		<AppBar position="sticky">
 			<Toolbar>
-				<Box display="flex" className="Navbar-Logo">
+				<Box display="flex" component={NavLink} to="/" className="Navbar-Logo">
 					<Avatar src="logo500.png" alt="Lyrify" />
 					<Typography variant="body1"> yrify</Typography>
 				</Box>
