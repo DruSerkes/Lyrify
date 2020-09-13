@@ -13,7 +13,7 @@ const theme = createMuiTheme({
 		}
 	},
 	typography : {
-		fontFamily : 'circular'
+		fontFamily : 'Monserrat'
 	},
 	spacing    : (factor) => `${0.5 * factor}rem`
 });
