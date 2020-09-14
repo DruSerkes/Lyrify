@@ -8,7 +8,7 @@ const ExpressError = require('./helpers/ExpressError');
 const User = require('./models/user');
 const SpotifyWebApi = require('spotify-web-api-node');
 const { clientId, clientSecret, redirectUri, scopes, HOME, SECRET_KEY, state } = require('./config');
-const { extractSongData, getLyrics } = require('./helpers/helpers');
+const { extractSongData, getLyrics, getLyricsWordsRemoved } = require('./helpers/helpers');
 
 const spotifyApi = new SpotifyWebApi({ redirectUri, clientId, clientSecret, state });
 
@@ -67,16 +67,18 @@ app.get('/now-playing', async (req, res, next) => {
 
 app.post('/search', async (req, res, next) => {
 	try {
-		// const { song: track, artist } = req.body;
-		// const response = await spotifyApi.searchTracks(`track:${track} artist:${artist}`);
-		// console.log('response.body.tracks.items[0] == ', response.body.tracks.items[0]);
-		// const songData = extractSongData(response.body.tracks.items[0]);
-		// const { song, artist } = req.body;
 		const songData = req.body;
-		songData.lyrics = await getLyrics(songData);
-		return res.json({ songData });
-		// TODO handle edge cases && errors && || DB stuff
-		// for now jus return songData
+		let lyrics = await getLyrics(songData);
+		if (lyrics === 'No lyrics found') {
+			lyrics = await getLyricsWordsRemoved(songData);
+			songData.lyrics = lyrics;
+			return res.json({ songData });
+		} else {
+			songData.lyrics = lyrics;
+			return res.json({ songData });
+		}
+		// TODO DB stuff
+		// for now just return songData
 	} catch (e) {
 		return next(e);
 	}

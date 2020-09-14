@@ -42,8 +42,10 @@ const getLyrics = async ({ artist, song }) => {
 
 const getLyricsWordsRemoved = async ({ artist, song }) => {
 	try {
-		let songWordsRemoved = removeCommonWords(song);
-		const response = await axios.get(`${LYRIC_BASE_URL}/${artist}/${songWordsRemoved}`);
+		const artistNormalized = normalizeString(artist);
+		const songNormalized = normalizeString(song);
+		const songWordsRemoved = removeCommonWords(songNormalized);
+		const response = await axios.get(`${LYRIC_BASE_URL}/${artistNormalized}/${songWordsRemoved}`);
 		return response.data.lyrics;
 	} catch (e) {
 		console.log(e);
