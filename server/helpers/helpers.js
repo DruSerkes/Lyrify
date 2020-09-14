@@ -1,6 +1,10 @@
 const axios = require('axios');
+const removeWords = require('remove-words');
+const wordsToRemove = [ 'Album', 'Version', 'Edit', 'Edited', 'Remix' ];
 
 const LYRIC_BASE_URL = 'https://api.lyrics.ovh/v1';
+
+const removeCommonWords = (text) => removeWords(text).join(' ');
 
 const extractSongData = (data) => {
 	const album_name = data.item.album.name || null;
