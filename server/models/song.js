@@ -2,12 +2,16 @@ const db = require('../db');
 const ExpressError = require('../helpers/ExpressError');
 
 class Song {
+	/** Creates song in DB - if song already exists, returns existing entry
+     * 
+     * @songData {OBJ} - id, artist, song, album_name, album_url, img_url, lyrics  
+     */
 	static async create({ id = null, artist, song, album_name = null, album_url = null, img_url = null, lyrics }) {
 		const duplicateSong = await db.query(
 			`SELECT * 
         FROM songs 
-        WHERE lyrics = $1`,
-			[ lyrics ]
+        WHERE id = $1 AND lyrics = $2`,
+			[ id, lyrics ]
 		);
 
 		if (duplicateSong.rows[0]) return duplicateSong.rows[0];
