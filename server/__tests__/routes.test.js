@@ -7,6 +7,7 @@ const app = require('../app');
 
 describe('Routes tests', () => {
 	beforeEach(async () => {
+		await db.query(`DELETE FROM users`);
 		const testData = {
 			id            : '13',
 			display_name  : 'test',
