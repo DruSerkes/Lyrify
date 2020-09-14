@@ -42,6 +42,44 @@ describe('Routes tests', () => {
 		});
 	});
 
+	test('POST /search returns lyrics', async () => {
+		const response = await request(app).post('/search').send({ artist: 'musiq', song: 'Halfcrazy' });
+		expect(response.status).toBe(200);
+		expect(response.body).not.toEqual({
+			songData : {
+				artst  : 'musiq',
+				song   : 'Halfcrazy',
+				lyrics : 'No lyrics found'
+			}
+		});
+	});
+
+	test('POST /search returns lyrics if song has extra words', async () => {
+		const response = await request(app)
+			.post('/search')
+			.send({ artist: 'musiq', song: 'Halfcrazy - Album Version (Edited)' });
+		expect(response.status).toBe(200);
+		expect(response.body).not.toEqual({
+			songData : {
+				artist : 'musiq',
+				song   : 'Halfcrazy',
+				lyrics : 'No lyrics found'
+			}
+		});
+	});
+
+	test('POST /search returns "No lyrics found" if no lyrics are found', async () => {
+		const response = await request(app).post('/search').send({ artist: 'musiq', song: 'thisisnotasongblahhh' });
+		expect(response.status).toBe(200);
+		expect(response.body).toEqual({
+			songData : {
+				artist : 'musiq',
+				song   : 'thisisnotasongblahhh',
+				lyrics : 'No lyrics found'
+			}
+		});
+	});
+
 	// TODO figure out how to mock signedCookies
 	// test('GET /user returns user if user has logged in before', async () => {
 	// 	const response = await request(app).get('/users');
