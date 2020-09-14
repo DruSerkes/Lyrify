@@ -19,7 +19,7 @@ class User {
 		return user;
 	}
 
-	/** Get user by access token
+	/** Get user by refresh token
 	 * 
 	 * @param {*} access_token (str)
 	 */
