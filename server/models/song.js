@@ -26,6 +26,23 @@ class Song {
 		const newSong = result.rows[0];
 		return newSong;
 	}
+
+	static async get(song) {
+		const result = await db.query(
+			`SELECT *
+         FROM songs
+         WHERE song = $1`,
+			[ song ]
+		);
+
+		const songData = result.rows[0];
+
+		if (!songData) {
+			throw new ExpressError('Song not found', 404);
+		}
+
+		return songData;
+	}
 }
 
 module.exports = Song;

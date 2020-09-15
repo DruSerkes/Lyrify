@@ -116,4 +116,17 @@ describe('song model tests', () => {
 			lyrics     : 'I JUST LOVE TESTING SO MUCH LIKE OMG LOL'
 		});
 	});
+
+	test('can get a song', async () => {
+		const response = await Song.get('the sword of damacles');
+		expect(response).toEqual({
+			id         : '13',
+			artist     : 'sir test-a-lot',
+			song       : 'the sword of damacles',
+			album_name : 'test name',
+			album_url  : 'http://spotify.com/test',
+			img_url    : 'http://testsong.com/picture.jpg',
+			lyrics     : 'I JUST LOVE TESTING'
+		});
+	});
 });
