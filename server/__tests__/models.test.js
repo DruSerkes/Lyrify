@@ -2,12 +2,13 @@ process.env.NODE_ENV = 'test';
 
 const request = require('supertest');
 const User = require('../models/user');
+const Song = require('../models/song');
 const db = require('../db');
 const app = require('../app');
 
 describe('User Model Tests', () => {
 	beforeEach(async () => {
-		const testData = {
+		const testUserData = {
 			id            : '13',
 			display_name  : 'test',
 			email         : 'test@test.com',
@@ -17,7 +18,7 @@ describe('User Model Tests', () => {
 			access_token  : '123456789',
 			refresh_token : '987654321'
 		};
-		const testUser = await User.create(testData);
+		const testUser = await User.create(testUserData);
 	});
 	afterEach(async () => {
 		await db.query(`DELETE FROM users`);
@@ -75,4 +76,27 @@ describe('User Model Tests', () => {
 			refresh_token : '987654321'
 		});
 	});
+});
+
+describe('song model tests', () => {
+	beforeEach(async () => {
+		const testSongData = {
+			id         : '13',
+			artist     : 'sir test-a-lot',
+			song       : 'the sword of damacles',
+			album_name : 'test name',
+			album_url  : 'http://spotify.com/test',
+			img_url    : 'http://testsong.com/picture.jpg',
+			lyrics     : 'I JUST LOVE TESTING'
+		};
+		const testSong = await Song.create(testSongData);
+	});
+	afterEach(async () => {
+		await db.query(`DELETE FROM songs`);
+	});
+	afterAll(async () => {
+		await db.end();
+	});
+
+	
 });
