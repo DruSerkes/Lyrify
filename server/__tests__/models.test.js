@@ -23,9 +23,6 @@ describe('User Model Tests', () => {
 	afterEach(async () => {
 		await db.query(`DELETE FROM users`);
 	});
-	afterAll(async () => {
-		await db.end();
-	});
 	test('can create a user', async () => {
 		const newUser = {
 			id            : 69,
@@ -98,5 +95,25 @@ describe('song model tests', () => {
 		await db.end();
 	});
 
-	
+	test('can create a song', async () => {
+		const newSong = {
+			id         : '666',
+			artist     : 'testmaster flash',
+			song       : 'test like a man',
+			album_name : 'test album',
+			album_url  : 'http://spotify.com/testing',
+			img_url    : 'http://testsong.com/testpicture.jpg',
+			lyrics     : 'I JUST LOVE TESTING SO MUCH LIKE OMG LOL'
+		};
+		const response = await Song.create(newSong);
+		expect(response).toEqual({
+			id         : '666',
+			artist     : 'testmaster flash',
+			song       : 'test like a man',
+			album_name : 'test album',
+			album_url  : 'http://spotify.com/testing',
+			img_url    : 'http://testsong.com/testpicture.jpg',
+			lyrics     : 'I JUST LOVE TESTING SO MUCH LIKE OMG LOL'
+		});
+	});
 });
