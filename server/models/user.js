@@ -55,6 +55,10 @@ class User {
 		const user = result.rows[0];
 		return user;
 	}
+
+	// TODO - figure this out - PROBLEM - songs don't all have ID's...
+	// idea - UUID in song.create so all songs have IDs
+	static async favorite(user_id, song_id) {}
 }
 
 module.exports = User;

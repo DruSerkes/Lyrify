@@ -29,7 +29,7 @@ class Song {
 
 	/** Get song by title
 	 * 
-	 * @song {*} str - song title 
+	 * @song {str} - song title 
 	 */
 	static async get(song) {
 		const result = await db.query(
