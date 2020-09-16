@@ -1,6 +1,7 @@
 const axios = require('axios');
 const removeWords = require('remove-words').main;
 const wordsToRemove = [ 'Album', 'Version', 'Edit', 'Edited', 'Remix' ];
+const Song = require('../models/song');
 
 const LYRIC_BASE_URL = 'https://api.lyrics.ovh/v1';
 
@@ -25,6 +26,20 @@ const extractSongData = (data) => {
 
 const normalizeString = (string) => {
 	return string.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+};
+
+const fetchAndAddLyrics = async (songData) => {
+	let lyrics = await getLyrics(songData);
+	if (lyrics === 'No lyrics found') {
+		lyrics = await getLyricsWordsRemoved(songData);
+		songData.lyrics = lyrics;
+		const song = await Song.create(songData);
+		return song;
+	} else {
+		songData.lyrics = lyrics;
+		const song = await Song.create(songData);
+		return song;
+	}
 };
 
 const getLyrics = async ({ artist, song }) => {
@@ -52,4 +67,11 @@ const getLyricsWordsRemoved = async ({ artist, song }) => {
 	}
 };
 
-module.exports = { extractSongData, getLyricsWordsRemoved, getLyrics, removeCommonWords, normalizeString };
+module.exports = {
+	fetchAndAddLyrics,
+	extractSongData,
+	getLyricsWordsRemoved,
+	getLyrics,
+	removeCommonWords,
+	normalizeString
+};

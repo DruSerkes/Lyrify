@@ -1,13 +1,21 @@
+process.env.NODE_ENV = 'test';
+
 const removeWords = require('remove-words').main;
+const db = require('../db');
 const {
 	removeCommonWords,
 	getLyrics,
 	extractSongData,
 	normalizeString,
-	getLyricsWordsRemoved
+	getLyricsWordsRemoved,
+	fetchAndAddLyrics
 } = require('../helpers/helpers');
 
 describe('helpers tests', () => {
+	afterAll(async () => {
+		await db.query(`DELETE FROM songs`);
+		await db.end();
+	});
 	it('should remove commonly added words to song titles', () => {
 		let testSong = 'Halfcrazy - Album Version (Edited Remix)';
 		const result = removeCommonWords(testSong);
@@ -62,5 +70,19 @@ describe('helpers tests', () => {
 	it('should also return "No Lyrics Found" when it fails', async () => {
 		const lyrics = await getLyricsWordsRemoved({ artist: 'Musiq', song: 'agjaogja' });
 		expect(lyrics).toMatch('No lyrics found');
+	});
+
+	it('should return a song object', async () => {
+		const song = await fetchAndAddLyrics({ artist: 'Musiq', song: 'Halfcrazy' });
+		expect(song).toEqual({
+			id         : expect.any(String),
+			artist     : 'Musiq',
+			song       : 'Halfcrazy',
+			album_name : null,
+			album_url  : null,
+			img_url    : null,
+			lyrics     : expect.any(String)
+		});
+		expect(song.lyrics).not.toEqual('No lyrics found');
 	});
 });

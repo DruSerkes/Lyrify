@@ -27,6 +27,7 @@ export function getNowPlaying() {
 	return async function(dispatch) {
 		const res = await axios.get(`${BASE_URL}/now-playing`);
 		dispatch(gotNowPlaying(res.data.songData));
+		// TODO change to .song
 	};
 }
 
@@ -42,6 +43,7 @@ export function getSong(data) {
 		const { song, artist } = data;
 		const res = await axios.post(`${BASE_URL}/search`, { song, artist });
 		dispatch(gotSong(res.data.songData));
+		// TODO change to .song
 	};
 }
 

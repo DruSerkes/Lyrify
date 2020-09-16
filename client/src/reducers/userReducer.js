@@ -9,6 +9,8 @@ const userReducer = (state = INITIAL_STATE, action) => {
 		case REMOVE_USER:
 			localStorage.removeItem('id');
 			return { ...state, data: {} };
+		// TODO add case ADD_FAVORITE
+		// TODO add case REMOVE_FAVORITE
 		default:
 			return state;
 	}
