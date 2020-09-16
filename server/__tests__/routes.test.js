@@ -44,56 +44,53 @@ describe('Routes tests', () => {
 	});
 
 	test('POST /search returns lyrics', async () => {
-		const response = await request(app).post('/search').send({ artist: 'musiq', song: 'Halfcrazy' });
+		const response = await request(app).post('/search').send({ artist: 'Musiq', song: 'Halfcrazy' });
 		expect(response.status).toBe(200);
-		expect(response.body).not.toEqual({
-			songData : {
-				artst  : 'musiq',
-				song   : 'Halfcrazy',
-				lyrics : 'No lyrics found'
+		expect(response.body).toEqual({
+			song : {
+				id         : expect.any(String),
+				artist     : 'Musiq',
+				song       : 'Halfcrazy',
+				album_name : null,
+				album_url  : null,
+				img_url    : null,
+				lyrics     : expect.any(String)
 			}
 		});
+		expect(response.body.song.lyrics).not.toEqual('No lyrics found');
 	});
 
 	test('POST /search returns lyrics if song has extra words', async () => {
 		const response = await request(app)
 			.post('/search')
-			.send({ artist: 'musiq', song: 'Halfcrazy - Album Version (Edited)' });
+			.send({ artist: 'Musiq', song: 'Halfcrazy - Album Version (Edited)' });
 		expect(response.status).toBe(200);
 		expect(response.body).not.toEqual({
-			songData : {
-				artist : 'musiq',
-				song   : 'Halfcrazy',
-				lyrics : 'No lyrics found'
+			song : {
+				id         : expect.any(String),
+				artist     : 'Musiq',
+				song       : 'Halfcrazy',
+				album_name : null,
+				album_url  : null,
+				img_url    : null,
+				lyrics     : expect.any(String)
 			}
 		});
 	});
 
 	test('POST /search returns "No lyrics found" if no lyrics are found', async () => {
-		const response = await request(app).post('/search').send({ artist: 'musiq', song: 'thisisnotasongblahhh' });
+		const response = await request(app).post('/search').send({ artist: 'Musiq', song: 'thisisnotasongblahhh' });
 		expect(response.status).toBe(200);
 		expect(response.body).toEqual({
-			songData : {
-				artist : 'musiq',
-				song   : 'thisisnotasongblahhh',
-				lyrics : 'No lyrics found'
+			song : {
+				id         : expect.any(String),
+				artist     : 'Musiq',
+				song       : 'thisisnotasongblahhh',
+				album_name : null,
+				album_url  : null,
+				img_url    : null,
+				lyrics     : 'No lyrics found'
 			}
 		});
 	});
-
-	// TODO figure out how to mock signedCookies
-	// test('GET /user returns user if user has logged in before', async () => {
-	// 	const response = await request(app).get('/users');
-	// 	console.log(response);
-	// 	expect(response.status).toBe(200);
-	// 	expect(response.body).toEqual({
-	// 		id           : '13',
-	// 		display_name : 'test',
-	// 		email        : 'test@test.com',
-	// 		product      : 'premium',
-	// 		href         : 'http://spotify.com/test',
-	// 		img_url      : 'http://testuser.com/picture.jpg',
-	// 		access_token : '123456789'
-	// 	});
-	// });
 });
