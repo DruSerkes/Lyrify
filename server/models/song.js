@@ -8,6 +8,7 @@ class Song {
      * @songData {OBJ} - id, artist, song, album_name, album_url, img_url, lyrics  
      */
 	static async create({ id = null, artist, song, album_name = null, album_url = null, img_url = null, lyrics }) {
+		if (!id) id = uuidv4();
 
 		const duplicateSong = await db.query(
 			`SELECT * 

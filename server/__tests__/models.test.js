@@ -117,6 +117,24 @@ describe('song model tests', () => {
 		});
 	});
 
+	test('creating a song without id generates random id', async () => {
+		const newSong = {
+			artist : 'testmaster flash',
+			song   : 'test like a man',
+			lyrics : 'I JUST LOVE TESTING SO MUCH LIKE OMG LOL'
+		};
+		const response = await Song.create(newSong);
+		expect(response).toEqual({
+			id         : expect.any(String),
+			artist     : 'testmaster flash',
+			song       : 'test like a man',
+			album_name : null,
+			album_url  : null,
+			img_url    : null,
+			lyrics     : 'I JUST LOVE TESTING SO MUCH LIKE OMG LOL'
+		});
+	});
+
 	test('can get a song', async () => {
 		const response = await Song.get('the sword of damacles');
 		expect(response).toEqual({
