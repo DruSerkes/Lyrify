@@ -53,12 +53,34 @@ class User {
 			[ id ]
 		);
 		const user = result.rows[0];
+
+		const favorites = await db.query(
+			`SELECT s.id, s.artist, s.song, s.album_name, s.album_url, s.img_url, s.lyrics
+			FROM songs AS s
+			JOIN favorites AS f
+			ON s.id = f.song_id
+			WHERE f.user_id = $1
+			`,
+			[ id ]
+		);
+		console.log('FAVORITES == ', favorites.rows);
+		user.favorites = favorites.rows;
 		return user;
 	}
 
-	// TODO - figure this out - PROBLEM - songs don't all have ID's...
-	// idea - UUID in song.create so all songs have IDs
-	static async favorite(user_id, song_id) {}
+	// TODO
+	static async addFavorite(user_id, song_id) {
+		if (!user_id || !song_id) throw new ExpressError('Both user_id and song_id required', 400);
+		const result = await db.query(
+			`INSERT INTO favorites (song_id, user_id)
+			VALUES ($1, $2)
+			RETURNING *
+			`,
+			[ song_id, user_id ]
+		);
+		if (!result.rows[0]) throw new ExpressError('Something went wrong with updating favorite', 500);
+		return 'Favorite Added';
+	}
 }
 
 module.exports = User;

@@ -7,6 +7,8 @@ const db = require('../db');
 const app = require('../app');
 
 describe('User Model Tests', () => {
+	let testUser;
+	let testSong;
 	beforeEach(async () => {
 		const testUserData = {
 			id            : '13',
@@ -18,10 +20,21 @@ describe('User Model Tests', () => {
 			access_token  : '123456789',
 			refresh_token : '987654321'
 		};
-		const testUser = await User.create(testUserData);
+		testUser = await User.create(testUserData);
+		const testSongData = {
+			id         : '13',
+			artist     : 'sir test-a-lot',
+			song       : 'the sword of damacles',
+			album_name : 'test name',
+			album_url  : 'http://spotify.com/test',
+			img_url    : 'http://testsong.com/picture.jpg',
+			lyrics     : 'I JUST LOVE TESTING'
+		};
+		testSong = await Song.create(testSongData);
 	});
 	afterEach(async () => {
 		await db.query(`DELETE FROM users`);
+		await db.query(`DELETE FROM songs`);
 	});
 	test('can create a user', async () => {
 		const newUser = {
@@ -70,7 +83,36 @@ describe('User Model Tests', () => {
 			href          : 'http://spotify.com/test',
 			img_url       : 'http://testuser.com/picture.jpg',
 			access_token  : '123456789',
-			refresh_token : '987654321'
+			refresh_token : '987654321',
+			favorites     : expect.any(Object)
+		});
+	});
+
+	test('can favorite a song', async () => {
+		const result = await User.addFavorite('13', '13');
+		expect(result).toEqual('Favorite Added');
+
+		const user = await User.getById('13');
+		expect(user).toEqual({
+			id            : '13',
+			display_name  : 'test',
+			email         : 'test@test.com',
+			product       : 'premium',
+			href          : 'http://spotify.com/test',
+			img_url       : 'http://testuser.com/picture.jpg',
+			access_token  : '123456789',
+			refresh_token : '987654321',
+			favorites     : [
+				{
+					id         : '13',
+					artist     : 'sir test-a-lot',
+					song       : 'the sword of damacles',
+					album_name : 'test name',
+					album_url  : 'http://spotify.com/test',
+					img_url    : 'http://testsong.com/picture.jpg',
+					lyrics     : 'I JUST LOVE TESTING'
+				}
+			]
 		});
 	});
 });
