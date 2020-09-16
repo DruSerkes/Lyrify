@@ -68,7 +68,6 @@ class User {
 		return user;
 	}
 
-	// TODO
 	static async addFavorite(user_id, song_id) {
 		if (!user_id || !song_id) throw new ExpressError('Both user_id and song_id required', 400);
 		const result = await db.query(
@@ -78,8 +77,20 @@ class User {
 			`,
 			[ song_id, user_id ]
 		);
-		if (!result.rows[0]) throw new ExpressError('Something went wrong with updating favorite', 500);
+		if (!result.rows[0]) throw new ExpressError('Something went wrong with adding favorite', 500);
 		return 'Favorite Added';
+	}
+
+	static async removeFavorite(user_id, song_id) {
+		if (!user_id || !song_id) throw new ExpressError('Both user_id and song_id required', 400);
+		const result = await db.query(
+			`DELETE FROM favorites
+			WHERE user_id = $1
+			AND song_id = $2
+			`,
+			[ user_id, song_id ]
+		);
+		return 'Favorite removed';
 	}
 }
 

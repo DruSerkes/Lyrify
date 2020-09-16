@@ -115,6 +115,48 @@ describe('User Model Tests', () => {
 			]
 		});
 	});
+
+	test('can unfavorite a song', async () => {
+		const result = await User.addFavorite('13', '13');
+		expect(result).toEqual('Favorite Added');
+		let user = await User.getById('13');
+		expect(user).toEqual({
+			id            : '13',
+			display_name  : 'test',
+			email         : 'test@test.com',
+			product       : 'premium',
+			href          : 'http://spotify.com/test',
+			img_url       : 'http://testuser.com/picture.jpg',
+			access_token  : '123456789',
+			refresh_token : '987654321',
+			favorites     : [
+				{
+					id         : '13',
+					artist     : 'sir test-a-lot',
+					song       : 'the sword of damacles',
+					album_name : 'test name',
+					album_url  : 'http://spotify.com/test',
+					img_url    : 'http://testsong.com/picture.jpg',
+					lyrics     : 'I JUST LOVE TESTING'
+				}
+			]
+		});
+		// REMOVING FAVORITE
+		const result2 = await User.removeFavorite('13', '13');
+		expect(result2).toEqual('Favorite removed');
+		user = await User.getById('13');
+		expect(user).toEqual({
+			id            : '13',
+			display_name  : 'test',
+			email         : 'test@test.com',
+			product       : 'premium',
+			href          : 'http://spotify.com/test',
+			img_url       : 'http://testuser.com/picture.jpg',
+			access_token  : '123456789',
+			refresh_token : '987654321',
+			favorites     : []
+		});
+	});
 });
 
 describe('song model tests', () => {
