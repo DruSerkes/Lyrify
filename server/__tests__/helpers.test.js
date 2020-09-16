@@ -1,6 +1,5 @@
 process.env.NODE_ENV = 'test';
 
-const removeWords = require('remove-words').main;
 const db = require('../db');
 const {
 	removeCommonWords,

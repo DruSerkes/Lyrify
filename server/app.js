@@ -9,7 +9,7 @@ const User = require('./models/user');
 const Song = require('./models/song');
 const SpotifyWebApi = require('spotify-web-api-node');
 const { clientId, clientSecret, redirectUri, scopes, HOME, SECRET_KEY, state } = require('./config');
-const { extractSongData, getLyrics, getLyricsWordsRemoved, fetchAndAddLyrics } = require('./helpers/helpers');
+const { extractSongData, fetchAndAddLyrics } = require('./helpers/helpers');
 
 const spotifyApi = new SpotifyWebApi({ redirectUri, clientId, clientSecret, state });
 
@@ -59,6 +59,8 @@ app.get('/now-playing', async (req, res, next) => {
 			const song = await fetchAndAddLyrics(songData);
 			return res.json({ song });
 		}
+		// songData.lyrics = await getLyrics(songData);
+		// return res.json({ songData });
 	} catch (e) {
 		console.log(e);
 		return next(e);
