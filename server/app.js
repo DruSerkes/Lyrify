@@ -54,12 +54,11 @@ app.get('/now-playing', async (req, res, next) => {
 		if (data.body.currently_playing_type !== 'track') {
 			const message = 'No song currently playing';
 			return res.json({ message });
+		} else {
+			const songData = extractSongData(data.body);
+			const song = await fetchAndAddLyrics(songData);
+			return res.json({ song });
 		}
-		const songData = extractSongData(data.body);
-		songData.lyrics = await getLyrics(songData);
-		// TODO - DB stuff && ||  handle errors
-		// for now just return the song data
-		return res.json({ songData });
 	} catch (e) {
 		console.log(e);
 		return next(e);

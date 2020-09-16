@@ -26,8 +26,7 @@ export function logoutUser() {
 export function getNowPlaying() {
 	return async function(dispatch) {
 		const res = await axios.get(`${BASE_URL}/now-playing`);
-		dispatch(gotNowPlaying(res.data.songData));
-		// TODO change to .song
+		dispatch(gotNowPlaying(res.data.song));
 	};
 }
 
@@ -42,8 +41,7 @@ export function getSong(data) {
 	return async function(dispatch) {
 		const { song, artist } = data;
 		const res = await axios.post(`${BASE_URL}/search`, { song, artist });
-		dispatch(gotSong(res.data.songData));
-		// TODO change to .song
+		dispatch(gotSong(res.data.song));
 	};
 }
 
