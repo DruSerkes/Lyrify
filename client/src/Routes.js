@@ -28,6 +28,10 @@ const Routes = () => {
 			<Route exact path="/playing">
 				{user ? <Playing /> : <Redirect to="/" />}
 			</Route>
+			<Route exact path="/favorites">
+				<h1>Favorites</h1>
+				{/* {user ? <Favorites /> : <Redirect to="/" />} */}
+			</Route>
 			<Route exact path="/">
 				<Home />
 			</Route>
