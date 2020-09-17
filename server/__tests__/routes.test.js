@@ -38,7 +38,7 @@ describe('Routes tests', () => {
 				product      : 'premium',
 				href         : 'http://spotify.com/test',
 				img_url      : 'http://testuser.com/picture.jpg',
-				access_token : '123456789'
+				favorites    : []
 			}
 		});
 	});

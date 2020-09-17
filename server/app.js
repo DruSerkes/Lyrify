@@ -10,6 +10,7 @@ const Song = require('./models/song');
 const SpotifyWebApi = require('spotify-web-api-node');
 const { clientId, clientSecret, redirectUri, scopes, HOME, SECRET_KEY, state } = require('./config');
 const { extractSongData, fetchAndAddLyrics } = require('./helpers/helpers');
+const userRoutes = require('./routes/users');
 
 const spotifyApi = new SpotifyWebApi({ redirectUri, clientId, clientSecret, state });
 
@@ -34,19 +35,7 @@ app.get('/', (req, res, next) => {
 	return res.redirect(HOME);
 });
 
-app.get('/users/:id', async (req, res, next) => {
-	try {
-		const { id } = req.params;
-		// TODO take another look at this
-		const user = await User.getById(id);
-		spotifyApi.setAccessToken(user.access_token);
-		spotifyApi.setRefreshToken(user.refresh_token);
-		delete user.refresh_token;
-		return res.json({ user });
-	} catch (e) {
-		return next(e);
-	}
-});
+app.use('/users', userRoutes);
 
 app.get('/now-playing', async (req, res, next) => {
 	try {
