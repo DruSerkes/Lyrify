@@ -12,8 +12,9 @@ import Box from '@material-ui/core/Box';
 const Lyrics = ({ songData }) => {
 	const dispatch = useDispatch();
 	const user = useSelector((state) => state.user);
-	const createMarkup = () => ({ __html: songData.lyrics });
 	const { id: songId } = songData;
+	const favorites = user.favorites || {};
+	const createMarkup = () => ({ __html: songData.lyrics });
 
 	const toggleFavorite = () => {
 		if (user.favorites[songId]) {
@@ -67,7 +68,7 @@ const Lyrics = ({ songData }) => {
 											</Button>
 										)}
 										<Button variant="contained" color="secondary" onClick={toggleFavorite}>
-											{user.favorites.songData.id ? 'Remove favorite' : 'Save favorite'}
+											{favorites[songId] ? 'Remove favorite' : 'Save favorite'}
 										</Button>
 									</CardContent>
 								</Box>
