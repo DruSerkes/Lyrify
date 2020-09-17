@@ -40,6 +40,9 @@ router.post('/:id/favorite', async (req, res, next) => {
 	}
 });
 
+/**
+ * Delete a favorite
+ */
 router.delete('/:id/favorite', async (req, res, next) => {
 	try {
 		const { id: user_id } = req.params;
