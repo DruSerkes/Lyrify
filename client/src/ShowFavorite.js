@@ -5,9 +5,9 @@ import Lyrics from './Lyrics';
 
 const ShowFavorite = ({ favorites }) => {
 	const { id } = useParams();
-	const song = favorites.id;
+	const songData = favorites[id];
 
-	return <Lyrics songData={song} />;
+	return <Lyrics songData={songData} />;
 };
 
 export default ShowFavorite;
