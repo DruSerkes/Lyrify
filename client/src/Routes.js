@@ -5,6 +5,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import Home from './Home';
 import Playing from './Playing';
 import Search from './Search';
+import Favorites from './Favorites';
 
 const Routes = () => {
 	const user = useSelector((state) => state.user.data);
@@ -29,8 +30,10 @@ const Routes = () => {
 				{user ? <Playing /> : <Redirect to="/" />}
 			</Route>
 			<Route exact path="/favorites">
-				<h1>Favorites</h1>
-				{/* {user ? <Favorites /> : <Redirect to="/" />} */}
+				{user ? <Favorites /> : <Redirect to="/" />}
+			</Route>
+			<Route exact path="/favorites/:id">
+				{user ? <ShowFavorite /> : <Redirect to="/" />}
 			</Route>
 			<Route exact path="/">
 				<Home />
