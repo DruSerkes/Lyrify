@@ -2,13 +2,15 @@ process.env.NODE_ENV = 'test';
 
 const request = require('supertest');
 const User = require('../models/user');
+const Song = require('../models/song');
 const db = require('../db');
 const app = require('../app');
 
 describe('Routes tests', () => {
 	beforeEach(async () => {
 		await db.query(`DELETE FROM users`);
-		const testData = {
+		await db.query(`DELETE FROM songs`);
+		const testUserData = {
 			id            : '13',
 			display_name  : 'test',
 			email         : 'test@test.com',
@@ -18,16 +20,27 @@ describe('Routes tests', () => {
 			access_token  : '123456789',
 			refresh_token : '987654321'
 		};
-		const testUser = await User.create(testData);
+		const testSongData = {
+			id         : '13',
+			artist     : 'sir test-a-lot',
+			song       : 'test test baby',
+			album_name : 'test name',
+			album_url  : 'http://spotify.com/test',
+			img_url    : 'http://testsong.com/picture.jpg',
+			lyrics     : 'I LOVE BIG TESTS AND I CANNOT LIE'
+		};
+		const testSong = await Song.create(testSongData);
+		const testUser = await User.create(testUserData);
 	});
 	afterEach(async () => {
 		await db.query(`DELETE FROM users`);
+		await db.query(`DELETE FROM songs`);
 	});
 	afterAll(async () => {
 		await db.end();
 	});
 
-	test('GET /user/:id returns user', async () => {
+	test('GET /users/:id returns user', async () => {
 		const response = await request(app).get('/users/13');
 		expect(response.status).toBe(200);
 		expect(response.body).toEqual({
@@ -39,6 +52,35 @@ describe('Routes tests', () => {
 				href         : 'http://spotify.com/test',
 				img_url      : 'http://testuser.com/picture.jpg',
 				favorites    : []
+			}
+		});
+	});
+
+	test('POST /users/:id/favorite favorites a song', async () => {
+		const response = await request(app).post('/users/13/favorite').send({ id: 13 });
+		expect(response.status).toBe(201);
+		expect(response.body).toEqual({ message: 'Favorite Added' });
+		const response2 = await request(app).get('/users/13');
+		expect(response2.status).toBe(200);
+		expect(response2.body).toEqual({
+			user : {
+				id           : '13',
+				display_name : 'test',
+				email        : 'test@test.com',
+				product      : 'premium',
+				href         : 'http://spotify.com/test',
+				img_url      : 'http://testuser.com/picture.jpg',
+				favorites    : [
+					{
+						id         : '13',
+						artist     : 'sir test-a-lot',
+						song       : 'test test baby',
+						album_name : 'test name',
+						album_url  : 'http://spotify.com/test',
+						img_url    : 'http://testsong.com/picture.jpg',
+						lyrics     : 'I LOVE BIG TESTS AND I CANNOT LIE'
+					}
+				]
 			}
 		});
 	});
