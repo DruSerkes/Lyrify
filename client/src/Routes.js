@@ -6,6 +6,7 @@ import Home from './Home';
 import Playing from './Playing';
 import Search from './Search';
 import Favorites from './Favorites';
+import ShowFavorite from './ShowFavorite';
 
 const Routes = () => {
 	const user = useSelector((state) => state.user.data);
@@ -33,7 +34,7 @@ const Routes = () => {
 				{user ? <Favorites /> : <Redirect to="/" />}
 			</Route>
 			<Route exact path="/favorites/:id">
-				{user ? <ShowFavorite /> : <Redirect to="/" />}
+				{user ? <ShowFavorite favorites={user.favorites} /> : <Redirect to="/" />}
 			</Route>
 			<Route exact path="/">
 				<Home />
