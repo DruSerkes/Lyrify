@@ -35,6 +35,16 @@ const Navbar = () => {
 							>
 								Search
 							</Button>
+							<Button
+								variant="text"
+								size="large"
+								className="Navbar-Btn"
+								color="inherit"
+								component={NavLink}
+								to="/favorites"
+							>
+								Favorites
+							</Button>
 						</Grid>
 						<Avatar sizes="lg" src={user.img_url} alt={user.display_name} />
 					</React.Fragment>
