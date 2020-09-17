@@ -10,13 +10,13 @@ import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 
 const Lyrics = ({ songData }) => {
-	// const { artist, song, lyrics, album_url, album_name, img_url, message } = songData;
 	const dispatch = useDispatch();
 	const user = useSelector((state) => state.user);
 	const createMarkup = () => ({ __html: songData.lyrics });
+	const { id: songId } = songData;
 
-	const toggleFavorite = (songId) => {
-		if (user.favorites.songId) {
+	const toggleFavorite = () => {
+		if (user.favorites[songId]) {
 			dispatch(removeFavorite(user.id, songId));
 		} else {
 			dispatch(addFavorite(user.id, songId));
@@ -66,6 +66,9 @@ const Lyrics = ({ songData }) => {
 												View on Spotify
 											</Button>
 										)}
+										<Button variant="contained" color="secondary" onClick={toggleFavorite}>
+											{user.favorites.songData.id ? 'Remove favorite' : 'Save favorite'}
+										</Button>
 									</CardContent>
 								</Box>
 							</div>
