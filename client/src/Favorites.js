@@ -6,14 +6,13 @@ import Favorite from './Favorite';
 
 const Favorites = () => {
 	const user = useSelector((state) => state.user);
+	const favorites = Object.values(user.favorites);
 	return (
 		<React.Fragment>
 			<Typography>Favorites</Typography>
 			<List className="Favorites">
-				{user.favorites !== {} ? (
-					user.favorites.map((fav) => (
-						<Favorite artist={fav.artist} song={fav.song} id={fav.id} key={fav.id} />
-					))
+				{favorites.length ? (
+					favorites.map((fav) => <Favorite artist={fav.artist} song={fav.song} id={fav.id} key={fav.id} />)
 				) : (
 					<Typography>You haven't favorited any lyrics!</Typography>
 				)}
