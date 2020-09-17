@@ -57,9 +57,19 @@ describe('Routes tests', () => {
 	});
 
 	test('POST /users/:id/favorite favorites a song', async () => {
-		const response = await request(app).post('/users/13/favorite').send({ id: 13 });
+		const response = await request(app).post('/users/13/favorite').send({ song_id: '13' });
 		expect(response.status).toBe(201);
-		expect(response.body).toEqual({ message: 'Favorite Added' });
+		expect(response.body).toEqual({
+			song : {
+				id         : '13',
+				artist     : 'sir test-a-lot',
+				song       : 'test test baby',
+				album_name : 'test name',
+				album_url  : 'http://spotify.com/test',
+				img_url    : 'http://testsong.com/picture.jpg',
+				lyrics     : 'I LOVE BIG TESTS AND I CANNOT LIE'
+			}
+		});
 		const response2 = await request(app).get('/users/13');
 		expect(response2.status).toBe(200);
 		expect(response2.body).toEqual({
@@ -86,10 +96,20 @@ describe('Routes tests', () => {
 	});
 
 	test('DELETE /users/:id/favorite removes a favorite', async () => {
-		const response = await request(app).post('/users/13/favorite').send({ id: 13 });
+		const response = await request(app).post('/users/13/favorite').send({ song_id: 13 });
 		expect(response.status).toBe(201);
-		expect(response.body).toEqual({ message: 'Favorite Added' });
-		const response2 = await request(app).delete('/users/13/favorite').send({ id: 13 });
+		expect(response.body).toEqual({
+			song : {
+				id         : '13',
+				artist     : 'sir test-a-lot',
+				song       : 'test test baby',
+				album_name : 'test name',
+				album_url  : 'http://spotify.com/test',
+				img_url    : 'http://testsong.com/picture.jpg',
+				lyrics     : 'I LOVE BIG TESTS AND I CANNOT LIE'
+			}
+		});
+		const response2 = await request(app).delete('/users/13/favorite').send({ song_id: 13 });
 		expect(response2.status).toBe(200);
 		expect(response2.body).toEqual({ message: 'Favorite removed' });
 		const response3 = await request(app).get('/users/13');
@@ -154,6 +174,22 @@ describe('Routes tests', () => {
 				album_url  : null,
 				img_url    : null,
 				lyrics     : 'No lyrics found'
+			}
+		});
+	});
+
+	test('GET /songs/:id returns a song', async () => {
+		const response = await request(app).get('/songs/13');
+		expect(response.status).toBe(200);
+		expect(response.body).toEqual({
+			song : {
+				id         : '13',
+				artist     : 'sir test-a-lot',
+				song       : 'test test baby',
+				album_name : 'test name',
+				album_url  : 'http://spotify.com/test',
+				img_url    : 'http://testsong.com/picture.jpg',
+				lyrics     : 'I LOVE BIG TESTS AND I CANNOT LIE'
 			}
 		});
 	});
