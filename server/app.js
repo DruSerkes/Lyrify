@@ -75,6 +75,16 @@ app.post('/search', async (req, res, next) => {
 	}
 });
 
+app.get('/songs/:id', async (req, res, next) => {
+	try {
+		const { id } = req.params;
+		const song = await Song.getById(id);
+		return res.json({ song });
+	} catch (e) {
+		return next(e);
+	}
+});
+
 app.get('/spotify/auth', (req, res, next) => {
 	try {
 		const authUrl = spotifyApi.createAuthorizeURL(scopes, state);
