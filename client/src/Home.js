@@ -10,7 +10,7 @@ import Box from '@material-ui/core/Box';
 const Home = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
-	const user = useSelector((state) => state.user.data);
+	const user = useSelector((state) => state.user);
 	const search = useLocation().search;
 	const parsed = useMemo(() => queryString.parse(search), [ search ]);
 	console.log('user === ', user);

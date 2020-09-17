@@ -4,7 +4,7 @@ import { useSelector, shallowEqual } from 'react-redux';
 import { AppBar, Avatar, Button, Toolbar, Grid, Typography, Box } from '@material-ui/core';
 
 const Navbar = () => {
-	const user = useSelector((state) => state.user.data, shallowEqual);
+	const user = useSelector((state) => state.user, shallowEqual);
 	return (
 		<AppBar position="sticky">
 			<Toolbar>

@@ -9,7 +9,7 @@ import Favorites from './Favorites';
 import ShowFavorite from './ShowFavorite';
 
 const Routes = () => {
-	const user = useSelector((state) => state.user.data);
+	const user = useSelector((state) => state.user);
 	// const dispatch = useDispatch();
 
 	// useEffect(

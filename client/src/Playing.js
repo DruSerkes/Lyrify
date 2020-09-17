@@ -9,7 +9,7 @@ import Paper from '@material-ui/core/Paper';
 
 const Playing = () => {
 	const dispatch = useDispatch();
-	const songData = useSelector((state) => state.song.data, shallowEqual);
+	const songData = useSelector((state) => state.song, shallowEqual);
 	console.log('songData === ', songData);
 
 	const handleGetNowPlaying = () => {

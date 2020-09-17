@@ -7,7 +7,7 @@ import Lyrics from './Lyrics';
 
 const Search = () => {
 	const dispatch = useDispatch();
-	const songData = useSelector((state) => state.song.data, shallowEqual);
+	const songData = useSelector((state) => state.song, shallowEqual);
 	const doSearch = (data) => dispatch(getSong(data));
 
 	return (
