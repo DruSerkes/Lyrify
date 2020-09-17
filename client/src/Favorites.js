@@ -5,9 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import Favorite from './Favorite';
 
 const Favorites = () => {
-	// Select favorites
 	const user = useSelector((state) => state.user);
-	// render a list of "favorite" (dumb component) list items
 	return (
 		<React.Fragment>
 			<Typography>Favorites</Typography>
