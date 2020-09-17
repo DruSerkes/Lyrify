@@ -32,7 +32,8 @@ router.get('/:id', async (req, res, next) => {
 router.post('/:id/favorite', async (req, res, next) => {
 	try {
 		const { id: user_id } = req.params;
-		const { id: song_id } = req.body;
+		const { song_id } = req.body;
+		// TODO UPDATE User.addFavorite to return the song you're favoriting
 		const message = await User.addFavorite(user_id, song_id);
 		return res.status(201).json({ message });
 	} catch (e) {
