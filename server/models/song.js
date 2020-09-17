@@ -30,23 +30,21 @@ class Song {
 		return newSong;
 	}
 
-	/** Get song by title
+	/** Get song by id
 	 * 
-	 * @song {str} - song title 
+	 * @id {str} - song id 
 	 */
-	static async get(song) {
+	static async getById(id) {
 		const result = await db.query(
 			`SELECT *
          FROM songs
-         WHERE song = $1`,
-			[ song ]
+         WHERE id = $1`,
+			[ id ]
 		);
 
 		const songData = result.rows[0];
 
-		if (!songData) {
-			throw new ExpressError('Song not found', 404);
-		}
+		if (!songData) throw new ExpressError('Song not found', 404);
 
 		return songData;
 	}

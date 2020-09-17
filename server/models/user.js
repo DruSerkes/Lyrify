@@ -1,5 +1,6 @@
 const db = require('../db');
 const ExpressError = require('../helpers/ExpressError');
+const Song = require('./song')
 
 class User {
 	/** Create a user in the DB 
@@ -78,6 +79,7 @@ class User {
 			[ song_id, user_id ]
 		);
 		if (!result.rows[0]) throw new ExpressError('Something went wrong with adding favorite', 500);
+		const song = Song.
 		return 'Favorite Added';
 	}
 
