@@ -69,6 +69,12 @@ class User {
 		return user;
 	}
 
+	/** Add a favorite song for a user
+	 * 
+	 * @param {*} user_id 
+	 * @param {*} song_id 
+	 * @returns song data
+	 */
 	static async addFavorite(user_id, song_id) {
 		if (!user_id || !song_id) throw new ExpressError('Both user_id and song_id required', 400);
 		const result = await db.query(
@@ -83,6 +89,12 @@ class User {
 		return song;
 	}
 
+	/** Remove a favorite song for a user
+	 * 
+	 * @param {*} user_id 
+	 * @param {*} song_id 
+	 * @returns string 'Favorite removed'
+	 */
 	static async removeFavorite(user_id, song_id) {
 		if (!user_id || !song_id) throw new ExpressError('Both user_id and song_id required', 400);
 		const result = await db.query(
