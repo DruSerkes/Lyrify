@@ -1,4 +1,6 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { addFavorite, removeFavorite } from './reducers/actions';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
@@ -9,7 +11,17 @@ import Box from '@material-ui/core/Box';
 
 const Lyrics = ({ songData }) => {
 	// const { artist, song, lyrics, album_url, album_name, img_url, message } = songData;
+	const dispatch = useDispatch();
+	const user = useSelector((state) => state.user);
 	const createMarkup = () => ({ __html: songData.lyrics });
+
+	const toggleFavorite = (songId) => {
+		if (user.favorites.songId) {
+			dispatch(removeFavorite(user.id, songId));
+		} else {
+			dispatch(addFavorite(user.id, songId));
+		}
+	};
 
 	return (
 		<Paper elevation={5} className="Lyrics">
