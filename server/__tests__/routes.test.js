@@ -85,6 +85,28 @@ describe('Routes tests', () => {
 		});
 	});
 
+	test('DELETE /users/:id/favorite removes a favorite', async () => {
+		const response = await request(app).post('/users/13/favorite').send({ id: 13 });
+		expect(response.status).toBe(201);
+		expect(response.body).toEqual({ message: 'Favorite Added' });
+		const response2 = await request(app).delete('/users/13/favorite').send({ id: 13 });
+		expect(response2.status).toBe(200);
+		expect(response2.body).toEqual({ message: 'Favorite removed' });
+		const response3 = await request(app).get('/users/13');
+		expect(response3.status).toBe(200);
+		expect(response3.body).toEqual({
+			user : {
+				id           : '13',
+				display_name : 'test',
+				email        : 'test@test.com',
+				product      : 'premium',
+				href         : 'http://spotify.com/test',
+				img_url      : 'http://testuser.com/picture.jpg',
+				favorites    : []
+			}
+		});
+	});
+
 	test('POST /search returns lyrics', async () => {
 		const response = await request(app).post('/search').send({ artist: 'Musiq', song: 'Halfcrazy' });
 		expect(response.status).toBe(200);
