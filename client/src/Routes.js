@@ -25,16 +25,16 @@ const Routes = () => {
 	return (
 		<Switch>
 			<Route exact path="/search">
-				{user ? <Search /> : <Redirect to="/" />}
+				{user.id ? <Search /> : <Redirect to="/" />}
 			</Route>
 			<Route exact path="/playing">
-				{user ? <Playing /> : <Redirect to="/" />}
+				{user.id ? <Playing /> : <Redirect to="/" />}
 			</Route>
 			<Route exact path="/favorites">
-				{user ? <Favorites /> : <Redirect to="/" />}
+				{user.id ? <Favorites /> : <Redirect to="/" />}
 			</Route>
 			<Route exact path="/favorites/:id">
-				{user ? <ShowFavorite favorites={user.favorites} /> : <Redirect to="/" />}
+				{user.id ? <ShowFavorite favorites={user.favorites} /> : <Redirect to="/" />}
 			</Route>
 			<Route exact path="/">
 				<Home />
