@@ -17,7 +17,7 @@ const Lyrics = ({ songData }) => {
 	const createMarkup = () => ({ __html: songData.lyrics });
 
 	const toggleFavorite = () => {
-		if (user.favorites[songId]) {
+		if (favorites[songId]) {
 			dispatch(removeFavorite(user.id, songId));
 		} else {
 			dispatch(addFavorite(user.id, songId));
@@ -67,7 +67,12 @@ const Lyrics = ({ songData }) => {
 												View on Spotify
 											</Button>
 										)}
-										<Button variant="contained" color="secondary" onClick={toggleFavorite}>
+										<Button
+											variant="outlined"
+											color="secondary"
+											size="small"
+											onClick={toggleFavorite}
+										>
 											{favorites[songId] ? 'Remove favorite' : 'Save favorite'}
 										</Button>
 									</CardContent>

@@ -1,5 +1,5 @@
 const axios = require('axios');
-const removeWords = require('remove-words').main;
+const removeWords = require('remove-words');
 const wordsToRemove = [ 'Album', 'Version', 'Edit', 'Edited', 'Remix' ];
 const Song = require('../models/song');
 
@@ -59,7 +59,9 @@ const getLyricsWordsRemoved = async ({ artist, song }) => {
 		const artistNormalized = normalizeString(artist);
 		const songNormalized = normalizeString(song);
 		const songWordsRemoved = removeCommonWords(songNormalized);
+		console.log('songWordsRemoved === ', songWordsRemoved);
 		const response = await axios.get(`${LYRIC_BASE_URL}/${artistNormalized}/${songWordsRemoved}`);
+		console.log('response === ', response);
 		return response.data.lyrics;
 	} catch (e) {
 		console.log(e);

@@ -13,8 +13,8 @@ class Song {
 		const duplicateSong = await db.query(
 			`SELECT * 
         FROM songs 
-        WHERE id = $1 AND lyrics = $2`,
-			[ id, lyrics ]
+        WHERE id = $1`,
+			[ id ]
 		);
 
 		if (duplicateSong.rows[0]) return duplicateSong.rows[0];
