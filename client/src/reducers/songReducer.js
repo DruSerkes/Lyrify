@@ -4,9 +4,9 @@ const INITIAL_STATE = {};
 const songreducer = (state = INITIAL_STATE, action) => {
 	switch (action.type) {
 		case ADD_SONG:
-			return { ...state, data: { ...action.payload } };
+			return { ...state, ...action.payload };
 		case REMOVE_SONG:
-			return { ...state, data: {} };
+			return {};
 		default:
 			return state;
 	}
