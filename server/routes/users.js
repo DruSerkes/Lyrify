@@ -47,7 +47,8 @@ router.post('/:id/favorite', async (req, res, next) => {
 router.delete('/:id/favorite', async (req, res, next) => {
 	try {
 		const { id: user_id } = req.params;
-		const { id: song_id } = req.body;
+		const { song_id } = req.body;
+		// TODO UPDATE User.removeFavorite to return song you're removing ?? (unncessary??)
 		const message = await User.removeFavorite(user_id, song_id);
 		return res.status(200).json({ message });
 	} catch (e) {
