@@ -74,7 +74,7 @@ export function addedFavorite(songData) {
 
 export function removeFavorite(user_id, song_id) {
 	return async function(dispatch) {
-		const res = await axios.delete(`${BASE_URL}/users/${user_id}/favorite`, { song_id });
+		await axios.delete(`${BASE_URL}/users/${user_id}/favorite`, { song_id });
 		dispatch(removedFavorite(song_id));
 	};
 }

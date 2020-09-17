@@ -12,7 +12,7 @@ const Navbar = () => {
 					<Avatar src="logo500.png" alt="Lyrify" />
 					<Typography variant="body1"> yrify</Typography>
 				</Box>
-				{user !== undefined ? (
+				{user.id ? (
 					<React.Fragment>
 						<Grid container>
 							<Button
