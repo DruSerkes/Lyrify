@@ -11,6 +11,7 @@ const SpotifyWebApi = require('spotify-web-api-node');
 const { clientId, clientSecret, redirectUri, scopes, HOME, SECRET_KEY, state } = require('./config');
 const { extractSongData, fetchAndAddLyrics } = require('./helpers/helpers');
 const userRoutes = require('./routes/users');
+const db = require('./db');
 
 const spotifyApi = new SpotifyWebApi({ redirectUri, clientId, clientSecret, state });
 
@@ -110,6 +111,9 @@ app.get('/callback', async (req, res, next) => {
 		// Check if user already in DB
 		const dbUser = await User.getById(id);
 		if (dbUser) {
+			console.log('FOUND USER IN DB');
+			console.log('dbUser ==', dbUser);
+			delete dbUser.favorites;
 			delete dbUser.refresh_token;
 			return res.redirect(`${HOME}?${querystring.stringify(dbUser)}`);
 		} else {

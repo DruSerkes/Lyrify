@@ -5,6 +5,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
 	switch (action.type) {
 		case ADD_USER:
 			// localStorage.setItem('id', action.payload.id);
+			console.log('INSIDE USER REDUCER. PAYLOAD ==', action.payload);
 			return { ...state, ...action.payload };
 		case REMOVE_USER:
 			// localStorage.removeItem('id');

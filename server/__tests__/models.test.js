@@ -83,8 +83,7 @@ describe('User Model Tests', () => {
 			href          : 'http://spotify.com/test',
 			img_url       : 'http://testuser.com/picture.jpg',
 			access_token  : '123456789',
-			refresh_token : '987654321',
-			favorites     : expect.any(Object)
+			refresh_token : '987654321'
 		});
 	});
 
@@ -125,9 +124,20 @@ describe('User Model Tests', () => {
 			href          : 'http://spotify.com/test',
 			img_url       : 'http://testuser.com/picture.jpg',
 			access_token  : '123456789',
-			refresh_token : '987654321',
-			favorites     : []
+			refresh_token : '987654321'
 		});
+	});
+
+	test('can get favorites for a user', async () => {
+		const song = await User.addFavorite('13', '13');
+		const favorites = await User.getFavorites('13');
+		expect(favorites).toEqual([
+			{
+				id     : song.id,
+				song   : song.song,
+				artist : song.artist
+			}
+		]);
 	});
 });
 

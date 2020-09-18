@@ -55,8 +55,13 @@ class User {
 		);
 		const user = result.rows[0];
 
-		const favorites = await db.query(
-			`SELECT s.id, s.artist, s.song, s.album_name, s.album_url, s.img_url, s.lyrics
+		return user;
+	}
+
+	static async getFavorites(id) {
+		if (!id) throw new ExpressError('user id required', 400);
+		const result = await db.query(
+			`SELECT s.id, s.artist, s.song
 			FROM songs AS s
 			JOIN favorites AS f
 			ON s.id = f.song_id
@@ -64,9 +69,8 @@ class User {
 			`,
 			[ id ]
 		);
-		console.log('FAVORITES == ', favorites.rows);
-		user.favorites = favorites.rows;
-		return user;
+		const favorites = result.rows;
+		return favorites;
 	}
 
 	/** Add a favorite song for a user
