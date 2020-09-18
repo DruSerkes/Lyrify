@@ -65,7 +65,7 @@ body,
 } */
 
 .Lyrics-Button {
-	margin: 0.5rem 1rem 0 1rem;
+	margin: 0.5rem 1rem 0 1rem !important;
 }
 
 .Search-Header h1 {
@@ -98,11 +98,11 @@ body,
 	justify-content: center;
 }
 
-.Lyrics-Header-Left {
+.Lyrics-Header-Top {
 	margin-bottom: 1rem;
 }
 
-.Lyrics-Header-Right {
+.Lyrics-Header-Bottom {
 	position: relative;
 }
 

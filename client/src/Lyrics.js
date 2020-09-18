@@ -33,12 +33,12 @@ const Lyrics = ({ songData }) => {
 			) : (
 				<section className="Lyrics-Content">
 					<div className="Lyrics-Header">
-						<div className="Lyrics-Header-Left">
+						<div className="Lyrics-Header-Top">
 							<Typography variant="h4">"{songData.song}"</Typography>
 							<Typography variant="h5">By: {songData.artist}</Typography>
 						</div>
 						{songData.album_name && (
-							<div className="Lyrics-Header-Right">
+							<div className="Lyrics-Header-Bottom">
 								<Box className="Lyrics-Album">
 									{/* Set max height to 140px? */}
 									{songData.img_url && (
