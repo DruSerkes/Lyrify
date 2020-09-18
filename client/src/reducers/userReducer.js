@@ -10,14 +10,14 @@ const userReducer = (state = INITIAL_STATE, action) => {
 		case REMOVE_USER:
 			// localStorage.removeItem('id');
 			return {};
-		case ADD_FAVORITE:
-			let idToAdd = action.payload.id;
-			return { ...state, favorites: { ...state.favorites, [idToAdd]: action.payload } };
-		case REMOVE_FAVORITE:
-			const idToRemove = action.id;
-			const favoritesCopy = state.favorites;
-			delete favoritesCopy[idToRemove];
-			return { ...state, favorites: { ...favoritesCopy } };
+		// case ADD_FAVORITE:
+		// 	let idToAdd = action.payload.id;
+		// 	return { ...state, favorites: { ...state.favorites, [idToAdd]: action.payload } };
+		// case REMOVE_FAVORITE:
+		// 	const idToRemove = action.id;
+		// 	const favoritesCopy = state.favorites;
+		// 	delete favoritesCopy[idToRemove];
+		// 	return { ...state, favorites: { ...favoritesCopy } };
 		default:
 			return state;
 	}

@@ -4,3 +4,4 @@ export const ADD_SONG = 'ADD_SONG';
 export const REMOVE_SONG = 'REMOVE_SONG';
 export const ADD_FAVORITE = 'ADD_FAVORITE';
 export const REMOVE_FAVORITE = 'REMOVE_FAVORITE';
+export const GET_USER_FAVORITES = 'GET_USER_FAVORITES';

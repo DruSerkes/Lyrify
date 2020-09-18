@@ -1,4 +1,13 @@
-import { ADD_USER, REMOVE_USER, ADD_SONG, REMOVE_SONG, ADD_FAVORITE, REMOVE_FAVORITE } from './actionTypes';
+import {
+	ADD_USER,
+	REMOVE_USER,
+	ADD_SONG,
+	REMOVE_SONG,
+	ADD_FAVORITE,
+	REMOVE_FAVORITE,
+	GET_USER_FAVORITES,
+	DELETE_USER_FAVORITE
+} from './actionTypes';
 import axios from 'axios';
 
 const BASE_URL = 'http://localhost:5000';
@@ -85,5 +94,19 @@ export function removedFavorite(song_id) {
 	return {
 		type : REMOVE_FAVORITE,
 		id   : song_id
+	};
+}
+
+export function getFavorites(user_id) {
+	return async function(dispatch) {
+		const res = await axios.get(`${BASE_URL}/users/${user_id}/favorite`);
+		dispatch(gotFavorites(res.data.favorites));
+	};
+}
+
+export function gotFavorites(favorites) {
+	return {
+		type    : GET_USER_FAVORITES,
+		payload : favorites
 	};
 }

@@ -1,6 +1,7 @@
 const axios = require('axios');
 const removeWords = require('remove-words').main;
-// ^ this passes tests with .main but breaks in production unless I get rid of .main
+// ^ this passes tests
+// but breaks in production unless I get rid of .main
 // Unclear as to why...
 const wordsToRemove = [ 'Album', 'Version', 'Edit', 'Edited', 'Remix' ];
 const Song = require('../models/song');
