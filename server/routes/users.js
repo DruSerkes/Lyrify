@@ -26,6 +26,9 @@ router.get('/:id', async (req, res, next) => {
 	}
 });
 
+/**
+ * GET favorite list for a user
+ */
 router.get('/:id/favorite', async (req, res, next) => {
 	try {
 		const { id } = req.params;
