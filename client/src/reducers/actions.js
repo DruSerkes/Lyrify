@@ -63,6 +63,13 @@ export function gotSong(songData) {
 	};
 }
 
+export function getNewSong(id) {
+	return async function(dispatch) {
+		const res = await axios.get(`${BASE_URL}/songs/${id}`);
+		dispatch(gotSong(res.data.song));
+	};
+}
+
 export function removeSong() {
 	return {
 		type : REMOVE_SONG
