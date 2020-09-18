@@ -13,12 +13,10 @@ const Home = () => {
 	const user = useSelector((state) => state.user);
 	const search = useLocation().search;
 	const parsed = useMemo(() => queryString.parse(search), [ search ]);
-	console.log('user === ', user);
 
 	useEffect(
 		() => {
 			if (parsed.id) {
-				console.log('parsed == ', parsed);
 				localStorage.setItem('id', parsed.id);
 				dispatch(gotUser(parsed));
 				history.push('/');

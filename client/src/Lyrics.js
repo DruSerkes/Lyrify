@@ -39,7 +39,7 @@ const Lyrics = ({ songData }) => {
 						</div>
 						{songData.album_name && (
 							<div className="Lyrics-Header-Right">
-								<Box className="Lyrics-Album" raised>
+								<Box className="Lyrics-Album">
 									{/* Set max height to 140px? */}
 									{songData.img_url && (
 										<CardMedia
@@ -63,6 +63,7 @@ const Lyrics = ({ songData }) => {
 												variant="outlined"
 												color="primary"
 												size="small"
+												className="Lyrics-Button"
 											>
 												View on Spotify
 											</Button>
@@ -71,6 +72,7 @@ const Lyrics = ({ songData }) => {
 											variant="outlined"
 											color="secondary"
 											size="small"
+											className="Lyrics-Button"
 											onClick={toggleFavorite}
 										>
 											{favorites[songId] ? 'Remove favorite' : 'Save favorite'}
