@@ -100,6 +100,7 @@ export function removedFavorite(song_id) {
 export function getFavorites(user_id) {
 	return async function(dispatch) {
 		const res = await axios.get(`${BASE_URL}/users/${user_id}/favorite`);
+		console.log('res.data in getFavorites ==', res.data);
 		dispatch(gotFavorites(res.data.favorites));
 	};
 }
@@ -107,6 +108,6 @@ export function getFavorites(user_id) {
 export function gotFavorites(favorites) {
 	return {
 		type    : GET_USER_FAVORITES,
-		payload : favorites
+		payload : [ ...favorites ]
 	};
 }

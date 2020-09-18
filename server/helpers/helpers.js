@@ -1,5 +1,5 @@
 const axios = require('axios');
-const removeWords = require('remove-words').main;
+const removeWords = require('remove-words');
 // ^ this passes tests
 // but breaks in production unless I get rid of .main
 // Unclear as to why...

@@ -1,12 +1,20 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getFavorites } from './reducers/actions';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Favorite from './Favorite';
 
-const Favorites = () => {
-	const user = useSelector((state) => state.user);
-	const favorites = user.favorites ? Object.values(user.favorites) : [];
+const Favorites = ({ user }) => {
+	const dispatch = useDispatch();
+	const favorites = useSelector((state) => state.favorites);
+	console.log('favorites in favorites', favorites);
+	useEffect(
+		() => {
+			if (!favorites) dispatch(getFavorites(user.id));
+		},
+		[ favorites ]
+	);
 	return (
 		<React.Fragment>
 			<Typography variant="h1">Favorites</Typography>
