@@ -50,8 +50,7 @@ describe('Routes tests', () => {
 				email        : 'test@test.com',
 				product      : 'premium',
 				href         : 'http://spotify.com/test',
-				img_url      : 'http://testuser.com/picture.jpg',
-				favorites    : []
+				img_url      : 'http://testuser.com/picture.jpg'
 			}
 		});
 	});
@@ -70,29 +69,40 @@ describe('Routes tests', () => {
 				lyrics     : 'I LOVE BIG TESTS AND I CANNOT LIE'
 			}
 		});
-		const response2 = await request(app).get('/users/13');
+		const response2 = await request(app).get('/users/13/favorite');
 		expect(response2.status).toBe(200);
 		expect(response2.body).toEqual({
-			user : {
-				id           : '13',
-				display_name : 'test',
-				email        : 'test@test.com',
-				product      : 'premium',
-				href         : 'http://spotify.com/test',
-				img_url      : 'http://testuser.com/picture.jpg',
-				favorites    : [
-					{
-						id         : '13',
-						artist     : 'sir test-a-lot',
-						song       : 'test test baby',
-						album_name : 'test name',
-						album_url  : 'http://spotify.com/test',
-						img_url    : 'http://testsong.com/picture.jpg',
-						lyrics     : 'I LOVE BIG TESTS AND I CANNOT LIE'
-					}
-				]
-			}
+			favorites : [
+				{
+					id     : '13',
+					artist : 'sir test-a-lot',
+					song   : 'test test baby'
+				}
+			]
 		});
+		// const response2 = await request(app).get('/users/13');
+		// expect(response2.status).toBe(200);
+		// expect(response2.body).toEqual({
+		// 	user : {
+		// 		id           : '13',
+		// 		display_name : 'test',
+		// 		email        : 'test@test.com',
+		// 		product      : 'premium',
+		// 		href         : 'http://spotify.com/test',
+		// 		img_url      : 'http://testuser.com/picture.jpg',
+		// 		favorites    : [
+		// 			{
+		// 				id         : '13',
+		// 				artist     : 'sir test-a-lot',
+		// 				song       : 'test test baby',
+		// 				album_name : 'test name',
+		// 				album_url  : 'http://spotify.com/test',
+		// 				img_url    : 'http://testsong.com/picture.jpg',
+		// 				lyrics     : 'I LOVE BIG TESTS AND I CANNOT LIE'
+		// 			}
+		// 		]
+		// 	}
+		// });
 	});
 
 	test('DELETE /users/:id/favorite removes a favorite', async () => {
@@ -112,18 +122,18 @@ describe('Routes tests', () => {
 		const response2 = await request(app).delete('/users/13/favorite').send({ song_id: 13 });
 		expect(response2.status).toBe(200);
 		expect(response2.body).toEqual({ message: 'Favorite removed' });
-		const response3 = await request(app).get('/users/13');
+		const response3 = await request(app).get('/users/13/favorite');
 		expect(response3.status).toBe(200);
 		expect(response3.body).toEqual({
-			user : {
-				id           : '13',
-				display_name : 'test',
-				email        : 'test@test.com',
-				product      : 'premium',
-				href         : 'http://spotify.com/test',
-				img_url      : 'http://testuser.com/picture.jpg',
-				favorites    : []
-			}
+			favorites : []
+		});
+	});
+
+	test('GET /users/:id/favorite returns favorites for user', async () => {
+		const response = await request(app).get('/users/13/favorite');
+		expect(response.status).toBe(200);
+		expect(response.body).toEqual({
+			favorites : []
 		});
 	});
 
