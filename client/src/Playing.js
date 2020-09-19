@@ -3,15 +3,15 @@ import { useDispatch } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
-import { getNowPlaying } from './reducers/actions';
+import { getNowPlaying, removeSong } from './reducers/actions';
 import Lyrics from './Lyrics';
-import Paper from '@material-ui/core/Paper';
 
 const Playing = ({ songData }) => {
 	const dispatch = useDispatch();
 
 	useEffect(
 		() => {
+			dispatch(removeSong());
 			dispatch(getNowPlaying());
 		},
 		[ dispatch ]
@@ -26,13 +26,7 @@ const Playing = ({ songData }) => {
 				</Button>
 			</Box>
 			<Box component="section" className="Lyrics">
-				{!songData.id ? (
-					<Paper margin={3} padding={3}>
-						<Typography variant="h5">Loading &hellip;</Typography>
-					</Paper>
-				) : (
-					<Lyrics songData={songData} />
-				)}
+				{!songData.id ? <Typography variant="h5">Loading &hellip;</Typography> : <Lyrics songData={songData} />}
 			</Box>
 		</Box>
 	);

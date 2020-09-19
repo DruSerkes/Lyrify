@@ -7,7 +7,7 @@ import Playing from './Playing';
 import Search from './Search';
 import Favorites from './Favorites';
 import ShowFavorite from './ShowFavorite';
-import Lyrics from './Lyrics';
+import ViewLyrics from './ViewLyrics';
 
 const Routes = () => {
 	const dispatch = useDispatch();
@@ -47,7 +47,7 @@ const Routes = () => {
 				{user.id ? <ShowFavorite /> : <Redirect to="/" />}
 			</Route>
 			<Route exact path="/lyrics">
-				{user.id ? <Lyrics songData={song} /> : <Redirect to="/" />}
+				{user.id ? <ViewLyrics songData={song} /> : <Redirect to="/" />}
 			</Route>
 			<Route exact path="/">
 				<Home />

@@ -2,7 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Box, Typography } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
-import { getSong } from './reducers/actions';
+import { getSong, removeSong } from './reducers/actions';
 import SearchForm from './SearchForm';
 import Lyrics from './Lyrics';
 
@@ -10,6 +10,7 @@ const Search = ({ songData }) => {
 	const history = useHistory();
 	const dispatch = useDispatch();
 	const doSearch = (data) => {
+		dispatch(removeSong());
 		dispatch(getSong(data));
 		history.push(`/lyrics`);
 	};
