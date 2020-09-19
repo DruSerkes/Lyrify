@@ -5,9 +5,9 @@ import { getNewSong } from './reducers/actions';
 import Lyrics from './Lyrics';
 
 const ShowFavorite = () => {
-	const dispatch = useDispatch;
+	const dispatch = useDispatch();
 	const { id } = useParams();
-	const favorites = useSelector((state) => state.favorites);
+	// const favorites = useSelector((state) => state.favorites);
 	const song = useSelector((state) => state.song);
 	useEffect(
 		() => {
