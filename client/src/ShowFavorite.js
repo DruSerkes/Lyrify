@@ -1,22 +1,24 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { getNewSong } from './reducers/actions';
-import Lyrics from './Lyrics';
+import { useParams, useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { getNewSong, removeSong } from './reducers/actions';
+import ViewLyrics from './ViewLyrics';
 
-const ShowFavorite = () => {
+const ShowFavorite = ({ songData }) => {
 	const dispatch = useDispatch();
+	const history = useHistory();
 	const { id } = useParams();
-	// const favorites = useSelector((state) => state.favorites);
-	const song = useSelector((state) => state.song);
 	useEffect(
 		() => {
-			if (song.id !== id) dispatch(getNewSong(id));
+			if (songData.id !== id) {
+				dispatch(removeSong());
+				dispatch(getNewSong(id));
+				history.push('/lyrics');
+			}
 		},
-		[ song, dispatch, id ]
+		[ songData, dispatch, id, history ]
 	);
-
-	return <Lyrics songData={song} />;
+	return <ViewLyrics songData={songData} />;
 };
 
 export default ShowFavorite;

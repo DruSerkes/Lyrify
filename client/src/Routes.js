@@ -34,7 +34,7 @@ const Routes = () => {
 				{user.id ? <Favorites user={user} favorites={favorites} /> : <Redirect to="/" />}
 			</Route>
 			<Route exact path="/favorites/:id">
-				{user.id ? <ShowFavorite /> : <Redirect to="/" />}
+				{user.id ? <ShowFavorite songData={song} /> : <Redirect to="/" />}
 			</Route>
 			<Route exact path="/lyrics">
 				{user.id ? <ViewLyrics songData={song} /> : <Redirect to="/" />}
