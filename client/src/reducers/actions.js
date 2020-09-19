@@ -14,7 +14,7 @@ const BASE_URL = 'http://localhost:5000';
 export function getUser(id) {
 	return async function(dispatch) {
 		const res = await axios.get(`${BASE_URL}/users/${id}`);
-		dispatch(gotUser(res.data));
+		dispatch(gotUser(res.data.user));
 	};
 }
 

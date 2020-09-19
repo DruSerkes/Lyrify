@@ -22,16 +22,6 @@ const Routes = () => {
 		[ favorites, dispatch, user.id ]
 	);
 
-	// useEffect(
-	// 	() => {
-	// 		if (!user && localStorage.getItem('id')) {
-	// 			const id = localStorage.getItem('id');
-	// 			dispatch(getUser(id));
-	// 		}
-	// 	},
-	// 	[ dispatch, user ]
-	// );
-
 	return (
 		<Switch>
 			<Route exact path="/search">

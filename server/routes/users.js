@@ -11,13 +11,15 @@ const spotifyApi = new SpotifyWebApi({ redirectUri, clientId, clientSecret, stat
  */
 router.get('/:id', async (req, res, next) => {
 	try {
-		console.log('INSIDE ROUTER.GET /:ID');
-		console.log('ID ==', req.params.id);
 		const { id } = req.params;
-		// TODO take another look at this
 		const user = await User.getById(id);
 		spotifyApi.setAccessToken(user.access_token);
 		spotifyApi.setRefreshToken(user.refresh_token);
+		// console.log('spotifyApi == ', spotifyApi);
+		// const response = await spotifyApi.refreshAccessToken();
+		// const newAccessToken = await User.updateAccessToken(id, response.body.access_token);
+		// console.log('newAccessToken == ', newAccessToken);
+		// spotifyApi.setAccessToken(newAccessToken);
 		delete user.access_token;
 		delete user.refresh_token;
 		return res.json({ user });
