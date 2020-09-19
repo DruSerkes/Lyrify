@@ -7,11 +7,13 @@ import Playing from './Playing';
 import Search from './Search';
 import Favorites from './Favorites';
 import ShowFavorite from './ShowFavorite';
+import Lyrics from './Lyrics';
 
 const Routes = () => {
 	const dispatch = useDispatch();
 	const user = useSelector((state) => state.user, shallowEqual);
 	const favorites = useSelector((state) => state.favorites, shallowEqual);
+	const song = useSelector((state) => state.song, shallowEqual);
 
 	useEffect(
 		() => {
@@ -33,16 +35,19 @@ const Routes = () => {
 	return (
 		<Switch>
 			<Route exact path="/search">
-				{user.id ? <Search /> : <Redirect to="/" />}
+				{user.id ? <Search songData={song} /> : <Redirect to="/" />}
 			</Route>
 			<Route exact path="/playing">
-				{user.id ? <Playing /> : <Redirect to="/" />}
+				{user.id ? <Playing songData={song} /> : <Redirect to="/" />}
 			</Route>
 			<Route exact path="/favorites">
 				{user.id ? <Favorites user={user} favorites={favorites} /> : <Redirect to="/" />}
 			</Route>
 			<Route exact path="/favorites/:id">
 				{user.id ? <ShowFavorite /> : <Redirect to="/" />}
+			</Route>
+			<Route exact path="/lyrics">
+				{user.id ? <Lyrics songData={song} /> : <Redirect to="/" />}
 			</Route>
 			<Route exact path="/">
 				<Home />

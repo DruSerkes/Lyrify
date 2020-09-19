@@ -4,6 +4,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const querystring = require('querystring');
 const cookieParser = require('cookie-parser');
+const { v4: uuidv4 } = require('uuid');
 const ExpressError = require('./helpers/ExpressError');
 const User = require('./models/user');
 const Song = require('./models/song');
@@ -59,6 +60,7 @@ app.post('/search', async (req, res, next) => {
 	try {
 		const songData = req.body;
 		const song = await fetchLyrics(songData);
+		song.id = uuidv4();
 		return res.json({ song });
 	} catch (e) {
 		return next(e);

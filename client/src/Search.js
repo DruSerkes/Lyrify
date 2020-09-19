@@ -1,14 +1,18 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { Box, Typography } from '@material-ui/core';
-import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getSong } from './reducers/actions';
 import SearchForm from './SearchForm';
 import Lyrics from './Lyrics';
 
-const Search = () => {
+const Search = ({ songData }) => {
+	const history = useHistory();
 	const dispatch = useDispatch();
-	const songData = useSelector((state) => state.song, shallowEqual);
-	const doSearch = (data) => dispatch(getSong(data));
+	const doSearch = (data) => {
+		dispatch(getSong(data));
+		history.push(`/lyrics`);
+	};
 
 	return (
 		<Box padding={1} margin={1}>
