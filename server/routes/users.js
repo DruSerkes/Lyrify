@@ -2,7 +2,7 @@ const express = require('express');
 const User = require('../models/user');
 const router = express.Router();
 const SpotifyWebApi = require('spotify-web-api-node');
-const { clientId, clientSecret, redirectUri, scopes, HOME, SECRET_KEY, state } = require('../config');
+const { clientId, clientSecret, redirectUri, state } = require('../config');
 
 const spotifyApi = new SpotifyWebApi({ redirectUri, clientId, clientSecret, state });
 

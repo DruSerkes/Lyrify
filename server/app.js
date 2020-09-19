@@ -3,7 +3,6 @@ const helmet = require('helmet');
 const cors = require('cors');
 const morgan = require('morgan');
 const querystring = require('querystring');
-const cookieParser = require('cookie-parser');
 const { v4: uuidv4 } = require('uuid');
 const ExpressError = require('./helpers/ExpressError');
 const User = require('./models/user');
@@ -12,7 +11,6 @@ const SpotifyWebApi = require('spotify-web-api-node');
 const { clientId, clientSecret, redirectUri, scopes, HOME, SECRET_KEY, state } = require('./config');
 const { extractSongData, fetchAndAddLyrics, fetchLyrics } = require('./helpers/helpers');
 const userRoutes = require('./routes/users');
-const db = require('./db');
 
 const spotifyApi = new SpotifyWebApi({ redirectUri, clientId, clientSecret, state });
 
@@ -24,21 +22,21 @@ app.use(express.json());
 // CORS
 app.use(cors());
 
-// Cookies
-// app.use(cookieParser(SECRET_KEY));
-
 // Some security
 app.use(helmet());
 
 // Request logger
 app.use(morgan('dev'));
 
+// Root redirects to the root for the front end
 app.get('/', (req, res, next) => {
 	return res.redirect(HOME);
 });
 
+// User Routes
 app.use('/users', userRoutes);
 
+// Get user's now playing song
 app.get('/now-playing', async (req, res, next) => {
 	try {
 		const data = await spotifyApi.getMyCurrentPlayingTrack();
@@ -51,11 +49,11 @@ app.get('/now-playing', async (req, res, next) => {
 			return res.json({ song });
 		}
 	} catch (e) {
-		console.log(e);
 		return next(e);
 	}
 });
 
+// Search for lyrics by user input
 app.post('/search', async (req, res, next) => {
 	try {
 		const songData = req.body;
@@ -82,7 +80,6 @@ app.get('/spotify/auth', (req, res, next) => {
 		const authUrl = spotifyApi.createAuthorizeURL(scopes, state);
 		res.redirect(authUrl);
 	} catch (e) {
-		console.log(e);
 		return next(e);
 	}
 });
@@ -102,7 +99,7 @@ app.get('/callback', async (req, res, next) => {
 		// Check if user already in DB
 		const dbUser = await User.getById(id);
 		if (dbUser) {
-			console.log('FOUND USER IN DB');
+			delete dbUser.access_token;
 			delete dbUser.refresh_token;
 			return res.redirect(`${HOME}?${querystring.stringify(dbUser)}`);
 		} else {
