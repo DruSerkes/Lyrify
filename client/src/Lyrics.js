@@ -10,6 +10,7 @@ import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 
 const Lyrics = ({ songData }) => {
+	console.log('songData inside Lyrics == ', songData);
 	const dispatch = useDispatch();
 	const user = useSelector((state) => state.user, shallowEqual);
 	const favorites = useSelector((state) => state.favorites, shallowEqual) || [];
@@ -25,6 +26,12 @@ const Lyrics = ({ songData }) => {
 			dispatch(addFavorite(user.id, songId));
 		}
 	};
+	if (songData === {} || !songData)
+		return (
+			<Typography variant="h5" className="Loading">
+				Loading &hellip;
+			</Typography>
+		);
 
 	return (
 		<Paper elevation={5} className="Lyrics">
