@@ -32,17 +32,20 @@ const normalizeString = (string) => {
 };
 
 const fetchAndAddLyrics = async (songData) => {
-	let lyrics = await getLyrics(songData);
-	if (lyrics === 'No lyrics found') {
-		lyrics = await getLyricsWordsRemoved(songData);
-		songData.lyrics = lyrics;
-		const song = await Song.create(songData);
-		return song;
-	} else {
-		songData.lyrics = lyrics;
-		const song = await Song.create(songData);
-		return song;
-	}
+	// let lyrics = await getLyrics(songData);
+	// if (lyrics === 'No lyrics found') {
+	// 	lyrics = await getLyricsWordsRemoved(songData);
+	// 	songData.lyrics = lyrics;
+	// 	const song = await Song.create(songData);
+	// 	return song;
+	// } else {
+	// 	songData.lyrics = lyrics;
+	// 	const song = await Song.create(songData);
+	// 	return song;
+	// }
+	const lyrics = await fetchLyrics(songData);
+	songData.lyrics = lyrics;
+	return songData;
 };
 
 const getLyrics = async ({ artist, song }) => {
@@ -74,9 +77,7 @@ const getLyricsWordsRemoved = async ({ artist, song }) => {
 		const artistNormalized = normalizeString(artist);
 		const songNormalized = normalizeString(song);
 		const songWordsRemoved = removeCommonWords(songNormalized);
-		console.log('songWordsRemoved === ', songWordsRemoved);
 		const response = await axios.get(`${LYRIC_BASE_URL}/${artistNormalized}/${songWordsRemoved}`);
-		console.log('response === ', response);
 		return response.data.lyrics;
 	} catch (e) {
 		console.log(e);
