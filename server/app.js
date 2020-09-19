@@ -3,6 +3,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 const morgan = require('morgan');
 const querystring = require('querystring');
+const jsonschema = require('jsonschema');
 const { v4: uuidv4 } = require('uuid');
 const ExpressError = require('./helpers/ExpressError');
 const User = require('./models/user');
@@ -10,6 +11,7 @@ const Song = require('./models/song');
 const SpotifyWebApi = require('spotify-web-api-node');
 const { clientId, clientSecret, redirectUri, scopes, HOME, SECRET_KEY, state } = require('./config');
 const { extractSongData, fetchAndAddLyrics, fetchLyrics } = require('./helpers/helpers');
+const searchSongSchema = require('./schemas/searchSchema.json');
 const userRoutes = require('./routes/users');
 
 const spotifyApi = new SpotifyWebApi({ redirectUri, clientId, clientSecret, state });
@@ -57,6 +59,8 @@ app.get('/now-playing', async (req, res, next) => {
 app.post('/search', async (req, res, next) => {
 	try {
 		const songData = req.body;
+		const result = jsonschema.validate(songData, searchSongSchema);
+		if (!result.valid) throw new ExpressError('invalid song data', 400);
 		const song = await fetchLyrics(songData);
 		song.id = uuidv4();
 		return res.json({ song });
