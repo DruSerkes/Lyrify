@@ -42,9 +42,9 @@ router.get('/:id/favorite', async (req, res, next) => {
 /**
  * Add a favorite
  */
-router.post('/:id/favorite', async (req, res, next) => {
+router.post('/:user_id/favorite', async (req, res, next) => {
 	try {
-		const { id: user_id } = req.params;
+		const { user_id } = req.params;
 		const { song_id } = req.body;
 		const song = await User.addFavorite(user_id, song_id);
 		return res.status(201).json({ song });

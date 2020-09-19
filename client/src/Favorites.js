@@ -8,12 +8,11 @@ import Favorite from './Favorite';
 const Favorites = ({ user }) => {
 	const dispatch = useDispatch();
 	const favorites = useSelector((state) => state.favorites);
-	console.log('favorites in favorites', favorites);
 	useEffect(
 		() => {
 			if (!favorites) dispatch(getFavorites(user.id));
 		},
-		[ favorites ]
+		[ favorites, dispatch, user.id ]
 	);
 	return (
 		<React.Fragment>

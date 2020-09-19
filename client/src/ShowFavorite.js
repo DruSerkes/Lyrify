@@ -13,7 +13,7 @@ const ShowFavorite = () => {
 		() => {
 			if (song.id !== id) dispatch(getNewSong(id));
 		},
-		[ song ]
+		[ song, dispatch, id ]
 	);
 
 	return <Lyrics songData={song} />;

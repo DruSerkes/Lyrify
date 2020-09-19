@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import { addFavorite, removeFavorite } from './reducers/actions';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -11,11 +11,10 @@ import Box from '@material-ui/core/Box';
 
 const Lyrics = ({ songData }) => {
 	const dispatch = useDispatch();
-	const user = useSelector((state) => state.user);
-	const favorites = useSelector((state) => state.favorites) || [];
+	const user = useSelector((state) => state.user, shallowEqual);
+	const favorites = useSelector((state) => state.favorites, shallowEqual) || [];
 	const { id: songId } = songData;
 	const isFavorite = favorites.some((fav) => fav.id === songId);
-	console.log(isFavorite);
 
 	const createMarkup = () => ({ __html: songData.lyrics });
 
