@@ -25,7 +25,6 @@ const SearchForm = ({ doSearch }) => {
 			<FormControl>
 				<TextField
 					inputRef={register}
-					error={errors.song}
 					name="song"
 					id="song"
 					label="Song Name"
@@ -37,7 +36,6 @@ const SearchForm = ({ doSearch }) => {
 				/>
 				<TextField
 					inputRef={register}
-					error={errors.artist}
 					name="artist"
 					id="artist"
 					label="Artist Name"

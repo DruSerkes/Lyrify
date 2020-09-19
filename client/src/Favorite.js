@@ -8,11 +8,18 @@ import Button from '@material-ui/core/Button';
 const Favorite = ({ artist, song, id, userId }) => {
 	const dispatch = useDispatch();
 	return (
-		<ListItem id={id} divider className="Favorite-Item">
-			<Link to={`/favorites/${id}`} className="Favorite">
+		<ListItem id={id} divider className="Favorite">
+			<Link to={`/favorites/${id}`} className="Favorite-Item">
 				{artist}: "{song}"
 			</Link>
-			<Button onClick={() => dispatch(removeFavorite(userId, id))}>Remove Favorite</Button>
+			<Button
+				variant="contained"
+				size="small"
+				color="secondary"
+				onClick={() => dispatch(removeFavorite(userId, id))}
+			>
+				Remove
+			</Button>
 		</ListItem>
 	);
 };

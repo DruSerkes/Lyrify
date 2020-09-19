@@ -113,13 +113,14 @@ body,
 	margin: 0 auto;
 }
 
-.Favorite {
+.Favorite-Item {
 	color: inherit;
 	text-decoration: none;
+	margin-right: auto;
 }
 
-.Favorite:hover {
-	color: #ff5722;
+.Favorite-Item:hover {
+	color: #66bb6a;
 	text-decoration: underline;
 }
 
