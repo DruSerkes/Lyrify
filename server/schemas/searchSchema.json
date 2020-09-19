@@ -1,0 +1,34 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"$id": "http://example.com/example.json",
+	"type": "object",
+	"title": "The /search songData schema",
+	"description": "The schema for songData expected by POST /search ",
+	"default": {},
+	"examples": [
+		{
+			"song": "Marvins Room",
+			"artist": "Drake"
+		}
+	],
+	"required": [ "song", "artist" ],
+	"properties": {
+		"song": {
+			"$id": "#/properties/song",
+			"type": "string",
+			"title": "The song title schema",
+			"description": "Song title for lyrics you want",
+			"default": "",
+			"examples": [ "Marvins Room" ]
+		},
+		"artist": {
+			"$id": "#/properties/artist",
+			"type": "string",
+			"title": "The artist schema",
+			"description": "The artist performing this song",
+			"default": "",
+			"examples": [ "Drake" ]
+		}
+	},
+	"additionalProperties": true
+}
