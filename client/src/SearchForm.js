@@ -26,6 +26,7 @@ const SearchForm = ({ doSearch }) => {
 				<TextField
 					inputRef={register}
 					name="song"
+					error={errors.song ? true : false}
 					id="song"
 					label="Song Name"
 					variant="outlined"
@@ -37,6 +38,7 @@ const SearchForm = ({ doSearch }) => {
 				<TextField
 					inputRef={register}
 					name="artist"
+					error={errors.artist ? true : false}
 					id="artist"
 					label="Artist Name"
 					variant="outlined"
@@ -45,7 +47,7 @@ const SearchForm = ({ doSearch }) => {
 					required
 					helperText={errors.artist ? errors.artist.message : null}
 				/>
-				<Button onClick={handleSubmit(submit)} color="primary" variant="contained">
+				<Button type="submit" onClick={handleSubmit(submit)} color="primary" variant="contained">
 					Search
 				</Button>
 			</FormControl>
