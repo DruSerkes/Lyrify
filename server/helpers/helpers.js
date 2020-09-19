@@ -57,6 +57,18 @@ const getLyrics = async ({ artist, song }) => {
 	}
 };
 
+const fetchLyrics = async (songData) => {
+	let lyrics = await getLyrics(songData);
+	if (lyrics === 'No lyrics found') {
+		lyrics = await getLyricsWordsRemoved(songData);
+		songData.lyrics = lyrics;
+		return songData;
+	} else {
+		songData.lyrics = lyrics;
+		return songData;
+	}
+};
+
 const getLyricsWordsRemoved = async ({ artist, song }) => {
 	try {
 		const artistNormalized = normalizeString(artist);
@@ -73,6 +85,7 @@ const getLyricsWordsRemoved = async ({ artist, song }) => {
 };
 
 module.exports = {
+	fetchLyrics,
 	fetchAndAddLyrics,
 	extractSongData,
 	getLyricsWordsRemoved,

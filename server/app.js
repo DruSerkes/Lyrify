@@ -112,8 +112,6 @@ app.get('/callback', async (req, res, next) => {
 		const dbUser = await User.getById(id);
 		if (dbUser) {
 			console.log('FOUND USER IN DB');
-			console.log('dbUser ==', dbUser);
-			delete dbUser.favorites;
 			delete dbUser.refresh_token;
 			return res.redirect(`${HOME}?${querystring.stringify(dbUser)}`);
 		} else {
@@ -127,10 +125,6 @@ app.get('/callback', async (req, res, next) => {
 		return next(e);
 	}
 });
-
-/*
-* 
-*/
 
 /** 404 handler */
 
