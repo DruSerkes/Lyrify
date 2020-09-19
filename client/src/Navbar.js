@@ -1,10 +1,26 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useSelector, shallowEqual } from 'react-redux';
-import { AppBar, Avatar, Button, Toolbar, Grid, Typography, Box } from '@material-ui/core';
+import { useSelector, useDispatch, shallowEqual } from 'react-redux';
+import { logoutUser } from './reducers/actions';
+import { AppBar, Avatar, Button, Toolbar, Grid, Typography, Box, Menu, MenuItem } from '@material-ui/core';
 
 const Navbar = () => {
+	const dispatch = useDispatch();
 	const user = useSelector((state) => state.user, shallowEqual);
+	const [ anchorEl, setAnchorEl ] = React.useState(null);
+
+	const handleClick = (event) => {
+		setAnchorEl(event.currentTarget);
+	};
+
+	const handleClose = () => {
+		setAnchorEl(null);
+	};
+
+	const handleLogout = () => {
+		dispatch(logoutUser());
+	};
+
 	return (
 		<AppBar position="sticky">
 			<Toolbar>
@@ -46,7 +62,24 @@ const Navbar = () => {
 								Favorites
 							</Button>
 						</Grid>
-						<Avatar sizes="lg" src={user.img_url} alt={user.display_name} />
+						<Avatar
+							aria-controls="logout-menu"
+							aria-haspopup="true"
+							onClick={handleClick}
+							sizes="lg"
+							src={user.img_url}
+							alt={user.display_name}
+						/>
+						{/* <Button>Open Menu</Button> */}
+						<Menu
+							id="logout-menu"
+							anchorEl={anchorEl}
+							keepMounted
+							open={Boolean(anchorEl)}
+							onClose={handleClose}
+						>
+							<MenuItem onClick={handleLogout}>Logout</MenuItem>
+						</Menu>
 					</React.Fragment>
 				) : null}
 			</Toolbar>
