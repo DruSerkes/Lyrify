@@ -1,12 +1,15 @@
 import React from 'react';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 import Favorite from './Favorite';
 
 const Favorites = ({ user, favorites }) => {
 	return (
-		<React.Fragment>
-			<Typography variant="h1">Favorites</Typography>
+		<Box margin={1} padding={1}>
+			<Box margin={2}>
+				<Typography variant="h1">Favorites</Typography>
+			</Box>
 			<List className="Favorites">
 				{favorites.length ? (
 					favorites.map((fav) => (
@@ -16,7 +19,7 @@ const Favorites = ({ user, favorites }) => {
 					<Typography>You haven't favorited any lyrics!</Typography>
 				)}
 			</List>
-		</React.Fragment>
+		</Box>
 	);
 };
 
