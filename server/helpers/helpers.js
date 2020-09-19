@@ -3,7 +3,7 @@ const removeWords = require('remove-words');
 // ^ this passes tests
 // but breaks in production unless I get rid of .main
 // Unclear as to why...
-const wordsToRemove = [ 'Album', 'Version', 'Edit', 'Edited', 'Remix' ];
+const wordsToRemove = [ 'Album', 'Version', 'Edit', 'Edited', 'Remix', 'New Version', 'New', '-' ];
 const Song = require('../models/song');
 
 const LYRIC_BASE_URL = 'https://api.lyrics.ovh/v1';
