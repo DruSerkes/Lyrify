@@ -10,7 +10,6 @@ import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 
 const Lyrics = ({ songData }) => {
-	console.log('songData inside Lyrics == ', songData);
 	const dispatch = useDispatch();
 	const user = useSelector((state) => state.user, shallowEqual);
 	const favorites = useSelector((state) => state.favorites, shallowEqual) || [];
@@ -26,12 +25,7 @@ const Lyrics = ({ songData }) => {
 			dispatch(addFavorite(user.id, songId));
 		}
 	};
-	if (songData === {} || !songData)
-		return (
-			<Typography variant="h5" className="Loading">
-				Loading &hellip;
-			</Typography>
-		);
+	if (!songData.id) return null;
 
 	return (
 		<Paper elevation={5} className="Lyrics">
@@ -93,7 +87,11 @@ const Lyrics = ({ songData }) => {
 					</div>
 					<Divider variant="middle" />
 					<Box margin={1} padding={2}>
-						<Typography style={{ whiteSpace: 'pre-wrap' }} dangerouslySetInnerHTML={createMarkup()} />
+						{songData.lyrics ? (
+							<Typography style={{ whiteSpace: 'pre-wrap' }} dangerouslySetInnerHTML={createMarkup()} />
+						) : (
+							<Typography>Cannot find lyrics for this song</Typography>
+						)}
 					</Box>
 				</section>
 			)}

@@ -1,20 +1,20 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch, shallowEqual } from 'react-redux';
-import { getFavorites } from './reducers/actions';
+import React from 'react';
+// import { useDispatch, shallowEqual } from 'react-redux';
+// import { getFavorites } from './reducers/actions';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Favorite from './Favorite';
 
-const Favorites = ({ user }) => {
-	const dispatch = useDispatch();
-	const favorites = useSelector((state) => state.favorites, shallowEqual);
+const Favorites = ({ user, favorites }) => {
+	// const dispatch = useDispatch();
+	// // const favorites = useSelector((state) => state.favorites, shallowEqual);
 
-	useEffect(
-		() => {
-			if (!favorites) dispatch(getFavorites(user.id));
-		},
-		[ favorites, dispatch, user.id ]
-	);
+	// useEffect(
+	// 	() => {
+	// 		if (!favorites.length) dispatch(getFavorites(user.id));
+	// 	},
+	// 	[ favorites, dispatch, user.id ]
+	// );
 
 	return (
 		<React.Fragment>
