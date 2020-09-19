@@ -9,7 +9,7 @@ const User = require('./models/user');
 const Song = require('./models/song');
 const SpotifyWebApi = require('spotify-web-api-node');
 const { clientId, clientSecret, redirectUri, scopes, HOME, SECRET_KEY, state } = require('./config');
-const { extractSongData, fetchAndAddLyrics } = require('./helpers/helpers');
+const { extractSongData, fetchAndAddLyrics, fetchLyrics } = require('./helpers/helpers');
 const userRoutes = require('./routes/users');
 const db = require('./db');
 
@@ -49,8 +49,6 @@ app.get('/now-playing', async (req, res, next) => {
 			const song = await fetchAndAddLyrics(songData);
 			return res.json({ song });
 		}
-		// songData.lyrics = await getLyrics(songData);
-		// return res.json({ songData });
 	} catch (e) {
 		console.log(e);
 		return next(e);
@@ -60,17 +58,8 @@ app.get('/now-playing', async (req, res, next) => {
 app.post('/search', async (req, res, next) => {
 	try {
 		const songData = req.body;
-		const song = await fetchAndAddLyrics(songData);
+		const song = await fetchLyrics(songData);
 		return res.json({ song });
-		// let lyrics = await getLyrics(songData);
-		// if (lyrics === 'No lyrics found') {
-		// 	lyrics = await getLyricsWordsRemoved(songData);
-		// 	songData.lyrics = lyrics;
-		// 	return res.json({ songData });
-		// } else {
-		// 	songData.lyrics = lyrics;
-		// 	return res.json({ songData });
-		// }
 	} catch (e) {
 		return next(e);
 	}

@@ -32,20 +32,9 @@ const normalizeString = (string) => {
 };
 
 const fetchAndAddLyrics = async (songData) => {
-	// let lyrics = await getLyrics(songData);
-	// if (lyrics === 'No lyrics found') {
-	// 	lyrics = await getLyricsWordsRemoved(songData);
-	// 	songData.lyrics = lyrics;
-	// 	const song = await Song.create(songData);
-	// 	return song;
-	// } else {
-	// 	songData.lyrics = lyrics;
-	// 	const song = await Song.create(songData);
-	// 	return song;
-	// }
-	const lyrics = await fetchLyrics(songData);
-	songData.lyrics = lyrics;
-	return songData;
+	songData = await fetchLyrics(songData);
+	const song = await Song.create(songData);
+	return song;
 };
 
 const getLyrics = async ({ artist, song }) => {
