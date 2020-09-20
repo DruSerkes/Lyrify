@@ -9,7 +9,7 @@ import {
 } from './actionTypes';
 import axios from 'axios';
 
-const BASE_URL = `https://lyrify-server.herokuapp.com/` || 'http://localhost:5000';
+const BASE_URL = `https://lyrify-server.herokuapp.com` || 'http://localhost:5000';
 
 export function getUser(id) {
 	return async function(dispatch) {
