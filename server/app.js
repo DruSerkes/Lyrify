@@ -10,11 +10,9 @@ const User = require('./models/user');
 const Song = require('./models/song');
 const SpotifyWebApi = require('spotify-web-api-node');
 const { clientId, clientSecret, redirectUri, scopes, HOME, state } = require('./config');
-const { extractSongData, fetchAndAddLyrics, fetchLyrics } = require('./helpers/helpers');
+const { fetchLyrics } = require('./helpers/helpers');
 const searchSongSchema = require('./schemas/searchSchema.json');
 const userRoutes = require('./routes/users');
-
-// const spotifyApi = new SpotifyWebApi({ redirectUri, clientId, clientSecret, state });
 
 const app = express();
 
@@ -38,31 +36,6 @@ app.get('/', (req, res, next) => {
 // User Routes
 app.use('/users', userRoutes);
 
-// Get user's now playing song
-// app.get('/now-playing/:id', async (req, res, next) => {
-// 	try {
-// 		// get user access/refresh tokens
-// 		const { id } = req.params;
-// 		const user = await User.getById(id);
-// 		// pass to spotifyApi
-// 		const spotifyApi = new SpotifyWebApi({ redirectUri, clientId, clientSecret, state });
-// 		spotifyApi.setAccessToken(user.access_token);
-// 		spotifyApi.setRefreshToken(user.refresh_token);
-// 		// go get it
-// 		const data = await spotifyApi.getMyCurrentPlayingTrack();
-// 		if (data.body.currently_playing_type !== 'track') {
-// 			const message = 'No song currently playing';
-// 			return res.json({ message });
-// 		} else {
-// 			const songData = extractSongData(data.body);
-// 			const song = await fetchAndAddLyrics(songData);
-// 			return res.json({ song });
-// 		}
-// 	} catch (e) {
-// 		return next(e);
-// 	}
-// });
-
 // Search for lyrics by user input
 app.post('/search', async (req, res, next) => {
 	try {
@@ -77,6 +50,7 @@ app.post('/search', async (req, res, next) => {
 	}
 });
 
+// Get a song
 app.get('/songs/:id', async (req, res, next) => {
 	try {
 		const { id } = req.params;
@@ -87,6 +61,7 @@ app.get('/songs/:id', async (req, res, next) => {
 	}
 });
 
+// Spotify auth for login
 app.get('/spotify/auth', (req, res, next) => {
 	try {
 		const spotifyApi = new SpotifyWebApi({ redirectUri, clientId, clientSecret, state });
@@ -97,6 +72,7 @@ app.get('/spotify/auth', (req, res, next) => {
 	}
 });
 
+// Spotify redirect uri for login
 app.get('/callback', async (req, res, next) => {
 	try {
 		const spotifyApi = new SpotifyWebApi({ redirectUri, clientId, clientSecret, state });

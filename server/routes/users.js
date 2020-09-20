@@ -5,7 +5,6 @@ const SpotifyWebApi = require('spotify-web-api-node');
 const { extractSongData, fetchAndAddLyrics } = require('../helpers/helpers');
 const { clientId, clientSecret, redirectUri, state } = require('../config');
 
-// const spotifyApi = new SpotifyWebApi({ redirectUri, clientId, clientSecret, state });
 
 /**
  * Get a user
