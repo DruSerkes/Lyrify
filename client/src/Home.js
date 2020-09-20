@@ -50,9 +50,9 @@ const Home = () => {
 						className="Home-Login"
 						variant="contained"
 						color="primary"
-						// href="https://lyrify-server.herokuapp.com/spotify/auth"
+						href="https://lyrify-server.herokuapp.com/spotify/auth"
 						// ^ Production
-						href="http://localhost:5000/spotify/auth"
+						// href="http://localhost:5000/spotify/auth"
 						// ^ Development
 					>
 						Login with Spotify

@@ -9,9 +9,9 @@ import {
 } from './actionTypes';
 import axios from 'axios';
 
-// const BASE_URL = `https://lyrify-server.herokuapp.com`;
+const BASE_URL = `https://lyrify-server.herokuapp.com`;
 // ^ PRODUCTION
-const BASE_URL = 'http://localhost:5000';
+// const BASE_URL = 'http://localhost:5000';
 // ^ DEVELOPMENT
 
 export function getUser(id) {
