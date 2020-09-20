@@ -9,8 +9,10 @@ import {
 } from './actionTypes';
 import axios from 'axios';
 
-const BASE_URL = `https://lyrify-server.herokuapp.com`;
-// || 'http://localhost:5000';
+// const BASE_URL = `https://lyrify-server.herokuapp.com`;
+// ^ PRODUCTION
+const BASE_URL = 'http://localhost:5000';
+// ^ DEVELOPMENT
 
 export function getUser(id) {
 	return async function(dispatch) {
@@ -32,9 +34,9 @@ export function logoutUser() {
 	};
 }
 
-export function getNowPlaying() {
+export function getNowPlaying(id) {
 	return async function(dispatch) {
-		const res = await axios.get(`${BASE_URL}/now-playing`);
+		const res = await axios.get(`${BASE_URL}/users/${id}/now-playing/`);
 		dispatch(gotNowPlaying(res.data.song));
 	};
 }

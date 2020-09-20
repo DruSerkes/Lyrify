@@ -6,22 +6,22 @@ import Box from '@material-ui/core/Box';
 import { getNowPlaying, removeSong } from './reducers/actions';
 import Lyrics from './Lyrics';
 
-const Playing = ({ songData }) => {
+const Playing = ({ songData, userId }) => {
 	const dispatch = useDispatch();
 
 	useEffect(
 		() => {
 			dispatch(removeSong());
-			dispatch(getNowPlaying());
+			dispatch(getNowPlaying(userId));
 		},
-		[ dispatch ]
+		[ dispatch, userId ]
 	);
 
 	return (
 		<Box padding={1} margin={1} className="Playing">
 			<Box padding={1} margin={1} className="Playing-Header">
 				<Typography variant="h1">Now Playing</Typography>
-				<Button variant="contained" color="primary" onClick={() => dispatch(getNowPlaying())}>
+				<Button variant="contained" color="primary" onClick={() => dispatch(getNowPlaying(userId))}>
 					Get Current Song
 				</Button>
 			</Box>

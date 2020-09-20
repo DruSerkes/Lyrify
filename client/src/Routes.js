@@ -28,7 +28,7 @@ const Routes = () => {
 				{user.id ? <Search songData={song} /> : <Redirect to="/" />}
 			</Route>
 			<Route exact path="/playing">
-				{user.id ? <Playing songData={song} /> : <Redirect to="/" />}
+				{user.id ? <Playing songData={song} userId={user.id} /> : <Redirect to="/" />}
 			</Route>
 			<Route exact path="/favorites">
 				{user.id ? <Favorites user={user} favorites={favorites} /> : <Redirect to="/" />}

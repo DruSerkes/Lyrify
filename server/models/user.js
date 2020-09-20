@@ -58,23 +58,27 @@ class User {
 		return user;
 	}
 
-	/** Update the access token for a user
+	/** Update the tokens for a user
 	 * 
 	 * @id {*} user id 
-	 * @token {*} new access token 
+	 * @access_token {*} new access token
+	 * @refresh_token {*} new refresh token 
 	 */
-	static async updateAccessToken(id, token) {
-		if (!id || !token) throw new ExpressError('user id and new access toekn required', 400);
+	static async updateTokens(id, access_token, refresh_token) {
+		if (!id || !access_token || !refresh_token) {
+			throw new ExpressError('user id and new access toekn required', 400);
+		}
 		const result = await db.query(
 			`UPDATE users
-			SET access_token = ($1)
-			WHERE id = $2
-			RETURNING access_token
+			SET access_token = ($1),
+			refresh_token = ($2)
+			WHERE id = $3
+			RETURNING access_token, refresh_token
 			`,
-			[ token, id ]
+			[ access_token, refresh_token, id ]
 		);
 		if (!result.rows.length) throw new ExpressError('User not found', 404);
-		return result.rows[0].access_token;
+		return result.rows[0];
 	}
 
 	static async getFavorites(id) {
