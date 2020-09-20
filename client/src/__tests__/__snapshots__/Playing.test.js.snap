@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiBox-root MuiBox-root-5 Playing"
+  >
+    <div
+      class="MuiBox-root MuiBox-root-6 Playing-Header"
+    >
+      <h1
+        class="MuiTypography-root MuiTypography-h1"
+      >
+        Now Playing
+      </h1>
+      <button
+        class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary"
+        tabindex="0"
+        type="button"
+      >
+        <span
+          class="MuiButton-label"
+        >
+          Get Current Song
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </button>
+    </div>
+    <section
+      class="MuiBox-root MuiBox-root-7 Lyrics"
+    >
+      <div
+        class="MuiPaper-root Lyrics MuiPaper-elevation5 MuiPaper-rounded"
+      >
+        <section
+          class="Lyrics-Content"
+        >
+          <div
+            class="Lyrics-Header"
+          >
+            <div
+              class="Lyrics-Header-Top"
+            >
+              <h4
+                class="MuiTypography-root MuiTypography-h4"
+              >
+                "test song"
+              </h4>
+              <h5
+                class="MuiTypography-root MuiTypography-h5"
+              >
+                By: the testers
+              </h5>
+            </div>
+          </div>
+          <hr
+            class="MuiDivider-root MuiDivider-middle"
+          />
+          <div
+            class="MuiBox-root MuiBox-root-8"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1"
+            >
+              Cannot find lyrics for this song
+            </p>
+          </div>
+        </section>
+      </div>
+    </section>
+  </div>
+</DocumentFragment>
+`;

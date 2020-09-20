@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiBox-root MuiBox-root-3 Home"
+  >
+    <h1
+      class="MuiTypography-root MuiTypography-h1"
+    >
+      Lyrify
+    </h1>
+    <p
+      class="MuiTypography-root MuiTypography-body1 MuiTypography-colorSecondary"
+    >
+      <em>
+        lyrics for the songs you love
+      </em>
+    </p>
+    <div
+      class="MuiBox-root MuiBox-root-4"
+    >
+      <a
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiButton-root MuiButton-contained Home-Login MuiButton-containedPrimary"
+        href="https://lyrify-server.herokuapp.com/spotify/auth"
+        tabindex="0"
+      >
+        <span
+          class="MuiButton-label"
+        >
+          Login with Spotify
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </a>
+    </div>
+  </div>
+</DocumentFragment>
+`;

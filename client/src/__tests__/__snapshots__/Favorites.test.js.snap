@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiBox-root MuiBox-root-3"
+  >
+    <div
+      class="MuiBox-root MuiBox-root-4"
+    >
+      <h1
+        class="MuiTypography-root MuiTypography-h1"
+      >
+        Favorites
+      </h1>
+    </div>
+    <ul
+      class="MuiList-root Favorites MuiList-padding"
+    >
+      <li
+        class="MuiListItem-root Favorite MuiListItem-gutters MuiListItem-divider"
+        id="1"
+      >
+        <a
+          class="Favorite-Item"
+          href="/favorites/1"
+        >
+          test: "testsong"
+        </a>
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedSecondary MuiButton-containedSizeSmall MuiButton-sizeSmall"
+          tabindex="0"
+          type="button"
+        >
+          <span
+            class="MuiButton-label"
+          >
+            Remove
+          </span>
+          <span
+            class="MuiTouchRipple-root"
+          />
+        </button>
+      </li>
+    </ul>
+  </div>
+</DocumentFragment>
+`;

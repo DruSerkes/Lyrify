@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiPaper-root Lyrics MuiPaper-elevation5 MuiPaper-rounded"
+  >
+    <section
+      class="Lyrics-Content"
+    >
+      <div
+        class="Lyrics-Header"
+      >
+        <div
+          class="Lyrics-Header-Top"
+        >
+          <h4
+            class="MuiTypography-root MuiTypography-h4"
+          >
+            "test song"
+          </h4>
+          <h5
+            class="MuiTypography-root MuiTypography-h5"
+          >
+            By: the testers
+          </h5>
+        </div>
+      </div>
+      <hr
+        class="MuiDivider-root MuiDivider-middle"
+      />
+      <div
+        class="MuiBox-root MuiBox-root-2"
+      >
+        <p
+          class="MuiTypography-root MuiTypography-body1"
+        >
+          Cannot find lyrics for this song
+        </p>
+      </div>
+    </section>
+  </div>
+</DocumentFragment>
+`;

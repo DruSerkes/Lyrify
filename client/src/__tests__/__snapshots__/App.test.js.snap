@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="App"
+  >
+    <header
+      class="MuiPaper-root MuiAppBar-root MuiAppBar-positionSticky MuiAppBar-colorPrimary MuiPaper-elevation4"
+    >
+      <div
+        class="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
+      >
+        <a
+          aria-current="page"
+          class="MuiBox-root MuiBox-root-4 Navbar-Logo active"
+          href="/"
+        >
+          <div
+            class="MuiAvatar-root MuiAvatar-circle"
+          >
+            <img
+              alt="Lyrify"
+              class="MuiAvatar-img"
+              src="logo500.png"
+            />
+          </div>
+          <p
+            class="MuiTypography-root MuiTypography-body1"
+          >
+             yrify
+          </p>
+        </a>
+      </div>
+    </header>
+    <main
+      class="MuiContainer-root MuiContainer-maxWidthLg"
+    >
+      <div
+        class="MuiBox-root MuiBox-root-5 Home"
+      >
+        <h1
+          class="MuiTypography-root MuiTypography-h1"
+        >
+          Lyrify
+        </h1>
+        <p
+          class="MuiTypography-root MuiTypography-body1 MuiTypography-colorSecondary"
+        >
+          <em>
+            lyrics for the songs you love
+          </em>
+        </p>
+        <div
+          class="MuiBox-root MuiBox-root-6"
+        >
+          <a
+            aria-disabled="false"
+            class="MuiButtonBase-root MuiButton-root MuiButton-contained Home-Login MuiButton-containedPrimary"
+            href="https://lyrify-server.herokuapp.com/spotify/auth"
+            tabindex="0"
+          >
+            <span
+              class="MuiButton-label"
+            >
+              Login with Spotify
+            </span>
+            <span
+              class="MuiTouchRipple-root"
+            />
+          </a>
+        </div>
+      </div>
+    </main>
+  </div>
+</DocumentFragment>
+`;

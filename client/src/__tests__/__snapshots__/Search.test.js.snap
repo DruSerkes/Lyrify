@@ -1,0 +1,169 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="MuiBox-root MuiBox-root-9"
+  >
+    <div
+      class="MuiBox-root MuiBox-root-10 Search-Header"
+    >
+      <h1
+        class="MuiTypography-root MuiTypography-h1"
+      >
+        Search Lyrics
+      </h1>
+      <form
+        class="SearchForm"
+      >
+        <div
+          class="MuiFormControl-root"
+        >
+          <div
+            class="MuiFormControl-root MuiTextField-root MuiFormControl-marginNormal"
+          >
+            <label
+              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined Mui-focused Mui-focused Mui-required Mui-required"
+              data-shrink="true"
+              for="song"
+              id="song-label"
+            >
+              Song Name
+              <span
+                aria-hidden="true"
+                class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+              >
+                 *
+              </span>
+            </label>
+            <div
+              class="MuiInputBase-root MuiOutlinedInput-root Mui-focused Mui-focused MuiInputBase-formControl"
+            >
+              <input
+                aria-invalid="false"
+                class="MuiInputBase-input MuiOutlinedInput-input"
+                id="song"
+                name="song"
+                required=""
+                type="text"
+                value=""
+              />
+              <fieldset
+                aria-hidden="true"
+                class="PrivateNotchedOutline-root-11 MuiOutlinedInput-notchedOutline"
+              >
+                <legend
+                  class="PrivateNotchedOutline-legendLabelled-13 PrivateNotchedOutline-legendNotched-14"
+                >
+                  <span>
+                    Song Name *
+                  </span>
+                </legend>
+              </fieldset>
+            </div>
+          </div>
+          <div
+            class="MuiFormControl-root MuiTextField-root MuiFormControl-marginNormal"
+          >
+            <label
+              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined Mui-required Mui-required"
+              data-shrink="false"
+              for="artist"
+              id="artist-label"
+            >
+              Artist Name
+              <span
+                aria-hidden="true"
+                class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
+              >
+                 *
+              </span>
+            </label>
+            <div
+              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-formControl"
+            >
+              <input
+                aria-invalid="false"
+                class="MuiInputBase-input MuiOutlinedInput-input"
+                id="artist"
+                name="artist"
+                required=""
+                type=""
+                value=""
+              />
+              <fieldset
+                aria-hidden="true"
+                class="PrivateNotchedOutline-root-11 MuiOutlinedInput-notchedOutline"
+              >
+                <legend
+                  class="PrivateNotchedOutline-legendLabelled-13"
+                >
+                  <span>
+                    Artist Name *
+                  </span>
+                </legend>
+              </fieldset>
+            </div>
+          </div>
+          <button
+            class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary"
+            tabindex="0"
+            type="submit"
+          >
+            <span
+              class="MuiButton-label"
+            >
+              Search
+            </span>
+            <span
+              class="MuiTouchRipple-root"
+            />
+          </button>
+        </div>
+      </form>
+    </div>
+    <section
+      class="MuiBox-root MuiBox-root-15 Lyrics"
+    >
+      <div
+        class="MuiPaper-root Lyrics MuiPaper-elevation5 MuiPaper-rounded"
+      >
+        <section
+          class="Lyrics-Content"
+        >
+          <div
+            class="Lyrics-Header"
+          >
+            <div
+              class="Lyrics-Header-Top"
+            >
+              <h4
+                class="MuiTypography-root MuiTypography-h4"
+              >
+                "test song"
+              </h4>
+              <h5
+                class="MuiTypography-root MuiTypography-h5"
+              >
+                By: the testers
+              </h5>
+            </div>
+          </div>
+          <hr
+            class="MuiDivider-root MuiDivider-middle"
+          />
+          <div
+            class="MuiBox-root MuiBox-root-16"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1"
+            >
+              Cannot find lyrics for this song
+            </p>
+          </div>
+        </section>
+      </div>
+    </section>
+  </div>
+</DocumentFragment>
+`;
