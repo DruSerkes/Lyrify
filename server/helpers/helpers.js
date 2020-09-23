@@ -74,6 +74,18 @@ const getLyricsWordsRemoved = async ({ artist, song }) => {
 	}
 };
 
+/**
+ * Extracts img url from spotify user data - returns null if cannot read property
+ */
+const getImgUrl = (data) => {
+	try {
+		return data.body.images[0].url;
+	} catch (e) {
+		console.log(e);
+		return null;
+	}
+};
+
 module.exports = {
 	fetchLyrics,
 	fetchAndAddLyrics,
@@ -81,5 +93,6 @@ module.exports = {
 	getLyricsWordsRemoved,
 	getLyrics,
 	removeCommonWords,
-	normalizeString
+	normalizeString,
+	getImgUrl
 };

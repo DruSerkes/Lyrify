@@ -10,7 +10,7 @@ const User = require('./models/user');
 const Song = require('./models/song');
 const SpotifyWebApi = require('spotify-web-api-node');
 const { clientId, clientSecret, redirectUri, scopes, HOME, state } = require('./config');
-const { fetchLyrics } = require('./helpers/helpers');
+const { fetchLyrics, getImgUrl } = require('./helpers/helpers');
 const searchSongSchema = require('./schemas/searchSchema.json');
 const userRoutes = require('./routes/users');
 
@@ -85,7 +85,8 @@ app.get('/callback', async (req, res, next) => {
 		// Get user data from Spotify
 		const me = await spotifyApi.getMe();
 		const { id, display_name, email, href, product } = me.body;
-		const img_url = me.body.images[0].url || null;
+		// const img_url = me.body.images[0].url || null;
+		const img_url = getImgUrl(me);
 		// Check if user already in DB
 		const dbUser = await User.getById(id);
 		if (dbUser) {
