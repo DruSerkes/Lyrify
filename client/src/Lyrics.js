@@ -43,7 +43,6 @@ const Lyrics = ({ songData }) => {
 						{songData.album_name && (
 							<div className="Lyrics-Header-Bottom">
 								<Box className="Lyrics-Album">
-									{/* Set max height to 140px? */}
 									{songData.img_url && (
 										<CardMedia
 											className="Lyrics-Album-Img"

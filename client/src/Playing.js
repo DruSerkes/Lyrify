@@ -26,7 +26,11 @@ const Playing = ({ songData, userId }) => {
 				</Button>
 			</Box>
 			<Box component="section" className="Lyrics">
-				{!songData.id ? <Typography variant="h5">Loading &hellip;</Typography> : <Lyrics songData={songData} />}
+				{!songData.id ? (
+					<Typography variant="h5">You are not playing anything &hellip;</Typography>
+				) : (
+					<Lyrics songData={songData} />
+				)}
 			</Box>
 		</Box>
 	);
