@@ -56,4 +56,3 @@ Certain lines of code are commented out for production vs development - I've add
 --- 
 
 ###### *Your first page load or login may be a bit slow if noone has visited the app in some time, but it's free, so we can't complain!*
-###### *This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).*
